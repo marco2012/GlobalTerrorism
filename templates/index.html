@@ -27,7 +27,7 @@
 
 	<link rel="stylesheet" href="css/top2000/tooltip.css"/>
 	<link rel="stylesheet" href="css/top2000/d3.slider.css"/> 
-	<link rel="stylesheet" href="css/top2000/style.css"/>
+	<link rel="stylesheet" href="css/top2000/top2000style.css"/>
 	<script src="js/top2000/showTooltip.js"></script>
 	<script src="js/top2000/createLegend.js"></script>
 	<script src="js/top2000/helperFunctions.js"></script>
@@ -40,6 +40,8 @@
 	<!-- <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
 	<script type="text/javascript" src="js/dependencies/canvasjs.min.js"></script>
 
+	<link rel="stylesheet" href="css/split-container.css" />
+
 <body>
 
 	<!-- importare per scatter -->
@@ -49,6 +51,8 @@
 	<script src="js/scatter.js" charset="utf-8"></script>
 	<script src="js/barcharts.js" charset="utf-8"></script>
 	<script src="js/map.js" charset="utf-8"></script>
+
+	<!-- <div class="intro"> <h1>Global Terrorist Attacks</h1> </div> </br> -->
 
 	<!-- grafico grande -->
 	<div id="intro">
@@ -92,13 +96,46 @@
 
 	<script src="js/top2000/mainCode.js"></script>
 
+	<!-- https://css-tricks.com/left-and-right/#article-header-id-5 -->
+
+	<section class="container" id="split-container">
+		<div class="left-half">
+			<article>
+				<div id="scatter"></div>
+			</article>
+		</div>
+		<div class="right-half">
+			<article>
+				<h1>Scatterplot</h1> </br>
+				<p>Weekends don't count unless you spend them doing something completely pointless.</p>
+			</article>
+		</div>
+	</section>
+
+
 	<!-- div per scatter -->
-	<div id="scatter"></div>
+	<!-- <div id="scatter"></div> -->
 	<!-- <input type="button" name="xAxis" value="xAxis"> -->
 	<script>scatter()</script>	
 
+
+	<section class="container" id="split-container">
+		<div class="left-half">
+			<article>
+				<h1>Weapons Barchart</h1> </br>
+				<p>Weekends don't count unless you spend them doing something completely pointless.</p>
+			</article>
+		</div>
+		<div class="right-half">
+			<article>
+				<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+			</article>
+		</div>
+	</section>
+
+
 	<!-- div per barchart -->
-	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	<!-- <div id="chartContainer" style="height: 300px; width: 100%;"></div> -->
 	<script>barchart()</script>
 	
 	<!-- <script src="js/map.js"></script> -->

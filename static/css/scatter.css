@@ -6,7 +6,6 @@ rect {
 .axis path,
 .axis line {
   fill: none;
-  /* stroke: rgba(0, 0, 0, 0.1); */
   stroke: rgba(255, 255, 255, 0.1);
   shape-rendering: crispEdges;
 }
@@ -14,7 +13,6 @@ rect {
 .axisLine {
   fill: none;
   shape-rendering: crispEdges;
-  /* stroke: rgba(0, 0, 0, 0.5); */
   stroke: white;
   stroke-width: 2px;
 }
@@ -37,7 +35,7 @@ rect {
   box-sizing: border-box;
   display: inline;
   font-size: 10px;
-  width: 100%;
+  width: 80;
   line-height: 1;
   color: rgba(0, 0, 0, 0.8);
   content: "\25BC";

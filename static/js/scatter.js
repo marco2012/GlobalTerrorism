@@ -3,9 +3,9 @@
 
 var DB_NAME = "pca.csv"
 
-var margin = { top: 500, right: 300, bottom: 500, left: 500 },
-    outerWidth = 1400,
-    outerHeight = 1000,
+var margin = { top: 50, right: 300, bottom: 50, left: 50 },
+    outerWidth = 700, //aumentare per mostrare legenda
+    outerHeight = 900,
     width = outerWidth - margin.left - margin.right,
     height = outerHeight - margin.top - margin.bottom;
 
@@ -160,7 +160,7 @@ d3.csv("data/"+DB_NAME, function (data) {
         .attr("x", width + 26)
         .attr("dy", ".35em")
         .text(function (d) {
-            return region_to_txt[d] 
+            return region_to_txt[d] //converte numero regione in stringa
         });
 
     d3.select("input").on("click", change);

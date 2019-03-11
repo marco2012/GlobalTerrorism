@@ -94,9 +94,10 @@ function barchart() {
         animationEnabled: true,
         backgroundColor: "#0E0E0E",
         title:{
-            text: "Weapons",
+            // text: "Weapons",
             fontColor: "white",
-            fontFamily: "Optima"
+            fontFamily: "sans-serif",
+            fontSize: 18
         },
         axisX: {
             valueFormatString: "DDD",
