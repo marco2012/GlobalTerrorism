@@ -8,11 +8,10 @@ from sklearn.decomposition import PCA
 import numpy as np
 from scipy.spatial import distance_matrix
 
-DB_PATH = "static/data/terrorism.csv"
+DB_PATH = "static/data/terrorism-small.csv"
 
 def action(year=0, nation=[]):
 
-    # load dataset into Pandas DataFrame
     df = pd.read_csv(DB_PATH)
     data = None
 

@@ -8,7 +8,8 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
 	<!-- D3 -->
-	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
+	<script src="d3/d3.v3.min.js"></script>
 	<script src="js/top2000/crossfilter.min.js"></script>
 	
 	<!-- jQuery -->
@@ -17,7 +18,6 @@
 	<!-- Bootstrap -->
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="js/dependencies/bootstrap.min.js"></script>
 
@@ -28,13 +28,12 @@
 	<link rel="stylesheet" href="css/top2000/tooltip.css"/>
 	<link rel="stylesheet" href="css/top2000/d3.slider.css"/> 
 	<link rel="stylesheet" href="css/top2000/style.css"/>
-
 	<script src="js/top2000/showTooltip.js"></script>
 	<script src="js/top2000/createLegend.js"></script>
 	<script src="js/top2000/helperFunctions.js"></script>
 	<script src="js/top2000/d3.slider.js"></script>
 
-	<!-- roba per scatter2 -->
+	<!-- roba per scatter -->
 	<link rel="stylesheet" href="css/scatter.css" charset="utf-8">
 
 	<!-- roba per BarCharts -->
@@ -43,7 +42,7 @@
 
 <body>
 
-	<!-- importare per scatter2 -->
+	<!-- importare per scatter -->
 	<!-- <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
 	<script src="d3/d3.tip.v0.6.3.js"></script>
 
@@ -96,11 +95,11 @@
 	<!-- div per scatter -->
 	<div id="scatter"></div>
 	<!-- <input type="button" name="xAxis" value="xAxis"> -->
-	
+	<script>scatter()</script>	
 
 	<!-- div per barchart -->
-	<div id="chartContainer" style="height: 300px; width: 100%;">
-	</div>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	<script>barchart()</script>
 	
 	<!-- <script src="js/map.js"></script> -->
 	

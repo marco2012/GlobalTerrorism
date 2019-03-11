@@ -12,7 +12,7 @@ var startYear,
 	rectHeight,
 	rectCorner,
 	currentYear = 2017,
-	chosenYear = currentYear,
+	chosenYear = currentYear,	//year chosen with the slider TO USE LATER TO UPDATE FUNCTIONS
 	chosenYearOld = currentYear,
 	optArray, //for search box
 	inSearch = false, //is the search box being used - for tooltip
@@ -62,7 +62,7 @@ d3.select("#searchBoxWrapper")
 	.style("width", searchWidth+"px");
 	
 //If the user us using a handheld, do not show the slider
-var sliderWidth = 600;
+var sliderWidth = 800;
 if (handheld == false) {
 	//Initiate slider
 	d3.select('#slider')
@@ -70,7 +70,7 @@ if (handheld == false) {
 		.style("width", sliderWidth+"px")
 		.call(d3.slider().axis(d3.svg.axis().ticks(16).tickFormat(d3.format("d")))
 				.min(slider_start_year).max(currentYear).step(1).value(currentYear)
-				.on("slide", function(evt, value) {
+				.on("slide", function(evt, value) {			//SLIDE action
 					//reset search
 					inSearch = false;
 					//Show new rectangles
@@ -220,7 +220,7 @@ d3.csv("data/"+fileName, function(error, data) {
 
 	//Size of the "song" rectangles
 	rectWidth = Math.floor(x.range()[1]/100);
-	rectHeight = Math.min(3,Math.floor(y.range()[0]/100));
+	rectHeight = Math.min(3, Math.floor(y.range()[0] / 100));
 	rectCorner = rectHeight/2;
 
 	//Create x axis

@@ -17,6 +17,7 @@ def index():
 def send_js(path):
     return send_from_directory('static', path)
 
+
 #calculate PCA
 pca.action()
 

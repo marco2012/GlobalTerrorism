@@ -36,7 +36,7 @@ var region_to_txt = {
     12: "Australasia & Oceania"
 };
 
-
+function scatter(selected_year=0) {
 d3.csv("data/"+DB_NAME, function (data) {
     data.forEach(function (d) {
         d.Country = +d.x;
@@ -191,3 +191,4 @@ d3.csv("data/"+DB_NAME, function (data) {
         return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
     }
 });
+}
