@@ -1,3 +1,4 @@
 /Documents/database/*.sqlite
+/Documents/database/old_db/*.sqlite
 .DS_Store
 .vscode

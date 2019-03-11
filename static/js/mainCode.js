@@ -173,7 +173,7 @@ d3.csv("data/"+fileName, function(error, data) {
 
 	for (var i = 0; i < data.length; i++) {
 		data[i].eventid = "" + data[i].eventid;
-		data[i].iyear = +data[i].iyear;
+		data[i].year = +data[i].year;
 		data[i].country = +data[i].country;
 		data[i].country_txt = "" +data[i].country_txt;
 		data[i].nperps = +data[i].nperps;
@@ -186,20 +186,20 @@ d3.csv("data/"+fileName, function(error, data) {
 
 	//Check for data errors
 	// data.forEach(function (d,i) {
-	// 	if (isNaN(d.iyear)) console.log(d);
+	// 	if (isNaN(d.year)) console.log(d);
 	// })
 
 	//Crossfilter
 	var cf = crossfilter(data);
 	// Create a dimension by political party
     var cfYear = cf.dimension(function(d) { 
-		console.log(JSON.stringify(data, null, 4))
+		// console.log(JSON.stringify(data, null, 4))
 		return +d.year; 
 	});
 		
 	//Calculate domains of chart
-	startYear = d3.min(data, function(d) { return d.iyear; });
-	x.domain([startYear-1,d3.max(data, function(d) { return d.iyear; })+1]);//.nice();
+	startYear = d3.min(data, function(d) { return d.year; });
+	x.domain([startYear-1,d3.max(data, function(d) { return d.year; })+1]);//.nice();
 	y.domain([0,100]).nice();
 	
 	//Keeps track of the height of each year
@@ -226,7 +226,7 @@ d3.csv("data/"+fileName, function(error, data) {
 		  .attr("x", width/2)
 		  .attr("y", 35)
 		  .style("text-anchor", "middle")
-		  .text("Year of release");
+		  .text("Type of attack");
 
 	//Create y axis
 	svg.append("g")
@@ -238,7 +238,7 @@ d3.csv("data/"+fileName, function(error, data) {
 		  .attr("y", 8)
 		  .attr("dy", ".71em")
 		  .style("text-anchor", "end")
-		  .text("Number of songs")
+		  .text("Number of terrorists involved")
 	
 	//Create the legend
 	createLegend();
@@ -275,7 +275,7 @@ d3.csv("data/"+fileName, function(error, data) {
 			  .style("fill", function(d) { return color(d.nkill); })
 			  .on("mouseover", showTooltip)
 			  .on("mouseout", hideTooltip)
-			  .attr("x", function(d) { return (x(d.iyear) - rectWidth/2); })
+			  .attr("x", function(d) { return (x(d.year) - rectWidth/2); })
 			  .attr("y", function(d) {return y(0);})
 			  .style("opacity",0);
 
@@ -296,7 +296,7 @@ d3.csv("data/"+fileName, function(error, data) {
 			.style("opacity",0)
 			.call(endall, function() {
 				dots
-					.attr("x", function(d) { return (x(d.iyear) - rectWidth/2); })
+					.attr("x", function(d) { return (x(d.year) - rectWidth/2); })
 					.attr("y", function(d) { return locateY(d); })
 					.transition().duration(10).delay(function(d,i) { return i/2; })
 					.style("opacity",1);

@@ -1,4 +1,5 @@
-var DB_NAME = "terrorism-small.csv"
+
+var DB_NAME = "terrorism.csv"
 
 ////////////////////////////////////////////////////////////
 ///////////////// Mobile vs Desktop ////////////////////////
@@ -48,7 +49,7 @@ function locateY(d) {
 	// console.log(JSON.stringify(d, null, 4))
 
 	// var yearLoc = d.release - startYear;
-	var yearLoc = d.iyear - startYear;
+	var yearLoc = d.year - startYear;
 	var topping = years[yearLoc].number;
 	years[yearLoc].number += 1;
 	
