@@ -9,33 +9,37 @@
 
 	<!-- D3 -->
 	<script src="https://d3js.org/d3.v3.min.js"></script>
-	<script src="js/crossfilter.min.js"></script>
+	<script src="js/top2000/crossfilter.min.js"></script>
 	
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/dependencies/bootstrap.min.js"></script>
 
 	<!-- Combobox script for the search box -->
-	<script src="js/bootstrap-combobox.js"></script>
-	<link href="css/bootstrap-combobox.css" rel="stylesheet">
+	<script src="js/top2000/bootstrap-combobox.js"></script>
+	<link href="css/top2000/bootstrap-combobox.css" rel="stylesheet">
 
-	<link rel="stylesheet" href="css/tooltip.css"/>
-	<link rel="stylesheet" href="css/d3.slider.css"/> 
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/top2000/tooltip.css"/>
+	<link rel="stylesheet" href="css/top2000/d3.slider.css"/> 
+	<link rel="stylesheet" href="css/top2000/style.css"/>
 
-	<script src="js/showTooltip.js"></script>
-	<script src="js/createLegend.js"></script>
-	<script src="js/helperFunctions.js"></script>
-	<script src="js/d3.slider.js"></script>
+	<script src="js/top2000/showTooltip.js"></script>
+	<script src="js/top2000/createLegend.js"></script>
+	<script src="js/top2000/helperFunctions.js"></script>
+	<script src="js/top2000/d3.slider.js"></script>
 
 	<!-- roba per scatter2 -->
-	<link rel="stylesheet" href="css/scatter2.css" charset="utf-8">
+	<link rel="stylesheet" href="css/scatter.css" charset="utf-8">
 
 	<!-- roba per BarCharts -->
-	<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<!-- <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+	<script type="text/javascript" src="js/dependencies/canvasjs.min.js"></script>
 
 <body>
 
@@ -43,7 +47,7 @@
 	<!-- <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
 	<script src="d3/d3.tip.v0.6.3.js"></script>
 
-	<script src="js/scatter2.js" charset="utf-8"></script>
+	<script src="js/scatter.js" charset="utf-8"></script>
 	<script src="js/barcharts.js" charset="utf-8"></script>
 	<script src="js/map.js" charset="utf-8"></script>
 
@@ -70,11 +74,9 @@
 	<div id="chart"></div>
 
 	<div id="note">
-		<span>Created by Marco Lupia and Francesca Fraioli 
-			<!-- | <b><a href="http://www.visualcinnamon.com" target="_blank">VisualCinnamon.com</a></b> |
-		    <a href="http://nbremer.github.io/top2000/" target="_blank">Go to full version</a> -->
-		</span><br>
-		<!-- <span>Due to chart readability, 11 songs released before 1950 are not shown | Data from: <a href="http://www.radio2.nl/top2000" target="_blank">http://www.radio2.nl/top2000</a></span> -->
+		<span>
+			Created by Marco Lupia and Francesca Fraioli 
+		</span>
 	</div>
 	
 	<!-- Create div structure for Tooltip -->
@@ -89,9 +91,9 @@
 		</div>
 	</div>
 
-	<script src="js/mainCode.js"></script>
+	<script src="js/top2000/mainCode.js"></script>
 
-	<!-- scatter2 -->
+	<!-- div per scatter -->
 	<div id="scatter"></div>
 	<!-- <input type="button" name="xAxis" value="xAxis"> -->
 	
@@ -100,7 +102,7 @@
 	<div id="chartContainer" style="height: 300px; width: 100%;">
 	</div>
 	
-	<script src="js/map.js"></script>
+	<!-- <script src="js/map.js"></script> -->
 	
 </body>
 </html>

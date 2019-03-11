@@ -1,6 +1,9 @@
+
+// http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e
+
 var DB_NAME = "pca.csv"
 
-var margin = { top: 50, right: 300, bottom: 50, left: 50 },
+var margin = { top: 500, right: 300, bottom: 500, left: 500 },
     outerWidth = 1400,
     outerHeight = 1000,
     width = outerWidth - margin.left - margin.right,

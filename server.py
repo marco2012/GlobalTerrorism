@@ -1,9 +1,9 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify
-from scipy.spatial import distance_matrix
-import matplotlib.pyplot as plt
-from sklearn import manifold
-import numpy as np
-import pandas as pd
+# from scipy.spatial import distance_matrix
+# import matplotlib.pyplot as plt
+# from sklearn import manifold
+# import numpy as np
+# import pandas as pd
 import sys, pca
 
 app = Flask(__name__, static_folder='/static');
