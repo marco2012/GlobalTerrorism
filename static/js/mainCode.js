@@ -192,7 +192,10 @@ d3.csv("data/"+fileName, function(error, data) {
 	//Crossfilter
 	var cf = crossfilter(data);
 	// Create a dimension by political party
-    var cfYear = cf.dimension(function(d) { return +d.year; });
+    var cfYear = cf.dimension(function(d) { 
+		console.log(JSON.stringify(data, null, 4))
+		return +d.year; 
+	});
 		
 	//Calculate domains of chart
 	startYear = d3.min(data, function(d) { return d.iyear; });

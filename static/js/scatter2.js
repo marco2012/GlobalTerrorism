@@ -17,6 +17,17 @@ var xCat = "Country",
     rCat = "region",
     colorCat = "region";
 
+var region_to_txt = { 
+    1: "North America", 
+    3: "South America",
+    4: "East Asia",
+    5: "Southeast Asia",
+    6: "South Asia",
+    8: "Western Europe",
+    10: "Middle East & North Africa",
+    11: "Sub-Saharan Africa"
+};
+
 d3.csv("data/"+DB_NAME, function (data) {
     data.forEach(function (d) {
         d.Country = +d.x;
@@ -139,7 +150,9 @@ d3.csv("data/"+DB_NAME, function (data) {
     legend.append("text")
         .attr("x", width + 26)
         .attr("dy", ".35em")
-        .text(function (d) { return d; });
+        .text(function (d) {
+            return region_to_txt[d] 
+        });
 
     d3.select("input").on("click", change);
 
