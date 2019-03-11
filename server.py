@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn import manifold
 import numpy as np
 import pandas as pd
-import sys
+import sys, pca
 
 app = Flask(__name__, static_folder='/static');
 
@@ -17,7 +17,10 @@ def index():
 def send_js(path):
     return send_from_directory('static', path)
 
+#calculate PCA
+pca.action()
 
+#start server
 app.config["DEBUG"]=True
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.run(debug=True, port=5000)

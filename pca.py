@@ -8,7 +8,7 @@ from sklearn.decomposition import PCA
 import numpy as np
 from scipy.spatial import distance_matrix
 
-DB_PATH = "../static/data/terrorism-small.csv"
+DB_PATH = "static/data/terrorism.csv"
 
 def action(year=0, nation=[]):
 
@@ -19,15 +19,15 @@ def action(year=0, nation=[]):
     # filtro i dati
     if year != 0 and nation:  # sono stati selezionati sia anno che nazione
         # https://cmdlinetips.com/2018/02/how-to-subset-pandas-dataframe-based-on-values-of-a-column/
-        data = df[(df.iyear == year) & (df.country_txt.isin(nation))]
+        data = df[(df.year == year) & (df.country_txt.isin(nation))]
     elif year != 0:  # solo anno selezionato
-        data = df[(df.iyear == year)]
+        data = df[(df.year == year)]
     elif nation:  # solo nazione selezionata
         data = df[df.country_txt.isin(nation)]
     else:  # niente selezione, uso tutto il db (default)
         data = df
 
-    features = ["iyear", "nperps", "nkill", "nwound"]
+    features = ["year", "nperps", "nkill", "nwound"]
     # Separating out the features
     x = data.loc[:, features].values
     # Separating out the target
@@ -40,7 +40,7 @@ def action(year=0, nation=[]):
     principalDf = pd.DataFrame(
         data=principalComponents, columns=['x', 'y'])
     finalDf = pd.concat([principalDf, df[['region']]], axis=1)
-    finalDf.to_csv("../static/data/pca.csv", sep=',', index=False)
+    finalDf.to_csv("static/data/pca.csv", sep=',', index=False)
     
     return 0;
 

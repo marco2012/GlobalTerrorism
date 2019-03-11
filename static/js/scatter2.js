@@ -17,16 +17,22 @@ var xCat = "Country",
     rCat = "region",
     colorCat = "region";
 
+
 var region_to_txt = { 
     1: "North America", 
+    2: "Central America & Caribbean",
     3: "South America",
     4: "East Asia",
     5: "Southeast Asia",
     6: "South Asia",
+    7: "Central Asia",
     8: "Western Europe",
+    9: "Eastern Europe",
     10: "Middle East & North Africa",
-    11: "Sub-Saharan Africa"
+    11: "Sub-Saharan Africa",
+    12: "Australasia & Oceania"
 };
+
 
 d3.csv("data/"+DB_NAME, function (data) {
     data.forEach(function (d) {
