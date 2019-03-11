@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+
+\bibitem{d3:2018}
+D3 api reference.
+\newblock \url{https://github.com/d3/d3/blob/master/API.md}.
+
+\bibitem{sklearn:2018}
+scikit-learn v0.19.1 documentation.
+\newblock \url{http://scikit-learn.org/stable/documentation.html}.
+
+\end{thebibliography}

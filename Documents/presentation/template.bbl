@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{d3:2018}
+D3 api reference.
+\newblock \url{https://github.com/d3/d3/blob/master/API.md}.
+
+\bibitem{numpy:2018}
+numpy documentation.
+\newblock \url{https://docs.scipy.org/doc/}.
+
+\bibitem{pandas:2018}
+pandas documentation.
+\newblock \url{https://pandas.pydata.org/pandas-docs/stable/}.
+
+\bibitem{sklearn:2018}
+scikit-learn v0.19.1 documentation.
+\newblock \url{http://scikit-learn.org/stable/documentation.html}.
+
+
+\end{thebibliography}
