@@ -47,7 +47,8 @@ var fileName = DB_NAME
 //Calculate height of each rectangle
 function locateY(d) {
 
-	var yearLoc = d.release - startYear;
+	// var yearLoc = d.release - startYear;
+	var yearLoc = d.nperps
 	var topping = years[yearLoc].number;
 	years[yearLoc].number += 1;
 	

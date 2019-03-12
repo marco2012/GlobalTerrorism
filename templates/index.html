@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<!-- roba per grafico grande -->
 	<!-- Google fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
@@ -40,50 +41,79 @@
 	<!-- <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
 	<script type="text/javascript" src="js/dependencies/canvasjs.min.js"></script>
 
+	<!-- container split -->
 	<link rel="stylesheet" href="css/split-container.css" />
+
+	<!-- parallel coordinates -->
+	<link rel="stylesheet" type="text/css" href="css/parallel-coordinates-style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+	<script src="d3/d3.parcoords.js"></script>
+	<script src="js/divgrid.js"></script>
+
+	<!-- <script type="text/javascript" src="d3/d3.v4.js"></script> -->
+	<script type="text/javascript" src="d3/d3.v4.min.js"></script>
+	<script type="text/javascript" src="js/dependencies/jquery-3.3.1.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="dc/dc.css" />
 
 <body>
 
 	<!-- importare per scatter -->
 	<!-- <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
 	<script src="d3/d3.tip.v0.6.3.js"></script>
+	<!-- <script type="text/javascript" src="dc/dc.min.js"></script> -->
+	<!-- <script type="text/javascript" src="dc/dc.js"></script> -->
 
 	<script src="js/scatter.js" charset="utf-8"></script>
 	<script src="js/barcharts.js" charset="utf-8"></script>
 	<script src="js/map.js" charset="utf-8"></script>
+	<script src="js/parallel.js"></script>
 
-	<!-- <div class="intro"> <h1>Global Terrorist Attacks</h1> </div> </br> -->
 
+	<div id="id02" class="w3-modal" style="z-index:4">
+		<div class="w3-modal-content w3-animate-zoom" style="width: 1440px;">
+			<div class="w3-container w3-padding w3-red">
+				<span
+					onclick="document.getElementById('id02').style.display='none'; comp = [];d3v3.select('#table2').selectAll('row').remove();d3v3.select('#table2').selectAll('header').remove()"
+					class="w3-button w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
+				<h2 style="font-family: Oswald; font-size:40pt;">Global terrorist attacks</h2>
+			</div>
+			<div class="w3-panel" id="table2">
+			</div>
+		</div>
+	</div>
+	
+	
 	<!-- grafico grande -->
-	<div id="intro">
+	<!-- <div id="intro">
 		<h2>Global Terrorist Attacks</h2>
 		<span>At the end of each year since 1999 hundreds of thousands of Dutch vote for the best songs ever made.</span>
 		<br>
 		<span>Here you can see the distribution of the top 2000 songs according to their year of release.</span><br>
-		<!--<span>Change the slider to see the top 2000 from other years, or hover over bars to see which song it is.</span>-->
-	</div>
+	</div> -->
 	
 	<!-- The search box -->
-	<div class="form-group" id="searchBoxWrapper">			
+	<!-- <div class="form-group" id="searchBoxWrapper">			
 		<select id="searchBox" class="combobox input-large form-control" style="display: none;" onchange="searchArtist(this.value)">
 			 <option value="" selected="selected">Country...</option>
 		</select>
-	</div>
+	</div> -->
 
 	<!-- slider -->
-	<div id="slider"></div>
+	<!-- <div id="slider"></div> -->
 	
 	<!-- chart -->
-	<div id="chart"></div>
+	<!-- <div id="chart"></div>
 
 	<div id="note">
 		<span>
 			Created by Marco Lupia and Francesca Fraioli 
 		</span>
-	</div>
+	</div> -->
 	
 	<!-- Create div structure for Tooltip -->
-	<div id="tooltip">
+	<!-- <div id="tooltip">
 		<div id="tooltip-Container">
 			<div class="tooltip-band"></div>
 			<div class="tooltip-rule"></div>
@@ -92,27 +122,24 @@
 			<div id="tooltip-place"></div>
 			<div class="tooltip-tail"></div>
 		</div>
-	</div>
+	</div> -->
 
-	<script src="js/top2000/mainCode.js"></script>
+	<!-- <script src="js/top2000/mainCode.js"></script> -->
 
 	<!-- https://css-tricks.com/left-and-right/#article-header-id-5 -->
-
 	<section class="container" id="split-container">
 		<div class="left-half">
-			<article>
-				<div id="scatter"></div>
-			</article>
-		</div>
-		<div class="right-half">
 			<article>
 				<h1>Scatterplot</h1> </br>
 				<p>Weekends don't count unless you spend them doing something completely pointless.</p>
 			</article>
 		</div>
+		<div class="right-half">
+			<article>
+				<div id="scatter"></div>
+			</article>
+		</div>
 	</section>
-
-
 	<!-- div per scatter -->
 	<!-- <div id="scatter"></div> -->
 	<!-- <input type="button" name="xAxis" value="xAxis"> -->
@@ -128,17 +155,49 @@
 		</div>
 		<div class="right-half">
 			<article>
-				<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+				<!-- <div id="stackbarcharts"></div> -->
+				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 			</article>
 		</div>
 	</section>
-
-
 	<!-- div per barchart -->
-	<!-- <div id="chartContainer" style="height: 300px; width: 100%;"></div> -->
+	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 	<script>barchart()</script>
 	
-	<!-- <script src="js/map.js"></script> -->
+
+	<!-- div per parallel coordinates -->
+	<!-- <div id="example" class="parcoords"></div>
+	<div id="grid"></div>
+	<script src="js/parallel_coordinates.js" id="brushing"></script>
+	 -->
+	<div style="height: 40%;">
+		<div id="world-chart" style=" margin-top: 50px;float: left; margin-left: -5%"></div>
+		<div id="scatterArea" style="margin-top: 50px;"></div>
+	</div>
 	
+
+	<div>
+		<div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;"></div>
+		<div id="grid" style="color: white; width: 1800px; margin-top: 2%; margin-bottom: 20px;"></div>
+	</div>
+	
+	<div id="id01" class="w3-modal w3-animate-opacity">
+		<div class="w3-modal-content w3-card-4">
+			<header class="w3-container w3-teal">
+				<span onclick="document.getElementById('id01').style.display='none'"
+					class="w3-button w3-large w3-display-topright">&times;</span>
+				<h2>Modal Header</h2>
+			</header>
+			<div class="w3-container" style="color:black">
+				<span id="dialog_title_span"></span>
+			</div>
+			<footer class="w3-container w3-teal">
+			</footer>
+		</div>
+	</div>
+	</div>
+
+	<script>drawParallel()</script>
+
 </body>
 </html>

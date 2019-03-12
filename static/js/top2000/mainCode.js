@@ -251,8 +251,8 @@ d3.csv("data/"+fileName, function(error, data) {
 		var dots = dotContainer.selectAll(".dot")
 					.data(yearData
 							.top(Infinity)
-							.sort(function(a, b) {return a.position - b.position}) 
-							, function(d) { return d.position; });
+							.sort(function(a, b) {return a.attacktype1 - b.attacktype1}) 
+							, function(d) { return d.attacktype1; });
 		
 		//ENTER
 		dots.enter().append("rect")
@@ -261,10 +261,10 @@ d3.csv("data/"+fileName, function(error, data) {
 			  .attr("height", rectHeight)
 			  .attr("rx", rectCorner)
 			  .attr("ry", rectCorner)
-			  .style("fill", function(d) { return color(d.position); })
+			  .style("fill", function(d) { return color(d.attacktype1); })
 			  .on("mouseover", showTooltip)
 			  .on("mouseout", hideTooltip)
-			  .attr("x", function(d) { return (x(d.release) - rectWidth/2); })
+			  .attr("x", function(d) { return (x(d.nperps) - rectWidth/2); })
 			  .attr("y", function(d) {return y(0);})
 			  .style("opacity",0);
 

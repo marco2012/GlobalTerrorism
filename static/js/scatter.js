@@ -3,9 +3,9 @@
 
 var DB_NAME = "pca.csv"
 
-var margin = { top: 50, right: 300, bottom: 50, left: 50 },
-    outerWidth = 600, //aumentare per mostrare legenda
-    outerHeight = 900,
+var margin = { top: 50, right: 250, bottom: 50, left: 50 },
+    outerWidth = 750, //aumentare per mostrare legenda
+    outerHeight = 450,
     width = outerWidth - margin.left - margin.right,
     height = outerHeight - margin.top - margin.bottom;
 
@@ -143,7 +143,12 @@ d3.csv("data/"+DB_NAME, function (data) {
         .attr("transform", transform)
         .style("fill", function (d) { return color(d[colorCat]); })
         .on("mouseover", tip.show)
-        .on("mouseout", tip.hide);
+        .on("mouseout", tip.hide)
+        .on("click", function (d) {
+            // alert(JSON.stringify(d)) 
+            document.getElementById('id01').style.display = 'block'
+            $('#dialog_title_span').text(JSON.stringify(d));
+        })
 
     var legend = svg.selectAll(".legend")
         .data(color.domain())
@@ -161,7 +166,8 @@ d3.csv("data/"+DB_NAME, function (data) {
         .attr("dy", ".35em")
         .text(function (d) {
             return region_to_txt[d] //converte numero regione in stringa
-        });
+        })
+        .style("font-size", "12px")
 
     d3.select("input").on("click", change);
 
