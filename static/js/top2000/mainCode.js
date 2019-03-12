@@ -2,17 +2,14 @@
 //////////////////////// Set-up ////////////////////////////
 ////////////////////////////////////////////////////////////
 
-//LOG
-// console.log(JSON.stringify(data, null, 4))
 //Chart variables
 var startYear,
-	slider_start_year = 1975,
 	years, //save height per year
 	rectWidth,
 	rectHeight,
 	rectCorner,
 	currentYear = 2017,
-	chosenYear = currentYear,	//year chosen with the slider TO USE LATER TO UPDATE FUNCTIONS
+	chosenYear = currentYear,
 	chosenYearOld = currentYear,
 	optArray, //for search box
 	inSearch = false, //is the search box being used - for tooltip
@@ -62,15 +59,15 @@ d3.select("#searchBoxWrapper")
 	.style("width", searchWidth+"px");
 	
 //If the user us using a handheld, do not show the slider
-var sliderWidth = 800;
+var sliderWidth = 750;
 if (handheld == false) {
 	//Initiate slider
 	d3.select('#slider')
 		.style("left", (width/2 + xOffset + padding + margin.left - sliderWidth/2)+"px")
 		.style("width", sliderWidth+"px")
 		.call(d3.slider().axis(d3.svg.axis().ticks(16).tickFormat(d3.format("d")))
-				.min(slider_start_year).max(currentYear).step(1).value(currentYear)
-				.on("slide", function(evt, value) {			//SLIDE action
+			.min(1975).max(currentYear).step(1).value(currentYear)
+				.on("slide", function(evt, value) {
 					//reset search
 					inSearch = false;
 					//Show new rectangles
@@ -158,57 +155,42 @@ var yearTitle = svg.append('text')
 
 d3.csv("data/"+fileName, function(error, data) {
 
-	// //Convert to numeric values
-	// //data.forEach(function(d) {
-
-	// for(var i = 0; i < data.length; i++) { //Faster?
-	// 	data[i].release = +data[i].release;
-	// 	data[i].year = +data[i].year;
-	// 	data[i].position = +data[i].position;
-	// 	data[i].title = "" + data[i].title;
-	// 	data[i].artist = "" + data[i].artist;
-	// }
-
-	// //});
-
-	for (var i = 0; i < data.length; i++) {
-		data[i].eventid         = "" + data[i].eventid;
-		data[i].year            = +data[i].year;
-		data[i].country         = +data[i].country;
-		data[i].country_txt     = "" +data[i].country_txt;
-		data[i].attacktype1     = +data[i].attacktype1;
+	//Convert to numeric values
+	//data.forEach(function(d) {
+	for(var i = 0; i < data.length; i++) { //Faster?
+		// data[i].release = +data[i].release;
+		// data[i].year = +data[i].year;
+		// data[i].position = +data[i].position;
+		// data[i].title = "" + data[i].title;
+		// data[i].artist = "" + data[i].artist;
+		data[i].eventid = "" + data[i].eventid;
+		data[i].year = +data[i].year;
+		data[i].country = +data[i].country;
+		data[i].country_txt = "" + data[i].country_txt;
+		data[i].attacktype1 = +data[i].attacktype1;
 		data[i].attacktype1_txt = "" + data[i].attacktype1_txt;
-		data[i].nperps          = +data[i].nperps;
-		// data[i].nperps = +data[i].nperps;
-		// data[i].nkill = +data[i].nkill;
-		// data[i].nwound = +data[i].nwound;
-		// data[i].weaptype1 = +data[i].weaptype1;
-		// data[i].weaptype1_txt = "" + data[i].weaptype1_txt;
-	}
+		data[i].nperps = +data[i].nperps;
+	}//for i
+	//});
 
 	//Check for data errors
 	// data.forEach(function (d,i) {
-	// 	if (isNaN(d.year)) console.log(d);
+	// 	if (isNaN(d.release)) console.log(d);
 	// })
 
 	//Crossfilter
 	var cf = crossfilter(data);
 	// Create a dimension by political party
-    var cfYear = cf.dimension(function(d) { 
-		// console.log(JSON.stringify(data, null, 4))
-		return +d.attacktype1; 
-	});
+    var cfYear = cf.dimension(function(d) { return +d.year; });
 		
 	//Calculate domains of chart
-	// startYear = d3.min(data, function(d) { return d.year; });
-	// x.domain([startYear-1,d3.max(data, function(d) { return d.year; })+1]);//.nice();
+	// startYear = d3.min(data, function(d) { return d.release; });
+	// x.domain([startYear-1,d3.max(data, function(d) { return d.release; })+1]);//.nice();
 	// y.domain([0,100]).nice();
-
-	startYear = d3.min(data, function (d) { return d.attacktype1; });
-	x.domain([startYear - 1, d3.max(data, function (d) { return d.attacktype1; }) + 1]);//.nice();
+	startYear = d3.min(data, function (d) { return d.year; });
+	x.domain([0, d3.max(data, function (d) { return d.attacktype1; }) + 1]);//.nice();
 	y.domain([0, d3.max(data, function (d) { return d.nperps; }) + 1 ]).nice();
 	
-
 	//Keeps track of the height of each year
 	years = d3.range(d3.min(x.domain()),d3.max(x.domain()))
 		.map(function(d,i) {
@@ -220,7 +202,7 @@ d3.csv("data/"+fileName, function(error, data) {
 
 	//Size of the "song" rectangles
 	rectWidth = Math.floor(x.range()[1]/100);
-	rectHeight = Math.min(3, Math.floor(y.range()[0] / 100));
+	rectHeight = Math.min(3,Math.floor(y.range()[0]/100));
 	rectCorner = rectHeight/2;
 
 	//Create x axis
@@ -245,7 +227,7 @@ d3.csv("data/"+fileName, function(error, data) {
 		  .attr("y", 8)
 		  .attr("dy", ".71em")
 		  .style("text-anchor", "end")
-		  .text("Number of terrorists involved")
+		.text("Number of terrorists involved")
 	
 	//Create the legend
 	createLegend();
@@ -269,8 +251,8 @@ d3.csv("data/"+fileName, function(error, data) {
 		var dots = dotContainer.selectAll(".dot")
 					.data(yearData
 							.top(Infinity)
-							.sort(function(a, b) {return a.nkill - b.nkill}) 
-							, function(d) { return d.nkill; });
+							.sort(function(a, b) {return a.position - b.position}) 
+							, function(d) { return d.position; });
 		
 		//ENTER
 		dots.enter().append("rect")
@@ -279,10 +261,10 @@ d3.csv("data/"+fileName, function(error, data) {
 			  .attr("height", rectHeight)
 			  .attr("rx", rectCorner)
 			  .attr("ry", rectCorner)
-			  .style("fill", function(d) { return color(d.nkill); })
+			  .style("fill", function(d) { return color(d.position); })
 			  .on("mouseover", showTooltip)
 			  .on("mouseout", hideTooltip)
-			  .attr("x", function(d) { return (x(d.year) - rectWidth/2); })
+			  .attr("x", function(d) { return (x(d.release) - rectWidth/2); })
 			  .attr("y", function(d) {return y(0);})
 			  .style("opacity",0);
 
@@ -303,7 +285,7 @@ d3.csv("data/"+fileName, function(error, data) {
 			.style("opacity",0)
 			.call(endall, function() {
 				dots
-					.attr("x", function(d) { return (x(d.year) - rectWidth/2); })
+					.attr("x", function (d) { return (x(d.attacktype1) - rectWidth/2); })
 					.attr("y", function(d) { return locateY(d); })
 					.transition().duration(10).delay(function(d,i) { return i/2; })
 					.style("opacity",1);

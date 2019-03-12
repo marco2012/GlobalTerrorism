@@ -4,7 +4,7 @@
 var DB_NAME = "pca.csv"
 
 var margin = { top: 50, right: 300, bottom: 50, left: 50 },
-    outerWidth = 700, //aumentare per mostrare legenda
+    outerWidth = 600, //aumentare per mostrare legenda
     outerHeight = 900,
     width = outerWidth - margin.left - margin.right,
     height = outerHeight - margin.top - margin.bottom;

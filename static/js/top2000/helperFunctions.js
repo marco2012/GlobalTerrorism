@@ -1,5 +1,4 @@
-
-var DB_NAME = "terrorism.csv"
+var DB_NAME = "terrorism-small.csv"
 
 ////////////////////////////////////////////////////////////
 ///////////////// Mobile vs Desktop ////////////////////////
@@ -11,6 +10,7 @@ var is_IE = detectIE();
 
 //Check for IE
 function detectIE() {
+
         var ua = window.navigator.userAgent;
         var msie = ua.indexOf("MSIE ");
 		var trident = ua.indexOf('Trident/');
@@ -46,10 +46,8 @@ var fileName = DB_NAME
 
 //Calculate height of each rectangle
 function locateY(d) {
-	// console.log(JSON.stringify(d, null, 4))
 
-	// var yearLoc = d.release - startYear;
-	var yearLoc = d.year - startYear;
+	var yearLoc = d.release - startYear;
 	var topping = years[yearLoc].number;
 	years[yearLoc].number += 1;
 	
