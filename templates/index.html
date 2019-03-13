@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Terrorism attacks</title>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
 	<!-- roba per grafico grande -->
 	<!-- Google fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
@@ -56,6 +58,11 @@
 	<script type="text/javascript" src="js/dependencies/jquery-3.3.1.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="dc/dc.css" />
+	<link rel="stylesheet" type="text/css" href="css/smooth-slider.css" />
+
+	<!-- slider -->
+	<link rel="stylesheet" href="css/d3.slider.css" charset="utf-8">
+	<script type="text/javascript" src="d3/d3.slider.js"></script>	
 
 <body>
 
@@ -71,6 +78,7 @@
 	<script src="js/parallel.js"></script>
 
 
+	<!-- modal con messaggio quando si clicca su grafico -->
 	<div id="id02" class="w3-modal" style="z-index:4">
 		<div class="w3-modal-content w3-animate-zoom" style="width: 1440px;">
 			<div class="w3-container w3-padding w3-red">
@@ -84,7 +92,22 @@
 		</div>
 	</div>
 	
-	
+	<!-- year slider -->
+	<div id="slider2Div" style="margin: 0 auto;height:auto;">
+		<!-- <p style="margin: 0 0 15px 78px; text-align:center;">
+			<h12><strong><span id="slider2text">Select a year</span></strong></h12>
+		</p> -->
+		<div id="swift2Slider" class="coralLeft" style="width:60%;margin: 0 auto;"> </div>
+	</div>
+	<!-- <div id="slider"></div> -->
+	<script src="js/slider.js"></script>
+
+	<button class="w3-btn w3-round-xxlarge w3-red" onclick="console.log(selectedSliderYear)">Submit</button>
+
+
+	// <!-- <svg width="960" height="500"></svg> -->
+	// <!-- <script type="text/javascript" src="js/smooth-slider.js"></script> -->
+
 	<!-- grafico grande -->
 	<!-- <div id="intro">
 		<h2>Global Terrorist Attacks</h2>
@@ -104,9 +127,9 @@
 	<!-- <div id="slider"></div> -->
 	
 	<!-- chart -->
-	<!-- <div id="chart"></div>
+	<!-- <div id="chart"></div> -->
 
-	<div id="note">
+	<!-- <div id="note">
 		<span>
 			Created by Marco Lupia and Francesca Fraioli 
 		</span>
@@ -161,7 +184,7 @@
 		</div>
 	</section>
 	<!-- div per barchart -->
-	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+	<!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div> -->
 	<script>barchart()</script>
 	
 
@@ -170,28 +193,43 @@
 	<div id="grid"></div>
 	<script src="js/parallel_coordinates.js" id="brushing"></script>
 	 -->
-	<div style="height: 40%;">
+	<!-- <div style="height: 40%;">
 		<div id="world-chart" style=" margin-top: 50px;float: left; margin-left: -5%"></div>
 		<div id="scatterArea" style="margin-top: 50px;"></div>
-	</div>
+	</div> -->
 	
+	<section class="container" id="split-container">
+		<div class="left-half">
+			<article>
+				<h1>Parallel lines</h1> </br>
+				<p>Weekends don't count unless you spend them doing something completely pointless.</p>
+			</article>
+		</div>
+		<div class="right-half">
+			<article>
+				<!-- <div id="stackbarcharts"></div> -->
+				<div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;"></div>
+			</article>
+		</div>
+	</section>
 
 	<div>
-		<div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;"></div>
+		<!-- <div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;"></div> -->
 		<div id="grid" style="color: white; width: 1800px; margin-top: 2%; margin-bottom: 20px;"></div>
 	</div>
 	
+	<!-- Popup with attack summary, appears when click on attack on graph -->
 	<div id="id01" class="w3-modal w3-animate-opacity">
 		<div class="w3-modal-content w3-card-4">
-			<header class="w3-container w3-teal">
+			<header class="w3-container w3-red">
 				<span onclick="document.getElementById('id01').style.display='none'"
 					class="w3-button w3-large w3-display-topright">&times;</span>
-				<h2>Modal Header</h2>
+				<span id="dialog_title_span"><h2>Attack summary</h2></span>
 			</header>
 			<div class="w3-container" style="color:black">
-				<span id="dialog_title_span"></span>
+				<span id="dialog_content_span"></span>
 			</div>
-			<footer class="w3-container w3-teal">
+			<footer class="w3-container w3-red">
 			</footer>
 		</div>
 	</div>

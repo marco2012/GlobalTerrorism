@@ -147,7 +147,8 @@ d3.csv("data/"+DB_NAME, function (data) {
         .on("click", function (d) {
             // alert(JSON.stringify(d)) 
             document.getElementById('id01').style.display = 'block'
-            $('#dialog_title_span').text(JSON.stringify(d));
+            $('#dialog_title_span').html('<h2>Attack region</h2>')
+            $('#dialog_content_span').html("<br/><h4>" + region_to_txt[d.region] + "</h4><br/>")
         })
 
     var legend = svg.selectAll(".legend")
