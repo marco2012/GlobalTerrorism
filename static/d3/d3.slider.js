@@ -40,7 +40,7 @@ d3.slider = function module() {
         svg.append("rect")
         .attr("class", "d3slider-rect-value")
         .attr("width", scale(value))
-        .attr("height", rectHeight);
+        .attr("height", rectHeight)
       }
       
       // Axis      

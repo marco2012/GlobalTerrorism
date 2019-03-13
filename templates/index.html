@@ -21,12 +21,12 @@
 	<!-- Bootstrap -->
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<script src="js/dependencies/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+	<!-- <script src="js/dependencies/bootstrap.min.js"></script> -->
 
 	<!-- Combobox script for the search box -->
-	<script src="js/top2000/bootstrap-combobox.js"></script>
-	<link href="css/top2000/bootstrap-combobox.css" rel="stylesheet">
+	<!-- <script src="js/top2000/bootstrap-combobox.js"></script> -->
+	<!-- <link href="css/top2000/bootstrap-combobox.css" rel="stylesheet"> -->
 
 	<link rel="stylesheet" href="css/top2000/tooltip.css"/>
 	<link rel="stylesheet" href="css/top2000/d3.slider.css"/> 
@@ -72,10 +72,12 @@
 	<!-- <script type="text/javascript" src="dc/dc.min.js"></script> -->
 	<!-- <script type="text/javascript" src="dc/dc.js"></script> -->
 
+	<!-- nostri file javascript -->
 	<script src="js/scatter.js" charset="utf-8"></script>
 	<script src="js/barcharts.js" charset="utf-8"></script>
 	<script src="js/map.js" charset="utf-8"></script>
 	<script src="js/parallel.js"></script>
+	<script src="js/manageCharts.js"></script>
 
 
 	<!-- modal con messaggio quando si clicca su grafico -->
@@ -92,21 +94,23 @@
 		</div>
 	</div>
 	
-	<!-- year slider -->
-	<div id="slider2Div" style="margin: 0 auto;height:auto;">
-		<!-- <p style="margin: 0 0 15px 78px; text-align:center;">
-			<h12><strong><span id="slider2text">Select a year</span></strong></h12>
-		</p> -->
-		<div id="swift2Slider" class="coralLeft" style="width:60%;margin: 0 auto;"> </div>
+	<!-- title -->
+	<div class="center-title">
+		<h1>Terrorism attacks</h1>
 	</div>
+
+	<!-- year slider -->
+	<!-- <div id="slider2Div" style="margin: 0 auto;height:auto;">
+		<div id="swift2Slider" class="coralLeft" style="width:60%;margin: 0 auto;"> </div>
+	</div> -->
+		<div id="swift2Slider" class="coralLeft" style="width:60%;margin: 0 auto;"> </div>
+
 	<!-- <div id="slider"></div> -->
 	<script src="js/slider.js"></script>
 
-	<button class="w3-btn w3-round-xxlarge w3-red" onclick="console.log(selectedSliderYear)">Submit</button>
-
-
-	// <!-- <svg width="960" height="500"></svg> -->
-	// <!-- <script type="text/javascript" src="js/smooth-slider.js"></script> -->
+	<!-- bottoni -->
+	<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Calculate</button>
+	<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
 
 	<!-- grafico grande -->
 	<!-- <div id="intro">
@@ -185,7 +189,7 @@
 	</section>
 	<!-- div per barchart -->
 	<!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div> -->
-	<script>barchart()</script>
+	<script>barchart_3()</script>
 	
 
 	<!-- div per parallel coordinates -->
@@ -198,7 +202,7 @@
 		<div id="scatterArea" style="margin-top: 50px;"></div>
 	</div> -->
 	
-	<section class="container" id="split-container">
+	<!-- <section class="container" id="split-container">
 		<div class="left-half">
 			<article>
 				<h1>Parallel lines</h1> </br>
@@ -207,14 +211,23 @@
 		</div>
 		<div class="right-half">
 			<article>
-				<!-- <div id="stackbarcharts"></div> -->
+				<div id="stackbarcharts"></div>
 				<div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;"></div>
 			</article>
 		</div>
-	</section>
+	</section> -->
+
+	<div class="left-half center-title" align="center" >
+		<article>
+			<h3>Parallel lines</h3> </br>
+			<p>Weekends don't count unless you spend them doing something completely pointless.</p>
+		</article>
+	</div>
 
 	<div>
 		<!-- <div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;"></div> -->
+		<div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;margin-left: -460px;"></div>
+
 		<div id="grid" style="color: white; width: 1800px; margin-top: 2%; margin-bottom: 20px;"></div>
 	</div>
 	

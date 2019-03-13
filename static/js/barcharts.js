@@ -15,18 +15,23 @@ function barchart(){
 			// 	fontFamily: "sans-serif",
 			// 	fontSize: 18
 			// },
-			// axisX: {
-			// 	valueFormatString: "DDD",
-			// 	labelFontColor: "white",
-			// },
+			axisX: {
+				labelFontColor: "white",
+				interval: 50,
+				labelFormatter: function ( e ) {
+					if (e.value == 0) return "no success"
+					return "success";  
+			  }  
+			},
 			axisY: {
-				title: "percentage",
+				title: "Victim",
+				interval: 1,
 				titleFontSize: 18,
 				labelFontColor: "white"
 			},
 			data: [{
-				type: "column",
-				yValueFormatString: "### Units",
+				type: "bar",
+				yValueFormatString: "### Victim",
 				dataPoints: dataPoints
 			}]
 		});
@@ -36,18 +41,58 @@ function barchart(){
 			for (var i = 0; i < data.length; i++) {
 				let d = data[i]
 				dataPoints.push({
-					x: parseInt(d.suicide),
+					x: parseInt(d.success),
 					y: parseInt(d.nkill)
 				});
 			}
 			chart.render();
 		}
 
-		d3.csv('data/terrorism.csv', addData)
-		
-		// $.getJSON("https://canvasjs.com/data/gallery/javascript/daily-sales-data.json", addData);
-		
+		d3.csv('data/terrorism.csv', addData)	
 }
+
+
+function barchart_3(){
+	var dataPoints = [];
+
+	var chart = new CanvasJS.Chart("chartContainer", {
+		width: 320,
+		animationEnabled: true,
+		theme: "dark1",
+		backgroundColor: "#0E0E0E",
+		title: {
+			text: "Victim for type of attack",
+			fontColor: "white",
+			fontFamily: "sans-serif",
+			fontSize: 18
+		},
+		axisY: {
+			title: "Victim",
+			titleFontSize: 24,
+			labelFontColor: "white"
+		},
+		data: [{
+			type: "column",
+			yValueFormatString: "#####,### Victim",
+			dataPoints: dataPoints
+		}]
+	});
+
+	function addData(data) {
+		for (var i = 0; i < data.length; i++) {
+			let d = data[i]
+			dataPoints.push({
+				y: parseInt(d.nkill), label: d.weaptype1_txt 
+			});
+		}
+		chart.render();
+
+}
+
+d3.csv('data/terrorism.csv', addData)	
+
+}
+
 
 // yAxes: [
 //     {

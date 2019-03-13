@@ -1,4 +1,4 @@
-function drawParallel(filter_year=0) {
+function drawParallel(filter_year=2011) {
     
     max_rows_to_take = 15
     db_name = 'terrorism.csv'
@@ -38,11 +38,29 @@ function drawParallel(filter_year=0) {
         };
     })
     .get(function (e, data) {
+
+        // var payments = crossfilter(data)
+        // crossfilter.dimension(function (d) { return d.year; });
+        // console.log(payments);
         
+        
+        // if (filter_year != 0) {
+        //     data.forEach(function (d) { 
+                
+        //         if (d.year != filter_year) {
+        //             let i = data.indexOf(d)
+        //             data.splice(i, 1);
+        //         }
+        //         // console.log(d.year)
+
+        //     })
+        // }
+
+        // sort by nkill descend
         data.sort(function (a, b) {
             return b.nkill - a.nkill
         });
-        
+
         parcoords
         .data(data)
         // .hideAxis(["country", "x", "y", "NaN", "Unnamed: 0", "institution"])

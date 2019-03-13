@@ -1,82 +1,51 @@
 /* Global page style */
 
-.background path {
-    fill: none;
-    stroke: grey;
-    shape-rendering: crispEdges;
-  }
+body {
+	font-size: 12px;
+	font-weight: 400;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	background: #0E0E0E;
+	fill: white;
+	color: white;	
+	cursor:default;
+}
 
-  .foreground path {
-    fill: none;
-  }
+a {
+	text-decoration: none;
+	color: #6E6E6E;
+}
 
-  .brush .extent {
-    fill-opacity: .3;
-    stroke: #fff;
-    shape-rendering: crispEdges;
-  }
+#intro{
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	width: 180px;
+	text-align: left;
+	color: #B5B5B5;
+}
 
-  .axis line,
-  .axis path {
-    fill: none;
-    stroke: white;
-    shape-rendering: crispEdges;
-  }
-  .axis text {
-    fill: white;
-    cursor: move;
-  }
-  #tabel2 { height: 198px;}
-  .row, .header {clear: left;font-size: 18px;line-height: 30px;height: 30px; text-align: center}
-  .row:nth-child(odd) {background: rgba(0,0,0,0.05);}
-  .header { font-weight: bold; }
-  .cell { float: left; overflow: hidden; white-space: nowrap; width: 110px; height: 18px;margin-left: 1px ; }
-  .col-0 { width: 280px; }
-  .row:hover {background-color: lightgrey; color: black  }
-  
+#intro h2{
+  font-family: Oswald;
+  font-size: 24px;
+  font-weight: 300;
+  color: white;
+  -webkit-margin-before: 0.5em;
+  -webkit-margin-after: 0.3em;
+}
 
-  .d3v3-tip {
-    line-height: 1;
-    font-weight: bold;
-    padding: 12px;
-    background: white;
-    color: gray;
-    border-radius: 2px;
-  }
+.center-title {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+}
 
+.center-title h2, h3 {
+    font-family: Oswald;
+}
 
-  #grid { height: 198px;}
-  .row, .header {clear: left;font-size: 14px;line-height: 18px;height: 18px; text-align: center}
-  .row:nth-child(odd) {background: rgba(0,0,0,0.05);}
-  .header { font-weight: bold; }
-  .cell { float: left; overflow: hidden; white-space: nowrap; width: 110px; height: 18px;margin-left: 1px ; }
-  .col-0 { width: 280px; }
-  .row:hover {background-color: lightgrey; color: black  }
-  .d3v3-tip {
-    line-height: 1;
-    font-weight: bold;
-    padding: 12px;
-    background: white;
-    color: black;
-    border-radius: 2px;
-  }
-
-  /* Creates a small triangle extender for the tooltip */
-  .d3v3-tip:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 10px;
-    width: 100%;
-    line-height: 1;
-    color: white;
-    content: "\25BC";
-    position: absolute;
-    text-align: center;
-  }
-
-  /* Style northward tooltips differently */
-  .d3v3-tip.n:after {
-    margin: -1px 0 0 0;
-    top: 100%;
-    left: 0;
-  }
+.center-title p {
+    font-size: 12pt;
+    margin: 0 2rem 0.75rem 2rem;
+}
