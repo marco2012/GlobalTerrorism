@@ -1,12 +1,7 @@
 function updateCharts(){
     console.log(selectedSliderYear)
 
-    let param = { prova: selectedSliderYear + "," + choice[1] + "," + d1.toString() }
-    $.getJSON('/analytic', param, function (data, textStatus, jqXHR) {
-            console.log(data);
-        }
-    )
-
+    drawParallel(selectedSliderYear)
 
 }
 

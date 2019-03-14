@@ -1,7 +1,7 @@
 // https://canvasjs.com/javascript-charts/json-data-api-ajax-chart/
 // https://canvasjs.com/docs/charts/chart-options/
 
-function barchart(){
+function barchart(filter_year = 0){
 
 		var dataPoints = [];
 		
@@ -37,6 +37,15 @@ function barchart(){
 		});
 		
 		function addData(data) {
+			
+			if (filter_year != 0) {
+				//Filter data
+				let cf = crossfilter(data)
+				let byYear = cf.dimension(d => d.year)
+				let f = byYear.filter(filter_year)
+				data = f.top(Infinity)
+			}
+
 			// console.log(JSON.stringify(data))
 			for (var i = 0; i < data.length; i++) {
 				let d = data[i]
@@ -50,7 +59,6 @@ function barchart(){
 
 		d3.csv('data/terrorism.csv', addData)	
 }
-
 
 function barchart_3(){
 	var dataPoints = [];
@@ -79,7 +87,7 @@ function barchart_3(){
 				else if (e.value == 5) return "Firearms"
 				else if (e.value == 3) return "Radiological"
 				else if (e.value == 2) return "Chemical"  
-				return "Unknown"
+				//return "Unknown"
 		  }  
 		},
 		axisY: {
@@ -109,7 +117,6 @@ function barchart_3(){
 
 		d3.csv('data/terrorism.csv', addData)	
 }
-
 
 
 // yAxes: [
