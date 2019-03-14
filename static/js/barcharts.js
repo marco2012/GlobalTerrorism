@@ -66,32 +66,50 @@ function barchart_3(){
 			fontFamily: "sans-serif",
 			fontSize: 18
 		},
+		axisX: {
+			labelFontColor: "white",
+			interval: 1,
+			labelFormatter: function ( e ) {
+				if (e.value == 12) return "other"
+				else if (e.value == 10) return "no Vehicle"
+				else if (e.value == 9) return "no Melee"
+				else if (e.value == 8) return "Incendiary"
+				else if (e.value == 7) return "Fake Weapons"
+				else if (e.value == 6) return "Explosives"
+				else if (e.value == 5) return "Firearms"
+				else if (e.value == 3) return "Radiological"
+				else if (e.value == 2) return "Chemical"  
+				return "Unknown"
+		  }  
+		},
 		axisY: {
 			title: "Victim",
+			interval: 100,
 			titleFontSize: 24,
 			labelFontColor: "white"
 		},
 		data: [{
-			type: "column",
-			yValueFormatString: "#####,### Victim",
+			type: "bar",
+			xValueFormatString: "Type: ####",
+			yValueFormatString: "### Victim",
 			dataPoints: dataPoints
 		}]
 	});
 
 	function addData(data) {
-		for (var i = 0; i < data.length; i++) {
+		for (var i = 0; i < data.length; i++){
 			let d = data[i]
 			dataPoints.push({
-				y: parseInt(d.nkill), label: d.weaptype1_txt 
+				y: parseInt(d.nkill),
+				x: parseInt(d.weaptype1)
 			});
 		}
 		chart.render();
+	}
 
+		d3.csv('data/terrorism.csv', addData)	
 }
 
-d3.csv('data/terrorism.csv', addData)	
-
-}
 
 
 // yAxes: [
