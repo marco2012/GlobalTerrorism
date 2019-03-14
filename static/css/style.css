@@ -36,12 +36,16 @@ a {
 }
 
 .center-title {
-    font-size: 24px;
+    font-size: 26px;
     display: flex;
     justify-content: center;
 }
 
-.center-title h2, h3 {
+.center-title h1 {
+    font-size: 50px;
+}
+
+.center-title h1, h2, h3 {
     font-family: Oswald;
 }
 

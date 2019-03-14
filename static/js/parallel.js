@@ -33,7 +33,7 @@ function drawParallel(filter_year=0, country=[]) {
             suicide        : d.suicide,
             attacktype1_txt: d.attacktype1_txt,
             country_txt: d.country_txt,
-            // summary        : d.summary,
+            summary        : d.summary
         };
     })
     .get(function (e, data) {
@@ -51,6 +51,7 @@ function drawParallel(filter_year=0, country=[]) {
         //filter countries
         if (typeof country !== 'undefined' && country.length > 0){
             let byCountry = cf.dimension(d => d.country_txt)
+            
             function multivalue_filter(values) {
                 return function (v) {
                     return values.indexOf(v) !== -1;
@@ -58,9 +59,7 @@ function drawParallel(filter_year=0, country=[]) {
             }
             let f = byCountry.filterFunction(multivalue_filter(country));
             data = f.top(Infinity)
-            console.log(data)
-
-            
+            // console.log(data)
         }
 
         // sort by nkill descend
@@ -70,14 +69,13 @@ function drawParallel(filter_year=0, country=[]) {
 
         parcoords
         .data(data)
-        // .hideAxis(["sumary"])
+        .hideAxis(["summary"])  //CONTROLLARE
         .render()
         .reorderable()
-        .brushMode("1D-axes");  // enable brushing
+        .brushMode("1D-axes")  // enable brushing
         
         // create data table, row hover highlighting
-        var grid = d3
-        .divgrid();
+        var grid = d3.divgrid();
         d3
         .select("#grid")
         .datum(data.slice(0, max_rows_to_take))

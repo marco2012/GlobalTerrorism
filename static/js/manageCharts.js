@@ -1,5 +1,5 @@
 function updateCharts(country=[]){
-    console.log("Slider = " + selectedSliderYear)
+    // console.log("Slider = " + selectedSliderYear)
     
     //update PCA
     $.getJSON(
@@ -23,7 +23,7 @@ function updateCharts(country=[]){
 }
         
 function resetCharts() {
-    console.log(selectedSliderYear)
+    // console.log(selectedSliderYear)
     
     //reset PCA
     $.getJSON(
