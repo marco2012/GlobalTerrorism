@@ -1,4 +1,4 @@
-function drawParallel(filter_year=2011) {
+function drawParallel(filter_year=0) {
     
     max_rows_to_take = 15
     db_name = 'terrorism.csv'
@@ -22,6 +22,12 @@ function drawParallel(filter_year=2011) {
     var parcoords = d3.parcoords()("#parallelArea")
     .color(color)
     .alpha(0.98);
+
+
+    // d3.csv('data/' + db_name, function (data) {
+        
+
+    // })
     
     //IMPLEMENTARE FILTRO DATI PER ANNO
     d3.csv('data/' + db_name)
@@ -39,22 +45,13 @@ function drawParallel(filter_year=2011) {
     })
     .get(function (e, data) {
 
-        // var payments = crossfilter(data)
-        // crossfilter.dimension(function (d) { return d.year; });
-        // console.log(payments);
-        
-        
-        // if (filter_year != 0) {
-        //     data.forEach(function (d) { 
-                
-        //         if (d.year != filter_year) {
-        //             let i = data.indexOf(d)
-        //             data.splice(i, 1);
-        //         }
-        //         // console.log(d.year)
-
-        //     })
-        // }
+        if (filter_year != 0){
+            //Filter data
+            let cf = crossfilter(data)
+            let byYear = cf.dimension(d => d.year)
+            let f = byYear.filter(filter_year)
+            data = f.top(Infinity)
+        }
 
         // sort by nkill descend
         data.sort(function (a, b) {
