@@ -134,31 +134,31 @@ function barchart_3(filter_year = 0){
 	});
 	
 	function createData(data){
-		// for (var key in weapons_to_txt){
+		for (var key in weapons_to_txt){
+			console.log(data.weaptype1)
+			//if (data.weaptype1 == key){
+				data_1.push({
+					type: "stackedBar",
+					showInLegend: true,
+					name: weapons_to_txt[key],
+					xValueFormatString: "Month: 0#",
+					yValueFormatString: "### Victim",
+					dataPoints: dataPoints
+				})
+			//} 
 			
-		// 	if (data.weaptype1 == key){
-		// 		data_1.push({
-		// 			type: "stackedBar",
-		// 			showInLegend: true,
-		// 			name: weapons_to_txt[key],
-		// 			xValueFormatString: "Month: 0#",
-		// 			yValueFormatString: "### Victim",
-		// 			dataPoints: dataPoints
-		// 		})
-		// 	} 
-			
-		// }
+		}
 		// console.log(JSON.stringify(data_1))
 		// console.log(JSON.stringify(dataPoints))
 
-		let j = {
-			type: "stackedBar",
-			showInLegend: true,
-			name: "Explosives",
-			xValueFormatString: "Month: 0#",
-			yValueFormatString: "### Victim",
-			dataPoints: dataPoints
-		}
+		// let j = {
+		// 	type: "stackedBar",
+		// 	showInLegend: true,
+		// 	name: "Explosives",
+		// 	xValueFormatString: "Month: 0#",
+		// 	yValueFormatString: "### Victim",
+		// 	dataPoints: dataPoints
+		// }
 	}
 	
 	function addData(data) {
@@ -179,10 +179,10 @@ function barchart_3(filter_year = 0){
 				x: parseInt(d.imonth)
 			});
 		}
+		
 		createData(data)
 
-		console.log(JSON.stringify(dataPoints));
-
+		// console.log(JSON.stringify(dataPoints));
 
 		chart.render();
 	}

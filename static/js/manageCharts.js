@@ -1,25 +1,45 @@
-function updateCharts(){
-    console.log(selectedSliderYear)
-    var param
-
+function updateCharts(country=[]){
+    console.log("Slider = " + selectedSliderYear)
+    
     //update PCA
-    param = { computePCA: selectedSliderYear }
-    $.getJSON('/pca', param, () => scatter() )
-
+    $.getJSON(
+        '/pca', 
+        {computePCA: selectedSliderYear}, 
+        () => scatter() 
+    )
+        
     //update barchart
-    param = { computeBarchart: selectedSliderYear }
-    $.getJSON('/analytic', param, () => barchart_3(selectedSliderYear) )
-
+    $.getJSON(
+        '/analytic', 
+        {computeBarchart: selectedSliderYear},
+        () => barchart_3(selectedSliderYear) 
+    )
+        
     //update parallel chart
-    drawParallel(selectedSliderYear)
+    drawParallel(filter_year = selectedSliderYear, country = country)
 
+    // map(selectedSliderYear)
+            
 }
-
+        
 function resetCharts() {
     console.log(selectedSliderYear)
+    
+    //reset PCA
+    $.getJSON(
+        '/pca', 
+        {computePCA: 0}, 
+        () => scatter()
+    )
 
-    let param = { computePCA: 0 }
-    $.getJSON('/analytic', param, () => scatter())
+    // //reset barchart
+    // $.getJSON(
+    //     '/analytic',
+    //     { computeBarchart: 0 },
+    //     () => barchart_3(0)
+    // )
+
     drawParallel(0)
     barchart_3(0)
+    map(0)
 }

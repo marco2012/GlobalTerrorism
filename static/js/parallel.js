@@ -1,4 +1,4 @@
-function drawParallel(filter_year=0) {
+function drawParallel(filter_year=0, country=[]) {
     
     max_rows_to_take = 12
     db_name = 'terrorism.csv'
@@ -32,17 +32,29 @@ function drawParallel(filter_year=0) {
             region_txt     : d.region_txt,
             suicide        : d.suicide,
             attacktype1_txt: d.attacktype1_txt,
-            summary        : d.summary,
+            country_txt: d.country_txt,
+            // summary        : d.summary,
         };
     })
     .get(function (e, data) {
 
+        //Filter rows
+        let cf = crossfilter(data)
         if (filter_year != 0){
-            //Filter rows
-            let cf     = crossfilter(data)
             let byYear = cf.dimension(d => d.year)
             let f      = byYear.filter(filter_year)
             data       = f.top(Infinity)
+        }
+        if (typeof country !== 'undefined' && country.length > 0){
+            let byCountry = cf.dimension(d => d.country_txt)
+            for (var i = 0; i < country.length; i++) {
+                console.log(country[i]);
+                let f = byCountry.filter(function (d) { return d.country_txt == country[i] })
+                data = f.top(Infinity)
+                // console.log(data);
+            }
+
+            
         }
 
         // sort by nkill descend
@@ -75,7 +87,7 @@ function drawParallel(filter_year=0) {
             }
         });
         
-        d3.selectAll(".col-7").remove() //rimuovo colonna summary
+        // d3.selectAll(".col-6").remove() //rimuovo colonna summary
         
         // update data table on brush event
         parcoords.on("brush", function (d) {
@@ -94,7 +106,7 @@ function drawParallel(filter_year=0) {
                 }
             });
             
-            d3.selectAll(".col-7").remove() //rimuovo colonna summary
+            // d3.selectAll(".col-6").remove() //rimuovo colonna summary
             
         });
         

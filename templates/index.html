@@ -84,6 +84,8 @@
 	<script src="js/parallel.js"></script>
 	<script src="js/manageCharts.js"></script>
 
+	<script type="text/javascript" src="js/dependencies/promise-polyfill.js"></script>
+	<script type="text/javascript" src="js/dependencies/fetch.umd.js"></script>
 
 	<!-- modal con messaggio quando si clicca su grafico -->
 	<div id="id02" class="w3-modal" style="z-index:4">
@@ -118,16 +120,9 @@
 	<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
 
 
-	<div id="map-container" style="height:400px; width: 1000px; margin: 100px 0 0 0 auto;"></div>
-	<script>
-		var map = new Datamap({ 
-			element: document.getElementById('map-container') ,
-			// fills: {
-			// 	defaultFill: '#E25141' // Any hex, color name or rgb/rgba value
-			// }
-		});
-	</script>
-
+	<!-- mappa -->
+	<div id="world-chart" style=" margin-top: 50px;float: left; margin-left: -5%"></div></br>
+	<script>map()</script>
 
 	<!-- grafico grande -->
 	<!-- <div id="intro">
