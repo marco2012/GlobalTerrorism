@@ -3,6 +3,10 @@
 
 function barchart(filter_year = 0){
 
+	// var svg = d3.select("#canvasjs-chart-container")
+	// svg.selectAll("canvas").remove()
+	// svg.selectAll("svg").remove()
+
 		var dataPoints = [];
 		
 		var chart = new CanvasJS.Chart("chartContainer", {
@@ -60,7 +64,7 @@ function barchart(filter_year = 0){
 		d3.csv('data/terrorism.csv', addData)	
 }
 
-function barchart_3(){
+function barchart_3(filter_year = 0){
 	var dataPoints = [];
 
 	var chart = new CanvasJS.Chart("chartContainer", {
@@ -78,21 +82,23 @@ function barchart_3(){
 			labelFontColor: "white",
 			interval: 1,
 			labelFormatter: function ( e ) {
-				if (e.value == 12) return "other"
-				else if (e.value == 10) return "no Vehicle"
-				else if (e.value == 9) return "no Melee"
+				console.log(e);
+				
+				if (e.value == 12) return "Other"
+				else if (e.value == 10) return "Vehicle"
+				else if (e.value == 9) return "Melee"
 				else if (e.value == 8) return "Incendiary"
 				else if (e.value == 7) return "Fake Weapons"
 				else if (e.value == 6) return "Explosives"
 				else if (e.value == 5) return "Firearms"
 				else if (e.value == 3) return "Radiological"
 				else if (e.value == 2) return "Chemical"  
-				//return "Unknown"
+				else return "Unknown"
 		  }  
 		},
 		axisY: {
 			title: "Victim",
-			interval: 100,
+			interval: 75,
 			titleFontSize: 24,
 			labelFontColor: "white"
 		},
@@ -105,6 +111,15 @@ function barchart_3(){
 	});
 
 	function addData(data) {
+
+		if (filter_year != 0) {
+			//Filter data
+			let cf = crossfilter(data)
+			let byYear = cf.dimension(d => d.year)
+			let f = byYear.filter(filter_year)
+			data = f.top(Infinity)
+		}
+
 		for (var i = 0; i < data.length; i++){
 			let d = data[i]
 			dataPoints.push({

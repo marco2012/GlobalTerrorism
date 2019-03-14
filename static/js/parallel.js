@@ -3,14 +3,14 @@ function drawParallel(filter_year=0) {
     max_rows_to_take = 12
     db_name = 'terrorism.csv'
     
-    // var type = document.getElementById("type").value
-    // console.log(type)
+    //remove graph
     var svg = d3.select("#parallelArea")
     svg.selectAll("canvas").remove()
     svg.selectAll("svg").remove()
     var svg1 = d3.select("#grid")
     svg1.select(".header").remove()
     svg1.selectAll(".row").remove()
+    
     
     var color1 = d3.scale.linear()
     .domain([9, 100])

@@ -20,8 +20,9 @@ def send_js(path):
 
 @app.route("/analytic")
 def try1():
-    var = request.args.to_dict()
-    var = var["prova"].split(",")
+    year = 0
+    var = request.args.to_dict()["computePCA"].strip()
+    print("YEAR ==== " + var)
     analytics.action()
     return jsonify(True)
 
