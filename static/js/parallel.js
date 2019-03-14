@@ -40,19 +40,25 @@ function drawParallel(filter_year=0, country=[]) {
 
         //Filter rows
         let cf = crossfilter(data)
+
+        // filter years
         if (filter_year != 0){
             let byYear = cf.dimension(d => d.year)
             let f      = byYear.filter(filter_year)
             data       = f.top(Infinity)
         }
+
+        //filter countries
         if (typeof country !== 'undefined' && country.length > 0){
             let byCountry = cf.dimension(d => d.country_txt)
-            for (var i = 0; i < country.length; i++) {
-                console.log(country[i]);
-                let f = byCountry.filter(function (d) { return d.country_txt == country[i] })
-                data = f.top(Infinity)
-                // console.log(data);
+            function multivalue_filter(values) {
+                return function (v) {
+                    return values.indexOf(v) !== -1;
+                };
             }
+            let f = byCountry.filterFunction(multivalue_filter(country));
+            data = f.top(Infinity)
+            console.log(data)
 
             
         }

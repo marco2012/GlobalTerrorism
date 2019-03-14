@@ -4,6 +4,7 @@ function map(filter_year=0) {
     var numberFormat = d3v4.format(".2f");
     var filter = [];
     var array = []
+    let projection = d3v4.geoNaturalEarth1() // https://github.com/d3/d3-geo/blob/master/README.md#azimuthal-projections
     
     d3v4.csv("data/terrorism.csv", function (data4) {
         var country_school = crossfilter(data4);
@@ -42,7 +43,7 @@ function map(filter_year=0) {
             .overlayGeoJson(statesJson.features, "name", function (d) {
                 return d.name;
             })
-            .projection(d3v4.geoConicEqualArea())
+            .projection(projection)
             .on('renderlet.a', function (chart) {
                 dc.events.trigger(function () {
                     worldChart.selectAll("svg").on("click", function () {
