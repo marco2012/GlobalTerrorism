@@ -38,9 +38,9 @@ var region_to_txt = {
 function scatter() {
     
     // remove graph
-    // var svg = d3.select("#scatter")
-    // svg.selectAll("canvas").remove()
-    // svg.selectAll("svg").remove()
+    var svg = d3.select("#scatter")
+    svg.selectAll("canvas").remove()
+    svg.selectAll("svg").remove()
     
     
     d3.csv("data/pca.csv", function (data) {

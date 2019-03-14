@@ -73,6 +73,10 @@
 	<script type="text/javascript" src="dc/dc.min.js"></script>
 	<script type="text/javascript" src="dc/dc.js"></script>
 
+	<!-- maps -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+	<script src="js/map/datamaps.world.hires.min.js"></script>
+
 	<!-- nostri file javascript -->
 	<script src="js/scatter.js" charset="utf-8"></script>
 	<script src="js/barcharts.js" charset="utf-8"></script>
@@ -112,6 +116,18 @@
 	<!-- bottoni -->
 	<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button>
 	<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
+
+
+	<div id="map-container" style="height:400px; width: 1000px; margin: 100px 0 0 0 auto;"></div>
+	<script>
+		var map = new Datamap({ 
+			element: document.getElementById('map-container') ,
+			// fills: {
+			// 	defaultFill: '#E25141' // Any hex, color name or rgb/rgba value
+			// }
+		});
+	</script>
+
 
 	<!-- grafico grande -->
 	<!-- <div id="intro">
@@ -174,7 +190,7 @@
 	<script>scatter()</script>	
 
 
-	<section class="container" id="split-container">
+	<!-- <section class="container" id="split-container">
 		<div class="left-half">
 			<article>
 				<h1>Weapons Barchart</h1> </br>
@@ -183,13 +199,12 @@
 		</div>
 		<div class="right-half">
 			<article>
-				<!-- <div id="stackbarcharts"></div> -->
 				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 			</article>
 		</div>
-	</section>
+	</section> -->
 	<!-- div per barchart -->
-	<!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div> -->
+	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 	<script>barchart_3()</script>
 	
 
@@ -218,7 +233,7 @@
 		</div>
 	</section> -->
 
-	<div class="left-half center-title" align="center" >
+	<div class="left-half center-title">
 		<article>
 			<h3>Parallel lines</h3> </br>
 			<p>Weekends don't count unless you spend them doing something completely pointless.</p>

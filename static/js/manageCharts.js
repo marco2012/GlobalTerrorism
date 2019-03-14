@@ -1,15 +1,18 @@
 function updateCharts(){
     console.log(selectedSliderYear)
+    var param
 
     //update PCA
-    let param = { computePCA: selectedSliderYear }
-    $.getJSON('/analytic', param, () => scatter() )
+    param = { computePCA: selectedSliderYear }
+    $.getJSON('/pca', param, () => scatter() )
+
+    //update barchart
+    param = { computeBarchart: selectedSliderYear }
+    $.getJSON('/analytic', param, () => barchart_3(selectedSliderYear) )
 
     //update parallel chart
     drawParallel(selectedSliderYear)
 
-    //update barchart
-    barchart_3(selectedSliderYear)
 }
 
 function resetCharts() {

@@ -20,6 +20,13 @@ def send_js(path):
 
 @app.route("/analytic")
 def try1():
+    var = request.args.to_dict()["computeBarchart"].strip()
+    year = int(var)
+    analytics.createBarchartData(year=year)
+    return jsonify(True)
+
+@app.route("/pca")
+def try2():
     var = request.args.to_dict()["computePCA"].strip()
     year = int(var)
     pca.action(year=year)
@@ -28,6 +35,9 @@ def try1():
 
 #calculate PCA
 pca.action(year=0)
+
+#calculate barchart
+analytics.createBarchartData(year=0)
 
 #start server
 app.config["DEBUG"]=True
