@@ -20,15 +20,14 @@ def send_js(path):
 
 @app.route("/analytic")
 def try1():
-    year = 0
     var = request.args.to_dict()["computePCA"].strip()
-    print("YEAR ==== " + var)
-    analytics.action()
+    year = int(var)
+    pca.action(year=year)
     return jsonify(True)
 
 
 #calculate PCA
-pca.action()
+pca.action(year=0)
 
 #start server
 app.config["DEBUG"]=True

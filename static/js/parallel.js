@@ -11,7 +11,6 @@ function drawParallel(filter_year=0) {
     svg1.select(".header").remove()
     svg1.selectAll(".row").remove()
     
-    
     var color1 = d3.scale.linear()
     .domain([9, 100])
     .range(["#dd0000", "#ddbb00"])
@@ -98,5 +97,6 @@ function drawParallel(filter_year=0) {
             d3.selectAll(".col-7").remove() //rimuovo colonna summary
             
         });
+        
     });
 }
