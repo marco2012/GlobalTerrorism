@@ -1,4 +1,4 @@
-function updateCharts(country=[]){
+function updateCharts(year=0, country=[]){
     // console.log("Slider = " + selectedSliderYear)
     
     //update PCA
@@ -18,9 +18,6 @@ function updateCharts(country=[]){
     //update parallel chart
     drawParallel(filter_year = selectedSliderYear, country = selectedCountries)
 
-    //update map
-    map(filter_year=selectedSliderYear)
-            
 }
         
 function resetCharts() {

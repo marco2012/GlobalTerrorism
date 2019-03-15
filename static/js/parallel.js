@@ -96,6 +96,7 @@ function drawParallel(filter_year=0, country=[]) {
         
         // update data table on brush event
         parcoords.on("brush", function (d) {
+            
             d3
             .select("#grid")
             .datum(d.slice(0, 10))

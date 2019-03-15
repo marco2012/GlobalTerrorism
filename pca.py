@@ -27,7 +27,7 @@ def action(year=0, nation=[]):
     else:  # niente selezione, uso tutto il db (default)
         data = df
 
-    features = ["year", "nperps", "nkill", "nwound"]
+    features = ["year", "nperps", "nkill", "nwound", "country"]
     # Separating out the features
     x = data.loc[:, features].values
     # Separating out the target

@@ -2,11 +2,15 @@ var selectedCountries = [];    //selected countries
 
 function map(filter_year=0) {
     // dc.config.defaultColors(d3v4.schemeReds[9])
-    dc.redrawAll();
+    // dc.redrawAll();
+    
     var worldChart = dc.geoChoroplethChart("#world-chart");
-    var numberFormat = d3v4.format(".2f");
-    var array = []
-    let projection = d3v4.geoNaturalEarth1() // https://github.com/d3/d3-geo/blob/master/README.md#azimuthal-projections
+    var array      = []
+    
+    let projection = d3v4.geoNaturalEarth1()  // https://github.com/d3/d3-geo/blob/master/README.md#azimuthal-projections
+    let scaleSize  = 0.8                      // https://stackoverflow.com/questions/48914465/dc-js-geochoroplethchart-width-smaller-than-500-crops-the-map
+    let width      = 800
+    let height     = 400
     
     d3v4.csv("data/terrorism.csv", function (data4) {
         
@@ -37,8 +41,8 @@ function map(filter_year=0) {
         d3v4.json("json/countries.geo.json", function (statesJson) {
             // console.log(JSON.stringify(statesJson));
             worldChart
-            .width(1000)
-            .height(480)
+            .width(width)
+            .height(height)
             .dimension(countries)
             .group(country)
             // .colors(d3v4.scaleQuantize().range(d3v4.schemeReds[9]))
@@ -62,7 +66,7 @@ function map(filter_year=0) {
                                 document.getElementById('id01').style.display = 'block' //make block appear
                                 $('#dialog_title_span').html('<h2>Error</h2>')
                                 $('#dialog_content_span').html("<br/>No data for selected country. Please choose another one.<br/><br/>")
-
+                                
                                 worldChart.filterAll(); 
                                 dc.redrawAll();
                                 //chiamare funzioni
@@ -70,20 +74,25 @@ function map(filter_year=0) {
                                 
                             }
                         })
+                        
                         console.log(selectedCountries);
                         updateCharts(country=selectedCountries)
                         // render(selectedCountries);
                     })
                     
                 })
-
                 
-
+                
+                
             })
-            .legend(dc.legend().x(250).y(10))
-            
+            .legend(dc.legend().x(250).y(100))
             
             dc.renderAll();
+            
+            worldChart.selectAll('g.name').each(function (d) {
+                d3.select(this).attr('transform', 'scale(' + scaleSize + ')')
+            })
+            
         });
         
         

@@ -47,7 +47,7 @@ a {
 }
 
 .center-title h1 {
-	font-size: 60px;
+	font-size: 40px;
 	font-family: Oswald;
 }
 
@@ -61,11 +61,10 @@ a {
 }
 
 #world-chart {
-	margin-top: 50px;
 	float: center; 
-	margin-left: -5%;
-	height: 480px; 
-	width: 1000px;
+	width: 500px;
+	height: 280px; 
+	margin: -5% 0 0 -45%;
 }
 
 .actionButtons {
@@ -76,8 +75,8 @@ a {
    display: flex;
    flex: 1;
    flex-direction: column;
-   align-items: center;
-   justify-content: center;
+   /* align-items: center; */
+   /* justify-content: center; */
    /* max-width: 90%; */
    vertical-align: middle;
 }
