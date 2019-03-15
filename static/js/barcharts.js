@@ -83,7 +83,6 @@ function barchart(filter_year = 0){
 function barchart_3(filter_year = 0){
 	var dataPoints = []
 	var data_1 = []
-	var dataPoints_str = []
 
 	var chart = new CanvasJS.Chart("chartContainer", {
 		width: 600,
@@ -134,25 +133,26 @@ function barchart_3(filter_year = 0){
 		// dataPoints: dataPoints
 	});
 	
-	function createData(data){
-		// console.log(JSON.stringify(dataPoints))
-		 for (var key in weapons_to_txt){
-			//  console.log(dataPoints_str)
-			for(elem in data){
-				// console.log(data[elem]);
-				
-				if (key == data[elem].weaptype1 && key== parseInt(dataPoints.label)){
-					data_1.push({
-						type: "stackedBar",
-						showInLegend: true,
-						name: weapons_to_txt[key],
-						xValueFormatString: "Month: 0#",
-						yValueFormatString: "### Victim",
-						dataPoints: dataPoints
-					})
-				}
-			} 
-		}
+	function createData(){
+		// console.log(JSON.stringify(dataPoints)
+		// var dp = []
+		//  for (var key in weapons_to_txt){
+	 	//  console.log(dataPoints_str)
+		// 	for(elem in dataPoints){
+		// 		if (key == parseInt(dataPoints[elem].label)){
+		// 			dp.push(dataPoints[elem])
+		// 			data_1.push({
+		// 				type: "stackedBar",
+		// 				showInLegend: true,
+		// 				name: weapons_to_txt[key],
+		// 				xValueFormatString: "Month: 0#",
+		// 				yValueFormatString: "### Victim",
+		// 				dataPoints: dp 
+		// 			})
+		// 		}
+		// 	} 
+		// }
+		// console.log(JSON.stringify(dp))
 	}	
 		
 		//console.log(JSON.stringify(data_1[0]))
@@ -189,8 +189,7 @@ function barchart_3(filter_year = 0){
 
 
 		// console.log(JSON.stringify(dataPoints));
-		dataPoints_str = JSON.stringify(dataPoints)
-		createData(data)
+		createData()
 
 		chart.render();
 	}

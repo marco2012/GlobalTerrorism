@@ -16,7 +16,7 @@ function drawParallel(filter_year=0, country=[]) {
     .range(["#dd0000", "#ddbb00"])
     .interpolate(d3.interpolateLab);
     
-    var color = function (d) { return color1(d['nperps']); };
+    var color = function (d) { return color1(d['Attackers']); };
     
     var parcoords = d3.parcoords()("#parallelArea")
     .color(color)
@@ -25,14 +25,14 @@ function drawParallel(filter_year=0, country=[]) {
     d3.csv('data/' + db_name)
     .row(function (d) { 
         return { //filter columns
-            year           : d.year,
-            nperps         : d.nperps,
-            nkill          : d.nkill,
-            nwound         : d.nwound,
-            region_txt     : d.region_txt,
-            suicide        : d.suicide,
-            attacktype1_txt: d.attacktype1_txt,
-            country_txt: d.country_txt,
+            Year           : d.year,
+            Attackers         : d.nperps,
+            Victims          : d.nkill,
+            Wound         : d.nwound,
+            Region     : d.region_txt,
+            Suicide        : d.suicide==0 ? "No" : "Yes" ,
+            "Attack type": d.attacktype1_txt,
+            Country: d.country_txt,
             summary        : d.summary
         };
     })
