@@ -2,46 +2,34 @@
 <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Terrorism attacks</title>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="css/w3.css">
 	
 	<!-- roba per grafico grande -->
 	<!-- Google fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Raleway:100,300' rel='stylesheet' type='text/css'>
+	<!-- <link href='https://fonts.googleapis.com/css?family=Raleway:100,300' rel='stylesheet' type='text/css'> -->
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
 	<!-- D3 -->
-	<!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
 	<script src="d3/d3.v3.min.js"></script>
-	<script src="js/top2000/crossfilter.min.js"></script>
+	<!-- <script src="js/top2000/crossfilter.min.js"></script> -->
 	<script src="js/dependencies/crossfilter.js"></script>
 	
 	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	
-	<!-- Bootstrap -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-	<!-- <script src="js/dependencies/bootstrap.min.js"></script> -->
-
-	<!-- Combobox script for the search box -->
-	<!-- <script src="js/top2000/bootstrap-combobox.js"></script> -->
-	<!-- <link href="css/top2000/bootstrap-combobox.css" rel="stylesheet"> -->
-
+	<script src="js/dependencies/jquery.min.js"></script>
+<!-- 	
 	<link rel="stylesheet" href="css/top2000/tooltip.css"/>
 	<link rel="stylesheet" href="css/top2000/d3.slider.css"/> 
 	<link rel="stylesheet" href="css/top2000/top2000style.css"/>
 	<script src="js/top2000/showTooltip.js"></script>
 	<script src="js/top2000/createLegend.js"></script>
 	<script src="js/top2000/helperFunctions.js"></script>
-	<script src="js/top2000/d3.slider.js"></script>
+	<script src="js/top2000/d3.slider.js"></script> -->
 
 	<!-- roba per scatter -->
 	<link rel="stylesheet" href="css/scatter.css" charset="utf-8">
 
 	<!-- roba per BarCharts -->
-	<!-- <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
 	<script type="text/javascript" src="js/dependencies/canvasjs.min.js"></script>
 
 	<!-- container split -->
@@ -59,8 +47,6 @@
 	<script type="text/javascript" src="js/dependencies/jquery-3.3.1.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="dc/dc.css" />
-	<link rel="stylesheet" type="text/css" href="css/smooth-slider.css" />
-
 	<!-- slider -->
 	<link rel="stylesheet" href="css/d3.slider.css" charset="utf-8">
 	<script type="text/javascript" src="d3/d3.slider.js"></script>	
@@ -68,13 +54,12 @@
 <body>
 
 	<!-- importare per scatter -->
-	<!-- <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
 	<script src="d3/d3.tip.v0.6.3.js"></script>
 	<script type="text/javascript" src="dc/dc.min.js"></script>
 	<script type="text/javascript" src="dc/dc.js"></script>
 
 	<!-- maps -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+	<script src="js/dependencies/topojson.min.js"></script>
 	<script src="js/map/datamaps.world.hires.min.js"></script>
 
 	<!-- nostri file javascript -->
@@ -116,57 +101,15 @@
 	<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button>
 	<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
 
-
+	<!-- mappa -->
 	<div class="left-half center-title">
 		<article>
 			<h3>World map</h3> </br>
 			<p>Weekends don't count unless you spend them doing something completely pointless.</p>
 		</article>
 	</div>
-	<!-- mappa -->
 	<div id="world-chart" style=" margin-top: 50px;float: left; margin-left: -5%"></div></br>
 	<script>map()</script>
-
-	<!-- grafico grande -->
-	<!-- <div id="intro">
-		<h2>Global Terrorist Attacks</h2>
-		<span>At the end of each year since 1999 hundreds of thousands of Dutch vote for the best songs ever made.</span>
-		<br>
-		<span>Here you can see the distribution of the top 2000 songs according to their year of release.</span><br>
-	</div> -->
-	
-	<!-- The search box -->
-	<!-- <div class="form-group" id="searchBoxWrapper">			
-		<select id="searchBox" class="combobox input-large form-control" style="display: none;" onchange="searchArtist(this.value)">
-			 <option value="" selected="selected">Country...</option>
-		</select>
-	</div> -->
-
-	<!-- slider -->
-	<!-- <div id="slider"></div> -->
-	
-	<!-- chart -->
-	<!-- <div id="chart"></div> -->
-
-	<!-- <div id="note">
-		<span>
-			Created by Marco Lupia and Francesca Fraioli 
-		</span>
-	</div> -->
-	
-	<!-- Create div structure for Tooltip -->
-	<!-- <div id="tooltip">
-		<div id="tooltip-Container">
-			<div class="tooltip-band"></div>
-			<div class="tooltip-rule"></div>
-			<div id="tooltip-year"></div>
-			<div id="tooltip-title"></div>
-			<div id="tooltip-place"></div>
-			<div class="tooltip-tail"></div>
-		</div>
-	</div> -->
-
-	<!-- <script src="js/top2000/mainCode.js"></script> -->
 
 	<!-- https://css-tricks.com/left-and-right/#article-header-id-5 -->
 	<section class="container" id="split-container">
@@ -179,58 +122,19 @@
 		<div class="right-half">
 			<article>
 				<div id="scatter"></div>
+				<!-- <input type="button" name="xAxis" value="xAxis"> -->
 			</article>
 		</div>
 	</section>
-	<!-- div per scatter -->
-	<!-- <div id="scatter"></div> -->
-	<!-- <input type="button" name="xAxis" value="xAxis"> -->
 	<script>scatter()</script>	
 
 
-	<!-- <section class="container" id="split-container">
-		<div class="left-half">
-			<article>
-				<h1>Weapons Barchart</h1> </br>
-				<p>Weekends don't count unless you spend them doing something completely pointless.</p>
-			</article>
-		</div>
-		<div class="right-half">
-			<article>
-				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-			</article>
-		</div>
-	</section> -->
-	<!-- div per barchart -->
+	<!--barchart -->
 	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 	<script>barchart_3()</script>
 	
 
-	<!-- div per parallel coordinates -->
-	<!-- <div id="example" class="parcoords"></div>
-	<div id="grid"></div>
-	<script src="js/parallel_coordinates.js" id="brushing"></script>
-	 -->
-	<!-- <div style="height: 40%;">
-		<div id="world-chart" style=" margin-top: 50px;float: left; margin-left: -5%"></div>
-		<div id="scatterArea" style="margin-top: 50px;"></div>
-	</div> -->
-	
-	<!-- <section class="container" id="split-container">
-		<div class="left-half">
-			<article>
-				<h1>Parallel lines</h1> </br>
-				<p>Weekends don't count unless you spend them doing something completely pointless.</p>
-			</article>
-		</div>
-		<div class="right-half">
-			<article>
-				<div id="stackbarcharts"></div>
-				<div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;"></div>
-			</article>
-		</div>
-	</section> -->
-
+	<!-- parallel coordinates -->
 	<div class="left-half center-title">
 		<article>
 			<h3>Parallel lines</h3> </br>

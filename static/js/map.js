@@ -1,8 +1,10 @@
+var selectedCountries = [];    //selected countries
+
 function map(filter_year=0) {
     // dc.config.defaultColors(d3v4.schemeReds[9])
+    dc.redrawAll();
     var worldChart = dc.geoChoroplethChart("#world-chart");
     var numberFormat = d3v4.format(".2f");
-    var filter = [];
     var array = []
     let projection = d3v4.geoNaturalEarth1() // https://github.com/d3/d3-geo/blob/master/README.md#azimuthal-projections
     
@@ -48,12 +50,12 @@ function map(filter_year=0) {
                 dc.events.trigger(function () {
                     worldChart.selectAll("svg").on("click", function () {
                         
-                        filter = worldChart.filters();
-                        
-                        filter.forEach(function (elem) {
+                        selectedCountries = worldChart.filters();
+                        //controllo se nazione selezionata presente in database
+                        selectedCountries.forEach(function (elem) {
                             if (array.indexOf(elem) == -1) {
-                                filter.splice(filter.indexOf(elem), 1)
-                                alert("No data for the selected country")
+                                selectedCountries.splice(selectedCountries.indexOf(elem), 1)
+                                alert("No data for selected country")
                                 worldChart.filterAll(); 
                                 dc.redrawAll();
                                 //chiamare funzioni
@@ -61,10 +63,9 @@ function map(filter_year=0) {
                                 
                             }
                         })
-
-                        console.log(filter);
-                        updateCharts(country=filter)
-                        // render(filter);
+                        console.log(selectedCountries);
+                        updateCharts(country=selectedCountries)
+                        // render(selectedCountries);
                     })
                     
                 })

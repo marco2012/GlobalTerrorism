@@ -1,22 +1,22 @@
 function updateCharts(country=[]){
     // console.log("Slider = " + selectedSliderYear)
     
-    //update PCA
-    $.getJSON(
-        '/pca', 
-        {computePCA: selectedSliderYear}, 
-        () => scatter() 
-    )
+    // //update PCA
+    // $.getJSON(
+    //     '/pca', 
+    //     {computePCA: selectedSliderYear}, 
+    //     () => scatter() 
+    // )
         
-    //update barchart
-    $.getJSON(
-        '/analytic', 
-        {computeBarchart: selectedSliderYear},
-        () => barchart_3(selectedSliderYear) 
-    )
-        
+    // //update barchart
+    // $.getJSON(
+    //     '/analytic', 
+    //     {computeBarchart: selectedSliderYear},
+    //     () => barchart_3(selectedSliderYear) 
+    // )
+
     //update parallel chart
-    drawParallel(filter_year = selectedSliderYear, country = country)
+    drawParallel(filter_year = selectedSliderYear, country = selectedCountries)
 
     // map(selectedSliderYear)
             
@@ -39,7 +39,8 @@ function resetCharts() {
     //     () => barchart_3(0)
     // )
 
-    drawParallel(0)
+    drawParallel(filter_year=0)
     barchart_3(0)
-    map(0)
+    map(filter_year=0)
+    // worldChart.filterAll(); 
 }

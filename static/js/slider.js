@@ -6,21 +6,34 @@ let max = 2017
 let step = 5
 let tickFormatter = d3.format(".0f")
 let tickValues = d3.range(min, max + 1, step)
-// let stepValues = d3.range(min, max + 1)
-// years where data exists
-let stepValues = [1975, 1977, 1986, 1991, 1994, 1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
 
+//build step values based on years in dataset
+var stepValues = []
+d3v4.csv("data/terrorism.csv", function (data4) {
+    let cf = crossfilter(data4);
+    var countries = cf.dimension(function (d) {
+        return d.year;
+    })
+    var country = countries.group();
+    var nations = country.all()
+    nations.forEach(function (entry) {
+        stepValues.push(entry.key)
+    })
+    // console.log(stepValues);
+})
+
+// create slider
 var slider = d3.slider()
-    .min(min)
-    .max(max)
-    .showRange(true)
-    .value(0)
-    .tickFormat(tickFormatter)
-    .tickValues(tickValues)
-    .stepValues(stepValues)
-    .callback(function (evt) {
-        selectedSliderYear = self.slider.value()
-        // console.log('callback: ' + selectedSliderYear);
-    });
+.min(min)
+.max(max)
+.showRange(true)
+.value(0)
+.tickFormat(tickFormatter)
+.tickValues(tickValues)
+.stepValues(stepValues)
+.callback(function (evt) {
+    selectedSliderYear = self.slider.value()
+    // console.log('callback: ' + selectedSliderYear);
+});
 
 d3.select("#swift2Slider").call( slider )

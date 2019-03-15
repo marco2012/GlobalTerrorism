@@ -135,7 +135,7 @@ function barchart_3(filter_year = 0){
 	
 	function createData(data){
 		for (var key in weapons_to_txt){
-			console.log(data.weaptype1)
+			// console.log(data.weaptype1)
 			//if (data.weaptype1 == key){
 				data_1.push({
 					type: "stackedBar",
