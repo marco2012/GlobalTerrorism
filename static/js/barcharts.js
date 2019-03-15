@@ -134,24 +134,26 @@ function barchart_3(filter_year = 0){
 		// dataPoints: dataPoints
 	});
 	
-	// function createData(data){
-	// 	for (var key in weapons_to_txt){
-	// 		console.log(data)
-	// 		//  console.log(dataPoints_str)
-	// 		// for(var i = 0; i < data.length; i++){
-	// 		// 	if (key == data[i]){
-	// 				data_1.push({
-	// 					type: "stackedBar",
-	// 					showInLegend: true,
-	// 					name: weapons_to_txt[key],
-	// 					xValueFormatString: "Month: 0#",
-	// 					yValueFormatString: "### Victim",
-	// 					dataPoints: dataPoints
-	// 				})
-	// 		// }
-	// 		//} 
-	// 	// }
-	// }	
+	function createData(data){
+		// console.log(JSON.stringify(dataPoints))
+		 for (var key in weapons_to_txt){
+			//  console.log(dataPoints_str)
+			for(elem in data){
+				// console.log(data[elem]);
+				
+				if (key == data[elem].weaptype1 && key== parseInt(dataPoints.label)){
+					data_1.push({
+						type: "stackedBar",
+						showInLegend: true,
+						name: weapons_to_txt[key],
+						xValueFormatString: "Month: 0#",
+						yValueFormatString: "### Victim",
+						dataPoints: dataPoints
+					})
+				}
+			} 
+		}
+	}	
 		
 		//console.log(JSON.stringify(data_1[0]))
 		// console.log(JSON.stringify(dataPoints))
@@ -180,28 +182,15 @@ function barchart_3(filter_year = 0){
 			let d = data[i]
 			dataPoints.push({
 				y: parseInt(d.nkill),
-				x: parseInt(d.imonth)
+				x: parseInt(d.imonth),
+				label: d.weaptype1
 			});
 		}
+
+
 		// console.log(JSON.stringify(dataPoints));
 		dataPoints_str = JSON.stringify(dataPoints)
-		// createData(data)
-
-		console.log(data[0])
-		for(var elem in data){
-			// for (var key in weapons_to_txt){
-			// 	if (key == data[elem].weaptype1){
-		 	// 		data_1.push({
-			// 			type: "stackedBar",
-			// 			showInLegend: true,
-			// 			name: weapons_to_txt[key],
-			// 			xValueFormatString: "Month: 0#",
-			// 			yValueFormatString: "### Victim",
-			// 			dataPoints: dataPoints
-		 	// 		})
-			// 	}
-			// } 
-		}
+		createData(data)
 
 		chart.render();
 	}

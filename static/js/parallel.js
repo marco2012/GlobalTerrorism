@@ -91,7 +91,7 @@ function drawParallel(filter_year=0, country=[]) {
             }
         });
         
-        // d3.selectAll(".col-6").remove() //rimuovo colonna summary
+        d3.selectAll(".col-8").remove() //rimuovo colonna summary
         
         // update data table on brush event
         parcoords.on("brush", function (d) {
@@ -110,7 +110,7 @@ function drawParallel(filter_year=0, country=[]) {
                 }
             });
             
-            // d3.selectAll(".col-6").remove() //rimuovo colonna summary
+            d3.selectAll(".col-8").remove() //rimuovo colonna summary
             
         });
         

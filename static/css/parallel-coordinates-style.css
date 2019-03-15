@@ -56,19 +56,26 @@ input {
 
 /* data table styles */
   #grid { height: 240px; }
-  .row, .header { clear: left; font-size: 11px; line-height: 24px; height: 24px; }
+  .row, .header { clear: left; font-size: 13px; line-height: 24px; height: 24px; }
   .row:nth-child(odd) { 
     /* background: rgba(0,0,0,0.05);  */
     background: rgba(38,38,38,0.8); 
   }
   .header { font-weight: bold; }
-  .cell { float: left; overflow: hidden; white-space: nowrap; width: 160px; height: 18px; }
-  .col-0 { width: 120px; }
+  .cell { float: left; overflow: hidden; white-space: nowrap; width: 120px; height: 22px; }
+  .col-0 { width: 70px; }
+  .col-1 { width: 70px; }
+  .col-2 { width: 70px; }
+  .col-3 { width: 70px; }
+  .col-4 { width: 120px; }
+  .col-5 { width: 70px; }
+  .col-6 { width: 200px; }
+  .col-7 { width: 200px; }
 
   
 /* parcoords styles */
 .parcoords > svg, .parcoords > canvas { 
-  font: 11px "Source Code Pro", Consolas, monaco, monospace;
+  font: 12px "Source Code Pro", Consolas, monaco, monospace;
   position: absolute;
 }
 .parcoords > canvas {
