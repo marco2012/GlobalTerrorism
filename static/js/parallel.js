@@ -25,15 +25,15 @@ function drawParallel(filter_year=0, country=[]) {
     d3.csv('data/' + db_name)
     .row(function (d) { 
         return { //filter columns
-            Year           : d.year,
-            Attackers         : d.nperps,
-            Victims          : d.nkill,
-            Wound         : d.nwound,
-            Region     : d.region_txt,
-            Suicide        : d.suicide==0 ? "No" : "Yes" ,
+            year         : d.year,
+            Attackers    : d.nperps,
+            Victims      : d.nkill,
+            Wound        : d.nwound,
+            Suicide      : d.suicide==0 ? "No": "Yes",
+            Country      : d.country_txt,
+            Region       : d.region_txt,
             "Attack type": d.attacktype1_txt,
-            Country: d.country_txt,
-            summary        : d.summary
+            summary      : d.summary
         };
     })
     .get(function (e, data) {
@@ -46,11 +46,12 @@ function drawParallel(filter_year=0, country=[]) {
             let byYear = cf.dimension(d => d.year)
             let f      = byYear.filter(filter_year)
             data       = f.top(Infinity)
+            // console.log(JSON.stringify(data));
         }
 
         //filter countries
         if (typeof country !== 'undefined' && country.length > 0){
-            let byCountry = cf.dimension(d => d.country_txt)
+            let byCountry = cf.dimension(d => d.Country)
             
             function multivalue_filter(values) {
                 return function (v) {
@@ -64,7 +65,7 @@ function drawParallel(filter_year=0, country=[]) {
 
         // sort by nkill descend
         data.sort(function (a, b) {
-            return b.nkill - a.nkill
+            return b.Victims - a.Victims
         });
 
         parcoords

@@ -1,12 +1,12 @@
 function updateCharts(country=[]){
     // console.log("Slider = " + selectedSliderYear)
     
-    // //update PCA
-    // $.getJSON(
-    //     '/pca', 
-    //     {computePCA: selectedSliderYear}, 
-    //     () => scatter() 
-    // )
+    //update PCA
+    $.getJSON(
+        '/pca', 
+        {computePCA: selectedSliderYear}, 
+        () => scatter() 
+    )
         
     // //update barchart
     // $.getJSON(

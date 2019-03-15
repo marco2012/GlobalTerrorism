@@ -9,6 +9,7 @@ function map(filter_year=0) {
     let projection = d3v4.geoNaturalEarth1() // https://github.com/d3/d3-geo/blob/master/README.md#azimuthal-projections
     
     d3v4.csv("data/terrorism.csv", function (data4) {
+        
         var country_school = crossfilter(data4);
         var countries = country_school.dimension(function (d) {
             return d.country_txt;
@@ -56,7 +57,12 @@ function map(filter_year=0) {
                         selectedCountries.forEach(function (elem) {
                             if (array.indexOf(elem) == -1) {
                                 selectedCountries.splice(selectedCountries.indexOf(elem), 1)
-                                alert("No data for selected country")
+                                
+                                // alert("No data for selected country")
+                                document.getElementById('id01').style.display = 'block' //make block appear
+                                $('#dialog_title_span').html('<h2>Error</h2>')
+                                $('#dialog_content_span').html("<br/>No data for selected country. Please choose another one.<br/><br/>")
+
                                 worldChart.filterAll(); 
                                 dc.redrawAll();
                                 //chiamare funzioni
