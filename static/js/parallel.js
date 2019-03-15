@@ -33,7 +33,7 @@ function drawParallel(filter_year=0, country=[]) {
             suicide        : d.suicide,
             attacktype1_txt: d.attacktype1_txt,
             country_txt: d.country_txt,
-            // summary        : d.summary
+            summary        : d.summary
         };
     })
     .get(function (e, data) {
@@ -69,7 +69,7 @@ function drawParallel(filter_year=0, country=[]) {
 
         parcoords
         .data(data)
-        // .hideAxis(["summary"])  //CONTROLLARE
+        .hideAxis(["summary"])  //CONTROLLARE
         .render()
         .reorderable()
         .brushMode("1D-axes")  // enable brushing

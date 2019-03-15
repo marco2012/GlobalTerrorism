@@ -83,7 +83,8 @@ function barchart(filter_year = 0){
 function barchart_3(filter_year = 0){
 	var dataPoints = []
 	var data_1 = []
-	
+	var dataPoints_str = []
+
 	var chart = new CanvasJS.Chart("chartContainer", {
 		width: 600,
 		animationEnabled: true,
@@ -133,22 +134,26 @@ function barchart_3(filter_year = 0){
 		// dataPoints: dataPoints
 	});
 	
-	function createData(data){
-		for (var key in weapons_to_txt){
-			// console.log(data.weaptype1)
-			//if (data.weaptype1 == key){
-				data_1.push({
-					type: "stackedBar",
-					showInLegend: true,
-					name: weapons_to_txt[key],
-					xValueFormatString: "Month: 0#",
-					yValueFormatString: "### Victim",
-					dataPoints: dataPoints
-				})
-			//} 
-			
-		}
-		// console.log(JSON.stringify(data_1))
+	// function createData(data){
+	// 	for (var key in weapons_to_txt){
+	// 		console.log(data)
+	// 		//  console.log(dataPoints_str)
+	// 		// for(var i = 0; i < data.length; i++){
+	// 		// 	if (key == data[i]){
+	// 				data_1.push({
+	// 					type: "stackedBar",
+	// 					showInLegend: true,
+	// 					name: weapons_to_txt[key],
+	// 					xValueFormatString: "Month: 0#",
+	// 					yValueFormatString: "### Victim",
+	// 					dataPoints: dataPoints
+	// 				})
+	// 		// }
+	// 		//} 
+	// 	// }
+	// }	
+		
+		//console.log(JSON.stringify(data_1[0]))
 		// console.log(JSON.stringify(dataPoints))
 
 		// let j = {
@@ -159,7 +164,6 @@ function barchart_3(filter_year = 0){
 		// 	yValueFormatString: "### Victim",
 		// 	dataPoints: dataPoints
 		// }
-	}
 	
 	function addData(data) {
 		
@@ -171,7 +175,7 @@ function barchart_3(filter_year = 0){
 			let f = byYear.filter(filter_year)
 			data = f.top(Infinity)
 		}
-		
+
 		for (var i = 0; i < data.length; i++){
 			let d = data[i]
 			dataPoints.push({
@@ -179,15 +183,31 @@ function barchart_3(filter_year = 0){
 				x: parseInt(d.imonth)
 			});
 		}
-		
-		createData(data)
-
 		// console.log(JSON.stringify(dataPoints));
+		dataPoints_str = JSON.stringify(dataPoints)
+		// createData(data)
+
+		console.log(data[0])
+		for(var elem in data){
+			// for (var key in weapons_to_txt){
+			// 	if (key == data[elem].weaptype1){
+		 	// 		data_1.push({
+			// 			type: "stackedBar",
+			// 			showInLegend: true,
+			// 			name: weapons_to_txt[key],
+			// 			xValueFormatString: "Month: 0#",
+			// 			yValueFormatString: "### Victim",
+			// 			dataPoints: dataPoints
+		 	// 		})
+			// 	}
+			// } 
+		}
 
 		chart.render();
 	}
 	
-	d3.csv('data/barchart_data.csv', addData)	
+	d3.csv('data/barchart_data.csv', addData)
+
 }
 
 

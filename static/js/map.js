@@ -34,9 +34,10 @@ function map(filter_year=0) {
         
         //creo mappa
         d3v4.json("json/countries.geo.json", function (statesJson) {
+            // console.log(JSON.stringify(statesJson));
             worldChart
-            .width(900)
-            .height(500)
+            .width(1000)
+            .height(480)
             .dimension(countries)
             .group(country)
             // .colors(d3v4.scaleQuantize().range(d3v4.schemeReds[9]))
@@ -69,6 +70,9 @@ function map(filter_year=0) {
                     })
                     
                 })
+
+                
+
             })
             .legend(dc.legend().x(250).y(10))
             

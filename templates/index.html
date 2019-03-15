@@ -4,27 +4,16 @@
 	<title>Terrorism attacks</title>
 	<link rel="stylesheet" href="css/w3.css">
 	
-	<!-- roba per grafico grande -->
 	<!-- Google fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-	<!-- <link href='https://fonts.googleapis.com/css?family=Raleway:100,300' rel='stylesheet' type='text/css'> -->
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+	<link href='css/oswald.css' rel='stylesheet' type='text/css'>
+	<link href='css/opensans.css' rel='stylesheet' type='text/css'>
 
 	<!-- D3 -->
 	<script src="d3/d3.v3.min.js"></script>
-	<!-- <script src="js/top2000/crossfilter.min.js"></script> -->
 	<script src="js/dependencies/crossfilter.js"></script>
 	
 	<!-- jQuery -->
 	<script src="js/dependencies/jquery.min.js"></script>
-<!-- 	
-	<link rel="stylesheet" href="css/top2000/tooltip.css"/>
-	<link rel="stylesheet" href="css/top2000/d3.slider.css"/> 
-	<link rel="stylesheet" href="css/top2000/top2000style.css"/>
-	<script src="js/top2000/showTooltip.js"></script>
-	<script src="js/top2000/createLegend.js"></script>
-	<script src="js/top2000/helperFunctions.js"></script>
-	<script src="js/top2000/d3.slider.js"></script> -->
 
 	<!-- roba per scatter -->
 	<link rel="stylesheet" href="css/scatter.css" charset="utf-8">
@@ -72,6 +61,7 @@
 	<script type="text/javascript" src="js/dependencies/promise-polyfill.js"></script>
 	<script type="text/javascript" src="js/dependencies/fetch.umd.js"></script>
 
+	
 	<!-- modal con messaggio quando si clicca su grafico -->
 	<div id="id02" class="w3-modal" style="z-index:4">
 		<div class="w3-modal-content w3-animate-zoom" style="width: 1440px;">
@@ -87,32 +77,40 @@
 	</div>
 	
 	<!-- title -->
-	<div class="center-title">
+	<!-- <div class="center-title flexcontainer">
 		<h1>Terrorism attacks</h1>
+	</div> -->
+	<div class="flexcontainer" style="margin-bottom: 20px;">
+		<article>
+			<h1>Terrorism attacks</h1>
+		</article>
 	</div>
 
 	<!-- year slider -->
-	<div id="swift2Slider" class="coralLeft"> </div>
-
-	<!-- <div id="slider"></div> -->
+	<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
 	<script src="js/slider.js"></script>
 
 	<!-- bottoni -->
-	<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button>
-	<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
-
+	<div class="actionButtons">
+		<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button>
+		<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
+	</div>
+	
 	<!-- mappa -->
-	<div class="left-half center-title">
+	<div class="flexcontainer">
 		<article>
-			<h3>World map</h3> </br>
+			<h2>World map</h2> 
 			<p>Weekends don't count unless you spend them doing something completely pointless.</p>
 		</article>
 	</div>
-	<div id="world-chart" style=" margin-top: 50px;float: left; margin-left: -5%"></div></br>
+	<div id="world-chart" class="flexcontainer"></div></br>
 	<script>map()</script>
 
+	<!-- div vuoto per lasciare spazio -->
+	<div class="flexcontainer" style="height: 500px;"></div></br>
+
 	<!-- https://css-tricks.com/left-and-right/#article-header-id-5 -->
-	<section class="container" id="split-container">
+	<!-- <section class="container flexcontainer" id="split-container">
 		<div class="left-half">
 			<article>
 				<h1>Scatterplot</h1> </br>
@@ -122,20 +120,32 @@
 		<div class="right-half">
 			<article>
 				<div id="scatter"></div>
-				<!-- <input type="button" name="xAxis" value="xAxis"> -->
 			</article>
 		</div>
-	</section>
+	</section> -->
+
+	<div class="flexcontainer">
+		<article>
+			<h2>Scatterplot</h2>
+			<p>Weekends don't count unless you spend them doing something completely pointless.</p>
+		</article>
+	</div>
+	<div class="flexcontainer">
+		<article>
+			<div id="scatter"></div>
+		</article>
+	</div>
+
 	<script>scatter()</script>	
 
 
 	<!--barchart -->
-	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+	<div id="chartContainer" class="flexcontainer" style="height: 370px; width: 100%;"></div>
 	<script>barchart_3()</script>
 	
 
 	<!-- parallel coordinates -->
-	<div class="left-half center-title">
+	<div class="left-half center-title flexcontainer">
 		<article>
 			<h3>Parallel lines</h3> </br>
 			<p>Weekends don't count unless you spend them doing something completely pointless.</p>
@@ -143,8 +153,8 @@
 	</div>
 
 	<div>
-		<div id="parallelArea" class="parcoords" style="height:400px; width: 1000px; margin: 0 auto;margin-left: -460px;"></div>
-		<div id="grid" style="color: white; width: 1800px; margin-top: 2%; margin-bottom: 20px;"></div>
+		<div id="parallelArea" class="parcoords flexcontainer" style="height:400px; width: 1000px; margin: 0 auto;"></div>
+		<div id="grid" class="flexcontainer" ></div>
 	</div>
 	
 	<!-- Popup with attack summary, appears when click on attack on graph -->
