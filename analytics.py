@@ -15,14 +15,14 @@ def createBarchartData(year=0):
     s = None
     if year == 0:  # filtro per anno
         s = data[['year', 'imonth', 'weaptype1', 'nkill']].groupby(
-            ['year', 'imonth', 'weaptype1'])['nkill'].sum()
+            ['year', 'imonth', 'weaptype1'])['nkill'].sum().to_frame().sort_values('weaptype1')
     else:
         s = data[data.year == year][['year', 'imonth', 'weaptype1', 'nkill']].groupby(
-            ['year', 'imonth', 'weaptype1'])['nkill'].sum()
+            ['year', 'imonth', 'weaptype1'])['nkill'].sum().to_frame().sort_values('weaptype1')
 
     s.to_csv("static/data/barchart_data.csv", sep=',', header=True)
 
     pass 
 
 
-createBarchartData(2017)
+# createBarchartData(2017)

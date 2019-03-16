@@ -14,6 +14,7 @@ function map(filter_year=0) {
     
     d3v4.csv("data/terrorism.csv", function (data4) {
         
+        //filter
         var country_school = crossfilter(data4);
         var countries = country_school.dimension(function (d) {
             return d.country_txt;

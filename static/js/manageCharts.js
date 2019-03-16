@@ -5,7 +5,7 @@ function updateCharts(year=0, country=[]){
     $.getJSON(
         '/pca', 
         {computePCA: selectedSliderYear}, 
-        () => scatter() 
+        () => scatter()
     )
         
     // //update barchart
