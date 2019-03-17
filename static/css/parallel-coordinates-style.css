@@ -55,24 +55,25 @@ input {
 }
 
 /* data table styles */
-  #grid { height: 240px; }
-  .row, .header { clear: left; font-size: 13px; line-height: 24px; height: 34px; }
-  .row:nth-child(odd) { 
-    /* background: rgba(0,0,0,0.05);  */
-    background: rgba(38,38,38,0.8); 
-  }
-  .header { font-weight: bold; }
-  .cell { float: left; overflow: hidden; white-space: nowrap; width: 120px; height: 26px; }
-  .col-0 { width: 70px; }
-  .col-1 { width: 70px; }
-  .col-2 { width: 70px; }
-  .col-3 { width: 70px; }
-  .col-4 { width: 70px; }
-  .col-5 { width: 200px; }
-  .col-6 { width: 200px; }
-  .col-7 { width: 200px; }
+#grid { height: 240px; }
+.row, .header { clear: left; font-size: 13px; line-height: 24px; height: 34px; }
+.row:nth-child(odd) { 
+  /* background: rgba(0,0,0,0.05);  */
+  background: rgba(38,38,38,0.8); 
+}
+.header { font-weight: bold; }
+.cell { float: left; overflow: hidden; white-space: nowrap; width: 120px; height: 26px; }
+.col-0 { width: 70px; }
+.col-1 { width: 70px; }
+.col-2 { width: 70px; }
+.col-3 { width: 70px; }
+.col-4 { width: 70px; }
+.col-5 { width: 200px; }
+.col-6 { width: 200px; }
+.col-7 { width: 200px; }
 
-  
+.highlightRow { background-color: grey; }
+
 /* parcoords styles */
 .parcoords > svg, .parcoords > canvas { 
   font: 12px "Source Code Pro", Consolas, monaco, monospace;
@@ -96,7 +97,7 @@ input {
 .parcoords .resize rect {
   /* fill: rgba(0,0,0,0.1); */
   fill: rgba(255,255,255,0.2);
-
+  
 }
 .parcoords rect.extent {
   /* fill: rgba(255,255,255,0.25); */

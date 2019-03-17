@@ -83,8 +83,12 @@ function drawParallel(filter_year=0, country=[]) {
         .call(grid)
         .selectAll(".row")
         .on({
-            "mouseover": function (d) { parcoords.highlight([d]) },
-            "mouseout": parcoords.unhighlight,
+            "mouseover": function (d) { 
+                parcoords.highlight([d]) 
+            },
+            "mouseout": (d) => {
+                parcoords.unhighlight
+            },
             "click": function (d) { 
                 document.getElementById('id01').style.display = 'block' //make block appear
                 $('#dialog_title_span').html('<h2>Attack summary</h2>')
@@ -93,6 +97,14 @@ function drawParallel(filter_year=0, country=[]) {
         });
         
         d3.selectAll(".col-8").remove() //rimuovo colonna summary
+
+        //higlight on hover
+        $('#grid .row').hover(function () {
+                $(this).css('background-color', 'grey')
+        }, function () {
+                $('.row:odd').css('background', 'rgba(38,38,38,0.8)')
+                $('.row:even').css('background-color', 'black')
+        });
         
         // update data table on brush event
         parcoords.on("brush", function (d) {

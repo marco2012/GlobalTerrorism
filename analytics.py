@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import csv, sys, json
 
 DB_PATH = "static/data/terrorism.csv"
 
@@ -10,7 +11,6 @@ def createBarchartData(year=0):
     group by year, imonth, weaptype1
     order by year desc
     '''
-    
     data = pd.read_csv(DB_PATH)
     s = None
     if year == 0:  # filtro per anno
@@ -24,5 +24,18 @@ def createBarchartData(year=0):
 
     pass 
 
+
+# def csv2json():
+#   csv_filename = 'static/data/barchart_data.csv'
+#   fieldnames = ["year", "imonth", "weaptype1", "nkill"]
+#   f = open(csv_filename, 'r')
+#   csv_reader = csv.DictReader(f, fieldnames)
+#   json_filename = "barchart_data.json"
+#   print ("Saving JSON to file: ", json_filename)
+#   jsonf = open(json_filename, 'w')
+#   data = json.dumps([r for r in csv_reader])
+#   jsonf.write(data)
+#   f.close()
+#   jsonf.close()
 
 # createBarchartData(2017)
