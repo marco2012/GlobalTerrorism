@@ -11,287 +11,313 @@ let weapons_to_txt = {
     13: "Unknown"
 }
 
-var w = 800,
-h = 400,
-padding = 40;
+function barchart(){
+    d3.csv('data/barchart_data.csv', (data) => {
+        var inputData = [];
+        data.forEach(function (d, i) {
+            inputData.push({
+                label          : parseInt(d.imonth),
+                "Chemical"     : d.weaptype1 == 2 ? parseInt(d.nkill) : 0,
+                "Radiological" : d.weaptype1 == 3 ? parseInt(d.nkill) : 0,
+                "Firearms"     : d.weaptype1 == 5 ? parseInt(d.nkill) : 0,
+                "Explosives"   : d.weaptype1 == 6 ? parseInt(d.nkill) : 0,
+                "Fake Weapons" : d.weaptype1 == 7 ? parseInt(d.nkill) : 0,
+                "Incendiary"   : d.weaptype1 == 8 ? parseInt(d.nkill) : 0,
+                "Melee"        : d.weaptype1 == 9 ? parseInt(d.nkill) : 0,
+                "Vehicle bombs": d.weaptype1 == 10 ? parseInt(d.nkill): 0,
+                "Other"        : d.weaptype1 == 12 ? parseInt(d.nkill): 0,
+                "Unknown"      : d.weaptype1 == 13 ? parseInt(d.nkill): 0
+            })
+        });
+        // var colorScheme = ["#E57373", "#BA68C8", "#7986CB", "#A1887F", "#90A4AE", "#AED581", "#9575CD", "#FF8A65", "#4DB6AC", "#FFF176", "#64B5F6", "#00E676"];
+        let colorScheme = ["#48a313", "#ff7f0e", "#4177f4", "#f49e42", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+        renderStackedBarChart(inputData, "#chart", colorScheme);
+    })
+}
 
-var dataset = [
-    { apples: 5,  oranges: 10, grapes: 22 },
-    { apples: 4,  oranges: 12, grapes: 28 },
-    { apples: 2,  oranges: 19, grapes: 32 },
-    { apples: 7,  oranges: 23, grapes: 35 },
-    { apples: 23, oranges: 17, grapes: 43 },
-];
+function renderStackedBarChart(inputData, dom_element_to_append_to, colorScheme) {
+    data = inputData
 
-var fruits = Object.keys(dataset[0]);
+    // remove graph
+    var svg = d3.select("#chart")
+    svg.selectAll("canvas").remove()
+    svg.selectAll("svg").remove()
 
-var colors = d3v4.scaleOrdinal(d3v4.schemeCategory10);
+    var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+        width = 900 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom,
+        height2 = height * 0.75;
 
-var xScale = d3v4.scaleBand()
-.domain(d3v4.range(dataset.length))
-.range([padding, w - padding])
-.paddingInner(0.05);
+    var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width], .1);
 
-var yScale = d3v4.scaleLinear()
-.domain([0, d3v4.max(dataset, function(d) {
-    var total = 0;
-    for (var i = 0; i < fruits.length; i++) {
-        total += d[fruits[i]];
+    var y = d3.scale.linear()
+        .rangeRound([height2, 0]);
+
+    var color = d3.scale.ordinal()
+        .range(colorScheme);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickFormat(
+            function (d) {
+            // return (new Date(+d) + "").substring(3, 16);
+            return d
+        }
+        );
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .tickFormat(d3.format(".2s"));
+
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function (d) {
+            return "<div><strong> " + d.name + ":</strong></div><div> <span style='color:white'>" + (d.y1 - d.y0).toFixed(0) + "</span></div>";
+        })
+
+    var svg = d3.select(dom_element_to_append_to).append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+
+    var main = svg.append("g")
+        .attr("height", height2)
+        .attr("transform", "translate(" + margin.left + "," + (height * 0.20) + ")");
+
+    var active_link = "0";
+    var legendClicked;
+    var legendClassArray = [];
+    var y_orig;
+
+    svg.call(tip);
+
+    color.domain(d3.keys(data[0]).filter(function (key) { return key !== "label"; }));
+
+    data.forEach(function (d) {
+        var mylabel = d.label;
+        
+        var y0 = 0;
+
+        d.params = color.domain().map(function (name) { return { mylabel: mylabel, name: name, y0: y0, y1: y0 += +d[name] }; });
+        d.total = d.params[d.params.length - 1].y1;
+
+    });
+
+    data.sort(function (a, b) { return b.total - a.total; });
+
+    x.domain(
+        // data.map( function (d) { return (d.label); } )
+        [1,2,3,4,5,6,7,8,9,10,11,12]
+    );
+    y.domain(
+        [0, d3.max(data, function (d) { return d.total; })]
+    );
+
+    main.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height2 + ")")
+        .call(xAxis);
+
+    main.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end");
+
+
+    var state = main.selectAll(".state")
+        .data(data)
+        .enter().append("g")
+        .attr("class", "g")
+        .attr("transform", function (d) { return "translate(" + "0" + ",0)"; });
+
+
+    state.selectAll("rect")
+        .data(function (d) {
+            return d.params;
+        })
+        .enter().append("rect")
+        .attr("width", x.rangeBand())
+        .attr("y", function (d) { return y(d.y1); })
+        .attr("x", function (d) {
+            return x(d.mylabel)
+        })
+        .attr("height", function (d) { return y(d.y0) - y(d.y1); })
+        .attr("class", function (d) {
+            var classLabel = d.name.replace(/\s/g, '');
+            return "class" + classLabel;
+        })
+        .style("fill", function (d) { return color(d.name); });
+
+    state.selectAll("rect")
+        .on("mouseover", function (d) {
+
+            var delta = d.y1 - d.y0;
+            var xPos = parseFloat(d3.select(this).attr("x"));
+            var yPos = parseFloat(d3.select(this).attr("y"));
+            var height = parseFloat(d3.select(this).attr("height"))
+
+            d3.select(this).attr("stroke", "blue").attr("stroke-width", 0.8);
+            tip.show(d);
+            /*main.append("text")
+            .attr("x",xPos)
+            .attr("y",yPos +height/2)
+            .attr("class","tooltip")
+            .text(d.name +": "+ delta.toFixed(0)); */
+
+        })
+        .on("mouseout", function () {
+            tip.hide();
+            /*main.select(".tooltip").remove();*/
+            d3.select(this).attr("stroke", "pink").attr("stroke-width", 0.2);
+
+        })
+
+
+    var legend = svg.selectAll(".legend")
+        .data(color.domain().slice().reverse())
+        .enter().append("g")
+        .attr("class", function (d) {
+            legendClassArray.push(d.replace(/\s/g, ''));
+            return "legend";
+        })
+        .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+
+
+    legendClassArray = legendClassArray.reverse();
+
+    legend.append("rect")
+        .attr("x", width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", color)
+        .attr("id", function (d, i) {
+            return "id" + d.replace(/\s/g, '');
+        })
+        .on("mouseover", function () {
+
+            if (active_link === "0") d3.select(this).style("cursor", "pointer");
+            else {
+                if (active_link.split("class").pop() === this.id.split("id").pop()) {
+                    d3.select(this).style("cursor", "pointer");
+                } else d3.select(this).style("cursor", "auto");
+            }
+        })
+        .on("click", function (d) {
+
+            if (active_link === "0") {
+                d3.select(this)
+                    .style("stroke", "black")
+                    .style("stroke-width", 2);
+
+                active_link = this.id.split("id").pop();
+                plotSingle(this);
+
+
+                for (i = 0; i < legendClassArray.length; i++) {
+                    if (legendClassArray[i] != active_link) {
+                        d3.select("#id" + legendClassArray[i])
+                            .style("opacity", 0.5);
+                    }
+                }
+
+            }
+            else {
+                if (active_link === this.id.split("id").pop()) {
+                    d3.select(this)
+                        .style("stroke", "none");
+
+                    active_link = "0";
+
+
+                    for (i = 0; i < legendClassArray.length; i++) {
+                        d3.select("#id" + legendClassArray[i])
+                            .style("opacity", 1);
+                    }
+
+                    restorePlot(d);
+
+                }
+
+            }
+        });
+
+    legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function (d) { return d; });
+
+    function restorePlot(d) {
+
+        state.selectAll("rect").forEach(function (d, i) {
+
+            d3.select(d[idx])
+                .transition()
+                .duration(1000)
+                .attr("y", y_orig[i]);
+        })
+
+
+        for (i = 0; i < legendClassArray.length; i++) {
+            if (legendClassArray[i] != class_keep) {
+                d3.selectAll(".class" + legendClassArray[i])
+                    .transition()
+                    .duration(1000)
+                    .delay(750)
+                    .style("opacity", 1);
+            }
+        }
+
     }
-    return total;
-})])
-.range([h - padding, 0]);
 
-var yAxis = d3v4.axisLeft()
-.scale(yScale)
-.ticks(6);
+    function plotSingle(d) {
 
-var stack = d3v4.stack()
-.keys(fruits)
-.order(d3v4.stackOrderDescending);
-
-var series = stack(dataset);
-
-var svg = d3v4.select('svg')
-.attr('width', w)
-.attr('height', h)
-
-var groups = svg.selectAll('g')
-.data(series)
-.enter()
-.append('g')
-.style('fill', function(d, i){
-    return colors(i);
-});
-
-var rects = groups.selectAll('rect')
-.data(function(d){return d;})
-.enter()
-.append('rect')
-.attr('x', function(d, i){
-    return xScale(i);
-})
-.attr('y', function(d){
-    return yScale(d[1]);
-})
-.attr('height', function(d) {
-    return yScale(d[0]) - yScale(d[1]);
-})
-.attr('width', xScale.bandwidth());
-
-svg.append('g')
-.attr('class', 'y axis')
-.attr('transform', 'translate(' + padding + ', 0)')
-.call(yAxis);
-
-var legend = svg.append('g')
-.attr('class', 'legend')
-.attr('transform', 'translate(' + (padding + 12) + ', 0)');
-
-legend.selectAll('rect')
-.data(fruits)
-.enter()
-.append('rect')
-.attr('x', 0)
-.attr('y', function(d, i){
-    return i * 18;
-})
-.attr('width', 12)
-.attr('height', 12)
-.attr('fill', function(d, i){
-    return colors(i);
-});
-
-legend.selectAll('text')
-.data(fruits)
-.enter()
-.append('text')
-.text(function(d){
-    return d;
-})
-.attr('x', 18)
-.attr('y', function(d, i){
-    return i * 18;
-})
-.attr('text-anchor', 'start')
-.attr('alignment-baseline', 'hanging');
+        class_keep = d.id.split("id").pop();
+        idx = legendClassArray.indexOf(class_keep);
 
 
+        for (i = 0; i < legendClassArray.length; i++) {
+            if (legendClassArray[i] != class_keep) {
+                d3.selectAll(".class" + legendClassArray[i])
+                    .transition()
+                    .duration(1000)
+                    .style("opacity", 0);
+            }
+        }
 
 
-
-// non funziona un cazzo
-// function barchart_3() {
-
-//     // console.log(weapons_to_txt);
-
-//     var dataArray = []
-//     d3.csv("data/barchart_data.csv", (data) => {
-//         // console.log(JSON.stringify(data));
-
-//         //create array of available weaptypes
-//         var availableWeapons = []
-//         for (var i = 2; i <= 13; i++) {
-//             console.log(parseInt(data[i].weaptype1))
-
-//             if ((parseInt(data[i].weaptype1) == i) ) {
-//                 console.log(i);
-//                 availableWeapons.push(i)
-//             }
-//         }
-//         console.log(availableWeapons);
+        y_orig = [];
+        state.selectAll("rect").forEach(function (d, i) {
 
 
-//         for (var i=2; i<=13; i++){
-//             if (parseInt(data[i].weaptype1)==i){
-//                 var j = {
-//                     type: "stackedBar",
-//                     name: weapons_to_txt[5],
-//                     showInLegend: "true",
-//                     dataPoints: createDataPoints(data, 5)
-//                 }
-//                 dataArray.push(j)
-//             }
-//         }
+            h_keep = d3.select(d[idx]).attr("height");
+            y_keep = d3.select(d[idx]).attr("y");
 
-//         // console.log(dataArray);
+            y_orig.push(y_keep);
 
-//         // console.log(JSON.stringify(dataArray))
-//         // console.log(dataArray.length);
+            h_base = d3.select(d[0]).attr("height");
+            y_base = d3.select(d[0]).attr("y");
 
-//         // chart.render();
-//     })
+            h_shift = h_keep - h_base;
+            y_new = y_base - h_shift;
 
-//     function createDataPoints(data, weapon_number) {
-//         var dataPoints = []
-//         for (var i = 0; i < data.length; i++) {
-//             if (parseInt(data[i].weaptype1) == weapon_number) {
-//                 dataPoints.push({
-//                     x: parseInt(data[i].nkill),
-//                     y: parseInt(data[i].imonth)
-//                 })
-//             }
-//         }
-//         return dataPoints
-//     }
 
-//     var chart = new CanvasJS.Chart("chartContainer", {
+            d3.select(d[idx])
+                .transition()
+                .ease("bounce")
+                .duration(1000)
+                .delay(750)
+                .attr("y", y_new);
 
-//         animationEnabled: true,
-//         title:{
-//             text: "Evening Sales in a Restaurant"
-//         },
-//         axisX: {
-//             valueFormatString: "DDD"
-//         },
-//         axisY: {
-//             prefix: "$"
-//         },
-//         toolTip: {
-//             shared: true
-//         },
-//         legend:{
-//             cursor: "pointer",
-//             itemclick: toggleDataSeries
-//         },
+        })
 
-//         data: JSON.parse(JSON.stringify(dataArray))
-//         //     [
-
-//         //         {
-//         //         type: "stackedBar",
-//         //         name: "Meals",
-//         //         showInLegend: "true",
-//         //         xValueFormatString: "DD, MMM",
-//         //         yValueFormatString: "$#,##0",
-//         //         dataPoints: [
-//         //             {x: new Date(2017, 0, 30), y: 56 },
-//         //             {x: new Date(2017, 0, 31), y: 45 },
-//         //             {x: new Date(2017, 1, 1), y: 71 },
-//         //             {x: new Date(2017, 1, 2), y: 41 },
-//         //             {x: new Date(2017, 1, 3), y: 60 },
-//         //             {x: new Date(2017, 1, 4), y: 75 },
-//         //             {x: new Date(2017, 1, 5), y: 98 }
-//         //         ]
-//         //     },
-//         //     {
-//         //         type: "stackedBar",
-//         //         name: "Snacks",
-//         //         showInLegend: "true",
-//         //         xValueFormatString: "DD, MMM",
-//         //         yValueFormatString: "$#,##0",
-//         //         dataPoints: [
-//         //             {x: new Date(2017, 0, 30), y: 86 },
-//         //             {x: new Date(2017, 0, 31), y: 95 },
-//         //             {x: new Date(2017, 1, 1), y: 71 },
-//         //             {x: new Date(2017, 1, 2), y: 58 },
-//         //             {x: new Date(2017, 1, 3), y: 60 },
-//         //             {x: new Date(2017, 1, 4), y: 65 },
-//         //             {x: new Date(2017, 1, 5), y: 89 }
-//         //         ]
-//         //     },
-//         //     {
-//         //         type: "stackedBar",
-//         //         name: "Drinks",
-//         //         showInLegend: "true",
-//         //         xValueFormatString: "DD, MMM",
-//         //         yValueFormatString: "$#,##0",
-//         //         dataPoints: [
-//         //             {x: new Date(2017, 0, 30), y: 48 },
-//         //             {x: new Date(2017, 0, 31), y: 45 },
-//         //             {x: new Date(2017, 1, 1), y: 41 },
-//         //             {x: new Date(2017, 1, 2), y: 55 },
-//         //             {x: new Date(2017, 1, 3), y: 80 },
-//         //             {x: new Date(2017, 1, 4), y: 85 },
-//         //             {x: new Date(2017, 1, 5), y: 83 }
-//         //         ]
-//         //     },
-//         //     {
-//         //         type: "stackedBar",
-//         //         name: "Dessert",
-//         //         showInLegend: "true",
-//         //         xValueFormatString: "DD, MMM",
-//         //         yValueFormatString: "$#,##0",
-//         //         dataPoints: [
-//         //             {x: new Date(2017, 0, 30), y: 61 },
-//         //             {x: new Date(2017, 0, 31), y: 55 },
-//         //             {x: new Date(2017, 1, 1), y: 61 },
-//         //             {x: new Date(2017, 1, 2), y: 75 },
-//         //             {x: new Date(2017, 1, 3), y: 80 },
-//         //             {x: new Date(2017, 1, 4), y: 85 },
-//         //             {x: new Date(2017, 1, 5), y: 105 }
-//         //         ]
-//         //     },
-//         //     {
-//         //         type: "stackedBar",
-//         //         name: "Takeaway",
-//         //         showInLegend: "true",
-//         //         xValueFormatString: "DD, MMM",
-//         //         yValueFormatString: "$#,##0",
-//         //         dataPoints: [
-//         //             {x: new Date(2017, 0, 30), y: 52 },
-//         //             {x: new Date(2017, 0, 31), y: 55 },
-//         //             {x: new Date(2017, 1, 1), y: 20 },
-//         //             {x: new Date(2017, 1, 2), y: 35 },
-//         //             {x: new Date(2017, 1, 3), y: 30 },
-//         //             {x: new Date(2017, 1, 4), y: 45 },
-//         //             {x: new Date(2017, 1, 5), y: 25 }
-//         //         ]
-//         //     }
-//         // ]
-
-//     });
-
-//     chart.render();
-
-//     function toggleDataSeries(e) {
-//         if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-//             e.dataSeries.visible = false;
-//         }
-//         else {
-//             e.dataSeries.visible = true;
-//         }
-//         chart.render();
-//     }
-
-// }
+    }
+};

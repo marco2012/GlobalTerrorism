@@ -8,12 +8,12 @@ function updateCharts(year=0, country=[]){
         () => scatter()
     )
         
-    // //update barchart
-    // $.getJSON(
-    //     '/analytic', 
-    //     {computeBarchart: selectedSliderYear},
-    //     () => barchart_3(selectedSliderYear) 
-    // )
+    //update barchart
+    $.getJSON(
+        '/analytic', 
+        {computeBarchart: selectedSliderYear},
+        () => barchart() 
+    )
 
     //update parallel chart
     drawParallel(filter_year = selectedSliderYear, country = selectedCountries)
@@ -35,16 +35,14 @@ function resetCharts() {
     )
 
     // //reset barchart
-    // $.getJSON(
-    //     '/analytic',
-    //     { computeBarchart: 0 },
-    //     () => barchart_3(0)
-    // )
+    $.getJSON(
+        '/analytic',
+        { computeBarchart: 0 },
+        () => barchart()
+    )
 
     //reset parallel chart
     drawParallel(filter_year=0)
-
-    // barchart_3(0)
 
     //reset map
     map(filter_year=0)
