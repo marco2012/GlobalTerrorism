@@ -7,6 +7,40 @@
 	margin-top: -70px;
 }
 
+/* data table styles */
+#grid { 
+  height: 240px; 
+  width: 100%;
+	margin-top: -70px;
+}
+.row, .header { 
+  clear: left; 
+  font-size: 13px; 
+  line-height: 24px; 
+  height: 34px; 
+  width: auto;
+  flex-wrap: wrap; /*disable flex for table*/
+}
+.row:nth-child(odd) { 
+  /* background: rgba(0,0,0,0.05);  */
+  background: rgba(38,38,38,0.8); 
+}
+.header { font-weight: bold; }
+.cell { 
+  float: left; overflow: hidden; white-space: nowrap; width: 300px; height: 26px; 
+}
+.col-0 { width: 40px; }
+.col-1 { width: 40px; }
+.col-2 { width: 40px; }
+.col-3 { width: 40px; }
+.col-4 { width: 40px; }
+.col-5 { width: 120px; }
+.col-6 { width: 120px; }
+.col-7 { width: 120px; }
+
+.highlightRow { background-color: grey; }
+
+
 a {
   color: #454545;
 }
@@ -50,38 +84,6 @@ h3 {
 input {
   font-size: 16px;
 }
-
-/* data table styles */
-#grid { 
-  height: 240px; 
-  width: 100%;
-	margin-top: -70px;
-}
-.row, .header { 
-  clear: left; 
-  font-size: 13px; 
-  line-height: 24px; 
-  height: 34px; 
-  width: auto;
-}
-.row:nth-child(odd) { 
-  /* background: rgba(0,0,0,0.05);  */
-  background: rgba(38,38,38,0.8); 
-}
-.header { font-weight: bold; }
-.cell { 
-  float: left; overflow: hidden; white-space: nowrap; width: 300px; height: 26px; 
-}
-.col-0 { width: 300px; }
-.col-1 { width: 300px; }
-.col-2 { width: 300px; }
-.col-3 { width: 300px; }
-.col-4 { width: 300px; }
-.col-5 { width: 300px; }
-.col-6 { width: 300px; }
-.col-7 { width: 300px; }
-
-.highlightRow { background-color: grey; }
 
 /* parcoords styles */
 .parcoords > svg, .parcoords > canvas { 

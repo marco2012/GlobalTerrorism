@@ -29,7 +29,7 @@ function drawParallel(filter_year=0, country=[]) {
     d3.csv('data/' + db_name)
     .row(function (d) { 
         return { //filter columns
-            // year         : d.year,
+            year         : d.year,
             Attackers    : d.nperps,
             Victims      : d.nkill,
             Wound        : d.nwound,
