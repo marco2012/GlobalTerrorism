@@ -18,6 +18,10 @@ function updateCharts(year=0, country=[]){
     //update parallel chart
     drawParallel(filter_year = selectedSliderYear, country = selectedCountries)
 
+    //update map
+    if (selectedSliderYear!=0)
+        map(selectedSliderYear)
+
 }
         
 function resetCharts() {
@@ -37,8 +41,12 @@ function resetCharts() {
     //     () => barchart_3(0)
     // )
 
+    //reset parallel chart
     drawParallel(filter_year=0)
+
     // barchart_3(0)
+
+    //reset map
     map(filter_year=0)
-    // worldChart.filterAll(); 
+
 }
