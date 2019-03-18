@@ -27,6 +27,9 @@
 <!-- container split -->
 <link rel="stylesheet" href="css/split-container.css" />
 
+<link href='css/map.css' rel='stylesheet' type='text/css'>
+
+
 <!-- parallel coordinates -->
 <link rel="stylesheet" type="text/css" href="css/parallel-coordinates-style.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -88,7 +91,7 @@
 			<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
 		</div>
 		<div class="three-column right actionButtons" >
-			<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button>
+			<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button> &nbsp;
 			<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
 		</div>
 	</div>
@@ -107,15 +110,20 @@
 	
 	<!-- year slider -->
 	<script src="js/slider.js"></script>
+
 	<script>map()</script>
 	<script>scatter()</script>	
 	<script>barchart()</script>
 
 	<!-- parallel -->
-	<div style="margin-bottom: 50px;">
-		<div id="parallelArea" class="parcoords flexcontainer" ></div>
-		<div id="grid" class="flexcontainer" ></div>
-	</div>
+	<section class="container" id="split-container">
+		<div class="left-half">
+			<div id="parallelArea" class="parcoords flexcontainer"></div>
+		</div>
+		<div class="right-half">
+			<div id="grid" class="flexcontainer"></div>
+		</div>
+	</section>
 	
 	<!-- Popup with attack summary, appears when click on attack on graph -->
 	<div id="id01" class="w3-modal w3-animate-opacity">

@@ -1,3 +1,7 @@
+#scatter{
+  margin-left: 440px;
+}
+
 rect {
   fill: transparent;
   shape-rendering: crispEdges;

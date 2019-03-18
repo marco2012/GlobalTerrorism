@@ -1,11 +1,13 @@
 
 // http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e
 
-var margin = { top: 50, right: 250, bottom: 50, left: 50 },
+var margin = { top: 20, right: 200, bottom: 20, left: 20 },
 outerWidth = 750, //aumentare per mostrare legenda
 outerHeight = 450,
-width = outerWidth - margin.left - margin.right,
-height = outerHeight - margin.top - margin.bottom;
+// width = outerWidth - margin.left - margin.right,
+// height = outerHeight - margin.top - margin.bottom;
+width = 350,
+height = 350
 
 var x = d3.scale.linear()
 .range([0, width]).nice();

@@ -1,7 +1,12 @@
 
-#main {
+/* #main {
   width: 960px;
+} */
+
+#chart{
+  margin-left: -140px; 
 }
+
 .axis .domain {
   display: none;
 }
@@ -10,7 +15,6 @@
   fill: none;
   shape-rendering: crispEdges;
 }
-
 
 .x.axis path {
   display: none;

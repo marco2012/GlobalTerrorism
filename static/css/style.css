@@ -31,18 +31,19 @@ a {
 }
 
 #intro h2{
-  font-family: Oswald;
-  font-size: 24px;
-  font-weight: 300;
-  color: white;
-  -webkit-margin-before: 0.5em;
-  -webkit-margin-after: 0.3em;
+	font-family: Oswald;
+	font-size: 24px;
+	font-weight: 300;
+	color: white;
+	-webkit-margin-before: 0.5em;
+	-webkit-margin-after: 0.3em;
 }
 
 .center-title {
-    font-size: 26px;
-    /* display: flex;
-	justify-content: center; */
+	font-size: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin-bottom: 20px;
 }
 
@@ -52,43 +53,36 @@ a {
 }
 
 .center-title h2, h3 {
-    font-family: Oswald;
+	font-family: Oswald;
 }
 
 .center-title p {
-    font-size: 12pt;
-    margin: 0 2rem 0.75rem 2rem;
-}
-
-#world-chart {
-	float: center; 
-	width: 500px;
-	height: 280px; 
-	margin: 2% 0 0 -45%;
+	font-size: 12pt;
+	margin: 0 2rem 0.75rem 2rem;
 }
 
 .actionButtons {
-	margin-bottom: 30px;
+	margin-top: 15px;
 }
 
 .flexcontainer {
-   display: flex;
-   flex: 1;
-   flex-direction: column;
-   /* align-items: center; */
-   /* justify-content: center; */
-   /* max-width: 90%; */
-   vertical-align: middle;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	/* align-items: center; */
+	/* justify-content: center; */
+	/* max-width: 90%; */
+	vertical-align: middle;
 }
 
 .flexcontainer h1 {
-   font-size: 50px;
+	font-size: 50px;
 }
 .flexcontainer h2 {
-   font-size: 30px;
+	font-size: 30px;
 }
 .flexcontainer p {
-   font-size: 16px;
+	font-size: 16px;
 }
 
 #parallelArea {
@@ -98,8 +92,11 @@ a {
 }
 
 .three-column {
-  float: left;
-  padding: 10px;
+	float: left;
+	padding: 10px;
+	 display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .left, .right {
@@ -107,52 +104,49 @@ a {
 }
 
 .middle {
-  width: 60%;
+	width: 60%;
 }
 
 /* Clear floats after the columns */
 .three-row:after {
-  content: "";
-  display: table;
-  clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
-
-
-
 
 
 
 
 .some-page-wrapper {
-  margin: 15px;
-  background-color: red;
+	margin: 15px;
+	background-color: red;
 }
 
 .three_row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
 }
 
 .three_column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	flex: 1;
 }
 
 .orange-column {
-  background-color: orange;
-  height: 100px;
+	background-color: orange;
+	height: 100px;
 }
 
 .blue-column {
-  background-color: blue;
-  height: 100px;
+	background-color: blue;
+	height: 100px;
 }
 
 .green-column {
-  background-color: green;
-  height: 100px;
+	background-color: green;
+	height: 100px;
 }

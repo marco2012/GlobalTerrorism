@@ -1,7 +1,9 @@
 function drawParallel(filter_year=0, country=[]) {
     
-    max_rows_to_take = 12
+    max_rows_to_take = 10
     db_name = 'terrorism.csv'
+    let width = 0
+    let height = 0
     
     //remove graph
     var svg = d3.select("#parallelArea")
@@ -17,7 +19,6 @@ function drawParallel(filter_year=0, country=[]) {
     // .interpolate(d3.interpolateLab);
 
     var color1 = d3.scale.ordinal().range(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
-
     
     var color = function (d) { return color1(d['Attackers']); };
     
