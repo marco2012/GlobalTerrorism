@@ -39,7 +39,7 @@ def action(year=0, nation=[]):
     principalComponents = pca.fit_transform(x)
     principalDf = pd.DataFrame(
         data=principalComponents, columns=['x', 'y'])
-    finalDf = pd.concat([principalDf, df[['region']]], axis=1)
+    finalDf = pd.concat([principalDf, df[['region', 'attacktype1_txt', 'country_txt']]], axis=1)
     finalDf.to_csv("static/data/pca.csv", sep=',', index=False)
     
     return 0;

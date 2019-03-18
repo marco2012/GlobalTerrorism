@@ -46,16 +46,16 @@ function renderStackedBarChart(inputData, ) {
     svg.selectAll("canvas").remove()
     svg.selectAll("svg").remove()
 
-    var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+    var margin = { top: 20, right: 90, bottom: 30, left: 40 },
         // width = 350 - margin.left - margin.right,
         // height = 350 - margin.top - margin.bottom,
-        width = 300,
-        height = 380
+        width = 280,
+        height = 350
         height2 = height * 0.75;
 
     //legend position on x axis
-    let legend_rect_x_axis = width - 28
-    let legend_text_x_axis = width + 2
+    let legend_rect_x_axis = width + 0
+    let legend_text_x_axis = legend_rect_x_axis + 30
 
     var x = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -186,6 +186,12 @@ function renderStackedBarChart(inputData, ) {
             /*main.select(".tooltip").remove();*/
             d3.select(this).attr("stroke", "pink").attr("stroke-width", 0.2);
 
+        })
+        .on("click", function (d) {
+            console.log(d);
+            // document.getElementById('id01').style.display = 'block' //make block appear
+            // $('#dialog_title_span').html('<h2>Attack summary</h2>')
+            // $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
         })
 
 

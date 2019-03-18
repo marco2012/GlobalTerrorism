@@ -1,12 +1,12 @@
 
-@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
-/* body {
-  font-size: 14px;
-  font-family: "Source Code Pro", Consolas, monaco, monospace;
-  margin: 20px auto 20px;
-  width: 560px;
-  line-height: 1.45em;
-} */
+/* @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600); */
+
+#parallelArea {
+	height:400px; 
+	width: 100%; 
+	margin-top: -70px;
+}
+
 a {
   color: #454545;
 }
@@ -20,17 +20,14 @@ ul {
 .dark {
   background: #222;
 }
-#example {
-  min-height: 300px;
-  margin: 12px 0;
-}
+
 p {
   width: 560px;
 }
 pre {
   color: #444;
   font-family: Ubuntu Mono, Monaco, monospace;
-  padding: 4px 8px;
+  /* padding: 4px 8px; */
   background: #f2f2f2;
   border: 1px solid #ccc;
 }
@@ -55,22 +52,32 @@ input {
 }
 
 /* data table styles */
-#grid { height: 240px; }
-.row, .header { clear: left; font-size: 13px; line-height: 24px; height: 34px; }
+#grid { 
+  height: 240px; 
+  width: 100%;
+	margin-top: -70px;
+}
+.row, .header { 
+  clear: left; 
+  font-size: 13px; 
+  line-height: 24px; 
+  height: 34px; 
+  width: 100%;
+}
 .row:nth-child(odd) { 
   /* background: rgba(0,0,0,0.05);  */
   background: rgba(38,38,38,0.8); 
 }
 .header { font-weight: bold; }
-.cell { float: left; overflow: hidden; white-space: nowrap; width: 120px; height: 26px; }
-.col-0 { width: 70px; }
-.col-1 { width: 70px; }
-.col-2 { width: 70px; }
-.col-3 { width: 70px; }
-.col-4 { width: 70px; }
-.col-5 { width: 200px; }
-.col-6 { width: 200px; }
-.col-7 { width: 200px; }
+.cell { float: left; overflow: hidden; white-space: nowrap; width: 300px; height: 26px; }
+.col-0 { width: 300px; }
+.col-1 { width: 300px; }
+.col-2 { width: 300px; }
+.col-3 { width: 300px; }
+.col-4 { width: 300px; }
+.col-5 { width: 300px; }
+.col-6 { width: 300px; }
+.col-7 { width: 300px; }
 
 .highlightRow { background-color: grey; }
 

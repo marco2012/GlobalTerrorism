@@ -29,7 +29,7 @@ function drawParallel(filter_year=0, country=[]) {
     d3.csv('data/' + db_name)
     .row(function (d) { 
         return { //filter columns
-            year         : d.year,
+            // year         : d.year,
             Attackers    : d.nperps,
             Victims      : d.nkill,
             Wound        : d.nwound,
@@ -50,7 +50,6 @@ function drawParallel(filter_year=0, country=[]) {
             let byYear = cf.dimension(d => d.year)
             let f      = byYear.filter(filter_year)
             data       = f.top(Infinity)
-            // console.log(JSON.stringify(data));
         }
 
         //filter countries

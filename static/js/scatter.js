@@ -7,7 +7,7 @@ outerHeight = 450,
 // width = outerWidth - margin.left - margin.right,
 // height = outerHeight - margin.top - margin.bottom;
 width = 350,
-height = 350
+height = 330
 
 var x = d3.scale.linear()
 .range([0, width]).nice();
@@ -81,7 +81,7 @@ function scatter() {
         .offset([-10, 0])
         .html(function (d) {
             // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
-            return region_to_txt[d[rCat]]
+            return "Country: " + d.country_txt + "<br>" +  "Attack: " + d.attacktype1_txt 
         });
 
         
