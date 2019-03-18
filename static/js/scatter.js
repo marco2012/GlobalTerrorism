@@ -23,7 +23,7 @@ colorCat = "region";
 
 var region_to_txt = { 
     1: "North America", 
-    2: "Central America & Caribbean",
+    2: "Central America", //2: "Central America & Caribbean",
     3: "South America",
     4: "East Asia",
     5: "Southeast Asia",

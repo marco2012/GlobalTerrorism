@@ -46,16 +46,15 @@ function renderStackedBarChart(inputData, ) {
     svg.selectAll("canvas").remove()
     svg.selectAll("svg").remove()
 
-    var margin = { top: 20, right: 90, bottom: 30, left: 40 },
+    var margin = { top: 20, right: 120, bottom: 30, left: 40 },
         // width = 350 - margin.left - margin.right,
         // height = 350 - margin.top - margin.bottom,
         width = 280,
-        height = 350
+        height = 380
         height2 = height * 0.75;
 
     //legend position on x axis
-    let legend_rect_x_axis = width + 0
-    let legend_text_x_axis = legend_rect_x_axis + 30
+    let legend_rect_x_axis = width + 50
 
     var x = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -264,7 +263,7 @@ function renderStackedBarChart(inputData, ) {
         });
 
     legend.append("text")
-        .attr("x", legend_text_x_axis)
+        .attr("x", legend_rect_x_axis + 25)
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "start")

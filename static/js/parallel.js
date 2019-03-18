@@ -1,6 +1,6 @@
 function drawParallel(filter_year=0, country=[]) {
     
-    max_rows_to_take = 10
+    max_rows_to_take = 12
     db_name = 'terrorism.csv'
     let width = 0
     let height = 0
