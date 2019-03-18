@@ -13,8 +13,8 @@ var x = d3.scale.linear()
 var y = d3.scale.linear()
 .range([height, 0]).nice();
 
-var xCat = "Country", 
-yCat = "Victim", 
+var xCat = "comp_1", 
+yCat = "comp_2", 
 rCat = "region",
 colorCat = "region";
 
@@ -46,8 +46,8 @@ function scatter() {
     d3.csv("data/pca.csv", function (data) {
         
         data.forEach(function (d) {
-            d.Country = +d.x;
-            d.Victim = +d.y;
+            d.comp_1 = +d.x;
+            d.comp_2 = +d.y;
             d.region = +d.region;
         });
         
@@ -71,14 +71,17 @@ function scatter() {
         .orient("left")
         .tickSize(-width);
         
-        var color = d3.scale.category10();
+        // var color = d3.scale.category10();
+        var color = d3.scale.ordinal().range(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
         
         var tip = d3.tip()
         .attr("class", "d3-tip")
         .offset([-10, 0])
         .html(function (d) {
-            return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+            // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+            return region_to_txt[d[rCat]]
         });
+
         
         var zoomBeh = d3.behavior.zoom()
         .x(x)

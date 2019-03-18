@@ -25,7 +25,7 @@ a {
 	position: absolute;
 	top: 10px;
 	left: 20px;
-	width: 180px;
+	/* width: 180px; */
 	text-align: left;
 	color: #B5B5B5;
 }
@@ -95,4 +95,64 @@ a {
 	height:400px; 
 	width: 1000px; 
 	margin-bottom: 60px;
+}
+
+.three-column {
+  float: left;
+  padding: 10px;
+}
+
+.left, .right {
+	width: 20%;
+}
+
+.middle {
+  width: 60%;
+}
+
+/* Clear floats after the columns */
+.three-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
+
+
+
+.some-page-wrapper {
+  margin: 15px;
+  background-color: red;
+}
+
+.three_row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.three_column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.orange-column {
+  background-color: orange;
+  height: 100px;
+}
+
+.blue-column {
+  background-color: blue;
+  height: 100px;
+}
+
+.green-column {
+  background-color: green;
+  height: 100px;
 }

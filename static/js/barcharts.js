@@ -13,6 +13,7 @@ let weapons_to_txt = {
 
 function barchart(){
     d3.csv('data/barchart_data.csv', (data) => {
+        
         var inputData = [];
         data.forEach(function (d, i) {
             inputData.push({
@@ -28,15 +29,17 @@ function barchart(){
                 "Other"        : d.weaptype1 == 12 ? parseInt(d.nkill): 0,
                 "Unknown"      : d.weaptype1 == 13 ? parseInt(d.nkill): 0
             })
-        });
-        // var colorScheme = ["#E57373", "#BA68C8", "#7986CB", "#A1887F", "#90A4AE", "#AED581", "#9575CD", "#FF8A65", "#4DB6AC", "#FFF176", "#64B5F6", "#00E676"];
-        let colorScheme = ["#48a313", "#ff7f0e", "#4177f4", "#f49e42", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
-        renderStackedBarChart(inputData, "#chart", colorScheme);
+        })
+
+        renderStackedBarChart(inputData);
     })
 }
-
-function renderStackedBarChart(inputData, dom_element_to_append_to, colorScheme) {
+//http://bl.ocks.org/arpitnarechania/6616c93c74840d87de839aab44aba77f
+function renderStackedBarChart(inputData, ) {
     data = inputData
+
+    let dom_element_to_append_to = "#chart"
+    let colorScheme = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695']
 
     // remove graph
     var svg = d3.select("#chart")
@@ -44,9 +47,13 @@ function renderStackedBarChart(inputData, dom_element_to_append_to, colorScheme)
     svg.selectAll("svg").remove()
 
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-        width = 900 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom,
+        width = 550 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom,
         height2 = height * 0.75;
+
+    //legend position on x axis
+    let legend_rect_x_axis = width - 28
+    let legend_text_x_axis = width + 2
 
     var x = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -193,7 +200,7 @@ function renderStackedBarChart(inputData, dom_element_to_append_to, colorScheme)
     legendClassArray = legendClassArray.reverse();
 
     legend.append("rect")
-        .attr("x", width - 18)
+        .attr("x", legend_rect_x_axis)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", color)
@@ -249,10 +256,10 @@ function renderStackedBarChart(inputData, dom_element_to_append_to, colorScheme)
         });
 
     legend.append("text")
-        .attr("x", width - 24)
+        .attr("x", legend_text_x_axis)
         .attr("y", 9)
         .attr("dy", ".35em")
-        .style("text-anchor", "end")
+        .style("text-anchor", "start")
         .text(function (d) { return d; });
 
     function restorePlot(d) {

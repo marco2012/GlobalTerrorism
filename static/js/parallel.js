@@ -11,10 +11,13 @@ function drawParallel(filter_year=0, country=[]) {
     svg1.select(".header").remove()
     svg1.selectAll(".row").remove()
     
-    var color1 = d3.scale.linear()
-    .domain([9, 100])
-    .range(["#dd0000", "#ddbb00"])
-    .interpolate(d3.interpolateLab);
+    // var color1 = d3.scale.linear()
+    // .domain([9, 100])
+    // .range(["#dd0000", "#ddbb00"])
+    // .interpolate(d3.interpolateLab);
+
+    var color1 = d3.scale.ordinal().range(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
+
     
     var color = function (d) { return color1(d['Attackers']); };
     

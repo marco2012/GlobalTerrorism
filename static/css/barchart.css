@@ -8,7 +8,6 @@
 .axis path,
 .axis line {
   fill: none;
-  stroke: #fff;
   shape-rendering: crispEdges;
 }
 

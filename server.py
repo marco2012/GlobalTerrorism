@@ -37,7 +37,7 @@ def try2():
 pca.action(year=0)
 
 #calculate barchart
-analytics.createBarchartData(year=2017) #CAMBIARE ANNO A 0
+analytics.createBarchartData(year=2011) #CAMBIARE ANNO A 0
 
 #start server
 app.config["DEBUG"]=True

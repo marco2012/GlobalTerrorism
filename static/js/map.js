@@ -47,6 +47,7 @@ function map(filter_year=0) {
             .dimension(countries)
             .group(country)
             // .colors(d3v4.scaleQuantize().range(d3v4.schemeReds[9]))
+            .colors(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
             .colorDomain([0, 60])
             .colorCalculator(function (d) { return d ? worldChart.colors()(d) : '#ccc'; })
             .overlayGeoJson(statesJson.features, "name", function (d) {
@@ -77,8 +78,7 @@ function map(filter_year=0) {
                         })
                         
                         console.log(selectedCountries);
-                        updateCharts(country=selectedCountries)
-                        // render(selectedCountries);
+                        updateMap(year =filter_year, country=selectedCountries)
                     })
                     
                 })

@@ -79,46 +79,36 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- title -->
-	<div class="flexcontainer" style="margin-bottom: 20px;">
-		<article>
+
+	<div class="three-row">
+		<div class="three-column left">
 			<h1>Terrorism attacks</h1>
-		</article>
+		</div>
+		<div class="three-column middle" >
+			<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
+		</div>
+		<div class="three-column right actionButtons" >
+			<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button>
+			<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
+		</div>
+	</div>
+
+	<div class="three-row">
+		<div class="three-column left">
+			<div id="world-chart" class="flexcontainer"></div></br>
+		</div>
+		<div class="three-column middle">
+			<div id="scatter"></div>
+		</div>
+		<div class="three-column right actionButtons">
+			<div id="chart"></div>
+		</div>
 	</div>
 	
 	<!-- year slider -->
-	<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
 	<script src="js/slider.js"></script>
-	
-	<!-- bottoni -->
-	<div class="actionButtons">
-		<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button>
-		<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
-	</div>
-	
-	<!-- map -->
-	<section class="container" id="split-container">
-		<div class="left-half">
-			<div id="world-chart" class="flexcontainer"></div></br>
-		</div>
-		<div class="right-half">
-			<div id="scatter"></div>
-		</div>
-	</section>
 	<script>map()</script>
 	<script>scatter()</script>	
-	
-	<!-- barchart -->
-	<section class="container" id="split-container">
-		<div class="left-half">
-			<!-- <div id="barchartArea" class="flexcontainer"></div> -->
-			<div id="chart"></div>
-		</div>
-		<div class="right-half">
-			
-		</div>
-	</section>
 	<script>barchart()</script>
 
 	<!-- parallel -->

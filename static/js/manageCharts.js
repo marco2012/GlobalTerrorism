@@ -1,27 +1,31 @@
 function updateCharts(year=0, country=[]){
-    // console.log("Slider = " + selectedSliderYear)
     
+    updateMap(year, country)
+
+    //update map
+    map(selectedSliderYear)
+
+}
+
+function updateMap(year , country){
+    console.log("Slider = " + selectedSliderYear)
+
     //update PCA
     $.getJSON(
-        '/pca', 
-        {computePCA: selectedSliderYear}, 
+        '/pca',
+        { computePCA: selectedSliderYear },
         () => scatter()
     )
-        
+
     //update barchart
     $.getJSON(
-        '/analytic', 
-        {computeBarchart: selectedSliderYear},
-        () => barchart() 
+        '/analytic',
+        { computeBarchart: selectedSliderYear },
+        () => barchart()
     )
 
     //update parallel chart
     drawParallel(filter_year = selectedSliderYear, country = selectedCountries)
-
-    //update map
-    if (selectedSliderYear!=0)
-        map(selectedSliderYear)
-
 }
         
 function resetCharts() {
@@ -37,7 +41,7 @@ function resetCharts() {
     // //reset barchart
     $.getJSON(
         '/analytic',
-        { computeBarchart: 0 },
+        { computeBarchart: 2011 },
         () => barchart()
     )
 

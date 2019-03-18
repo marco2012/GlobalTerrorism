@@ -6,10 +6,10 @@ DB_PATH = "static/data/terrorism.csv"
 
 def createBarchartData(year=0):
     '''
-    select year, imonth, weaptype1, count(nkill) from terrorism
+    select year, imonth, weaptype1, country_txt, count(nkill) from terrorism
     where year = 2017
-    group by year, imonth, weaptype1
-    order by year desc
+    group by year, imonth, weaptype1, country_txt
+    order by country_txt desc
     '''
     data = pd.read_csv(DB_PATH)
     s = None
