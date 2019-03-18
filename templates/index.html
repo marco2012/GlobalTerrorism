@@ -2,73 +2,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terrorism attacks</title>
-<link rel="stylesheet" href="css/w3.css">
 
-<!-- Google fonts -->
-<link href='css/oswald.css' rel='stylesheet' type='text/css'>
-<link href='css/opensans.css' rel='stylesheet' type='text/css'>
-
-<!-- D3 -->
-<script src="d3/d3.v3.min.js"></script>
-<script src="js/dependencies/crossfilter.js"></script>
-
-<!-- jQuery -->
-<script src="js/dependencies/jquery.min.js"></script>
-<script type="text/javascript" src="js/dependencies/jquery-3.3.1.js"></script>
-
-<script src="d3/d3-tip.min.js"></script>
-
-<!-- roba per scatter -->
-<link rel="stylesheet" href="css/scatter.css" charset="utf-8">
-
-<!-- roba per BarCharts -->
-<script type="text/javascript" src="js/dependencies/canvasjs.min.js"></script>
-
-<!-- container split -->
-<link rel="stylesheet" href="css/split-container.css" />
-
-<link href='css/map.css' rel='stylesheet' type='text/css'>
-
-
-<!-- parallel coordinates -->
-<link rel="stylesheet" type="text/css" href="css/parallel-coordinates-style.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
-<script src="d3/d3.parcoords.js"></script>
-<script src="js/divgrid.js"></script>
-
-<!-- <script type="text/javascript" src="d3/d3.v4.js"></script> -->
-<script type="text/javascript" src="d3/d3.v4.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="dc/dc.css" />
-<link href="css/d3-tip.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/barchart.css" />
-<!-- slider -->
-<link rel="stylesheet" href="css/d3.slider.css" charset="utf-8">
-<script type="text/javascript" src="d3/d3.slider.js"></script>	
+<link href="dependencies.html" rel="import" /> <!-- deprecato ma funziona -->
 
 <body>
 	
-	<!-- importare per scatter -->
-	<script src="d3/d3.tip.v0.6.3.js"></script>
-	<script type="text/javascript" src="dc/dc.min.js"></script>
-	<script type="text/javascript" src="dc/dc.js"></script>
-	
-	<!-- maps -->
-	<script src="js/dependencies/topojson.min.js"></script>
-	<script src="js/map/datamaps.world.hires.min.js"></script>
-	
-	<!-- nostri file javascript -->
-	<script src="js/scatter.js" charset="utf-8"></script>
-	<script src="js/barcharts.js" charset="utf-8"></script>
-	<script src="js/map.js" charset="utf-8"></script>
-	<script src="js/parallel.js"></script>
-	<script src="js/manageCharts.js"></script>
-	
-	<script type="text/javascript" src="js/dependencies/promise-polyfill.js"></script>
-	<script type="text/javascript" src="js/dependencies/fetch.umd.js"></script>
-	
-	
+	<!-- Popup with attack summary, appears when click on attack on graph -->
+	<div id="id01" class="w3-modal w3-animate-opacity">
+		<div class="w3-modal-content w3-card-4">
+			<header class="w3-container w3-red">
+				<span onclick="document.getElementById('id01').style.display='none'"
+					class="w3-button w3-large w3-display-topright">&times;</span>
+				<span id="dialog_title_span">
+					<h2>Attack summary</h2>
+				</span>
+			</header>
+			<div class="w3-container" style="color:black">
+				<span id="dialog_content_span"></span>
+			</div>
+			<footer class="w3-container w3-red">
+			</footer>
+		</div>
+	</div>
+	</div>
+
 	<!-- modal con messaggio quando si clicca su grafico -->
 	<div id="id02" class="w3-modal" style="z-index:4">
 		<div class="w3-modal-content w3-animate-zoom" style="width: 1440px;">
@@ -82,10 +39,11 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<div class="three-row">
 		<div class="three-column left">
-			<h1>Terrorism attacks</h1>
+			<h1>Terrorism attacks</h1> 
 		</div>
 		<div class="three-column middle" >
 			<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
@@ -95,7 +53,7 @@
 			<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button>
 		</div>
 	</div>
-
+	
 	<div class="three-row">
 		<div class="three-column left">
 			<div id="world-chart" class="flexcontainer"></div></br>
@@ -108,14 +66,6 @@
 		</div>
 	</div>
 	
-	<!-- year slider -->
-	<script src="js/slider.js"></script>
-
-	<script>map()</script>
-	<script>scatter()</script>	
-	<script>barchart()</script>
-
-	<!-- parallel -->
 	<section class="container" id="split-container">
 		<div class="left-half">
 			<div id="parallelArea" class="parcoords flexcontainer"></div>
@@ -124,27 +74,12 @@
 			<div id="grid"></div>
 		</div>
 	</section>
-	
 
+	<script src="js/slider.js"></script>
+	<script>map()</script>
+	<script>scatter()</script>
+	<script>barchart()</script>
+	<script>drawParallel()</script>
 
-	<!-- Popup with attack summary, appears when click on attack on graph -->
-	<div id="id01" class="w3-modal w3-animate-opacity">
-		<div class="w3-modal-content w3-card-4">
-			<header class="w3-container w3-red">
-				<span onclick="document.getElementById('id01').style.display='none'"
-				class="w3-button w3-large w3-display-topright">&times;</span>
-				<span id="dialog_title_span"><h2>Attack summary</h2></span>
-			</header>
-			<div class="w3-container" style="color:black">
-				<span id="dialog_content_span"></span>
-			</div>
-			<footer class="w3-container w3-red">
-			</footer>
-		</div>
-	</div>
-	</div>
-
-<script>drawParallel()</script>
-
-</body>
+	</body>
 </html>
