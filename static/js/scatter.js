@@ -1,19 +1,18 @@
 
 // http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e
 
-var margin = { top: 20, right: 200, bottom: 20, left: 20 },
+var margin = { top: 30, right: 200, bottom: 20, left: 30 },
 outerWidth = 750, //aumentare per mostrare legenda
 outerHeight = 450,
 // width = outerWidth - margin.left - margin.right,
 // height = outerHeight - margin.top - margin.bottom;
 width = 350,
-height = 330
+height = 330,
+legend_x_axis_text_position = margin.bottom + 10,
+legend_y_axis_text_position = -margin.left - 4
 
-var x = d3.scale.linear()
-.range([0, width]).nice();
-
-var y = d3.scale.linear()
-.range([height, 0]).nice();
+var x = d3.scale.linear().range([0, width]).nice();
+var y = d3.scale.linear().range([height, 0]).nice();
 
 var xCat = "comp_1", 
 yCat = "comp_2", 
@@ -112,7 +111,7 @@ function scatter() {
         .append("text")
         .classed("label", true)
         .attr("x", width)
-        .attr("y", margin.bottom - 10)
+            .attr("y", legend_x_axis_text_position)
         .style("text-anchor", "end")
         .text(xCat);
         
@@ -122,7 +121,7 @@ function scatter() {
         .append("text")
         .classed("label", true)
         .attr("transform", "rotate(-90)")
-        .attr("y", -margin.left)
+        .attr("y", legend_y_axis_text_position)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text(yCat);

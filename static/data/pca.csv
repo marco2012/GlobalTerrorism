@@ -1,159 +1,159 @@
 x,y,region,attacktype1_txt,country_txt
--0.4604331847496813,0.7259415919732949,8,Armed Assault,Netherlands
--0.908536439461491,3.858273562189789,8,Armed Assault,Netherlands
-0.1397710944649552,-0.16766198965011386,8,Armed Assault,Netherlands
-0.14315179769139447,-0.35248365079295396,8,Armed Assault,Sweden
--0.5793819824309538,2.0901205271701975,8,Assassination,Spain
--0.21494354798456922,-0.2743283628062879,8,Armed Assault,France
--0.5463838358614413,-0.46861496937313174,10,Hijacking,Algeria
--0.4151807538099219,-0.5319513921702385,10,Assassination,Israel
--0.5463838358614413,-0.46861496937313174,11,Armed Assault,South Africa
--0.5463838358614413,-0.46861496937313174,10,Bombing/Explosion,Israel
--0.6954825917295763,-0.5381261192766318,8,Hijacking,Malta
--0.42405401505662743,-0.2190740776172762,10,Bombing/Explosion,Algeria
--0.6612001977245887,2.07616465586596,10,Bombing/Explosion,Algeria
--0.40476509276883055,-0.5358556634370282,8,Bombing/Explosion,United Kingdom
--0.3506578363210437,-0.4338543836359659,10,Bombing/Explosion,Algeria
--0.5302417452441589,-0.6011715702343187,8,Bombing/Explosion,United Kingdom
--0.5329993683297807,-0.5586298402993093,3,Armed Assault,Colombia
--0.40791192443934504,-0.35163067847846324,3,Bombing/Explosion,Peru
--0.20155908045290877,-0.36434323373246563,3,Bombing/Explosion,Colombia
--0.05325529690008894,-0.642099583587119,8,Facility/Infrastructure Attack,Belgium
--0.13733635096996008,-0.37474058016351436,11,Bombing/Explosion,South Africa
--0.48942165018731415,-0.5451364419326118,8,Bombing/Explosion,Spain
-5.0856893256099855,2.678147388350607,11,Assassination,South Africa
--0.3945274569076846,-0.4416455494046409,8,Hostage Taking (Barricade Incident),Switzerland
--0.1224404733346278,0.08928964577161079,8,Facility/Infrastructure Attack,Spain
-0.8218951475262447,0.5324530496428428,3,Bombing/Explosion,Colombia
-0.44394549443483255,-0.3317363551736754,8,Unarmed Assault,Germany
--0.6068323324424626,0.21675343386995546,11,Bombing/Explosion,Uganda
--0.3506578363210437,-0.4338543836359659,8,Armed Assault,Germany
-0.0358317317861421,-0.045582163912529866,8,Bombing/Explosion,Germany
-0.340728686571844,-0.18829991391952736,3,Hostage Taking (Kidnapping),Colombia
--0.021480371242427358,-0.36049373701985754,2,Assassination,Haiti
--0.3945274569076846,-0.4416455494046409,8,Unarmed Assault,United Kingdom
--0.5463838358614413,-0.46861496937313174,3,Assassination,Colombia
--0.5158406678961928,0.026326345586551374,8,Armed Assault,Greece
--0.6179889680600752,1.469831833439162,11,Facility/Infrastructure Attack,Nigeria
--0.6179889680600752,1.469831833439162,8,Hostage Taking (Barricade Incident),France
--0.07405564526953798,-0.4771222599500926,8,Unarmed Assault,Greece
-0.15214722176408468,-0.4587522250814178,3,Bombing/Explosion,Colombia
-0.2241418664667317,-0.3380999601430923,3,Bombing/Explosion,Colombia
--0.11147628146416372,-0.5922091397966007,8,Unarmed Assault,United Kingdom
-0.37324062233486677,-0.2685888102395921,3,Facility/Infrastructure Attack,Colombia
--0.3811429893760239,-0.5316604203308184,4,Bombing/Explosion,Japan
--0.22315440113767288,-0.5466334098535927,3,Bombing/Explosion,Colombia
--0.3965106432726622,0.607049890576925,3,Bombing/Explosion,Colombia
-0.15391552744974193,1.5339690425527328,3,Unknown,Colombia
--0.6178753947149669,-0.6385383366338582,8,Bombing/Explosion,United Kingdom
--0.20882790982348576,-0.5446639474242408,8,Facility/Infrastructure Attack,Spain
--0.4385916737977813,-0.5797155050008267,4,Unarmed Assault,Japan
-0.13809206057706708,0.10224841988168311,4,Unarmed Assault,Japan
--0.14879962749605166,-0.4410362073900648,4,Unarmed Assault,Japan
--0.6954825917295763,-0.5381261192766318,4,Unarmed Assault,Japan
--0.4760371826556537,-0.6351513128587895,4,Unarmed Assault,Japan
--0.32720547254642685,-0.21734816766723505,4,Unarmed Assault,Japan
--0.18170075586598639,-0.6213048907250216,4,Unarmed Assault,Japan
--0.7050698183112296,2.068373490097285,4,Unarmed Assault,Japan
-1.6173306419718925,-0.5651630910362322,4,Unarmed Assault,Japan
-3.057803134755963,2.0003389201046624,4,Unarmed Assault,Japan
-2.7157129943849725,0.012011772893286398,11,Bombing/Explosion,South Africa
--0.3265885094330764,-0.17420711728848143,8,Unarmed Assault,United Kingdom
--2.0385678989205807,-0.7766556558868394,3,Hostage Taking (Kidnapping),Colombia
-0.8245450263530857,-0.19016264925848309,8,Bombing/Explosion,Spain
--0.04081286912893559,-0.4218579531902491,8,Assassination,France
--0.4687683532850768,-0.45483059916701424,8,Facility/Infrastructure Attack,Spain
--0.5570106803074797,-0.42114182838196335,11,Hostage Taking (Kidnapping),Uganda
-2.870594110861554,-1.066120331420513,11,Facility/Infrastructure Attack,Gambia
-4.7446552076643576,-0.15207803624396218,11,Unknown,Uganda
--0.3811429893760239,-0.5316604203308184,3,Bombing/Explosion,Colombia
--0.20908667002063833,-0.08217536457284268,8,Bombing/Explosion,Greece
--0.256794671424923,-0.5744110491532244,3,Armed Assault,Colombia
--0.40791192443934504,-0.35163067847846324,8,Bombing/Explosion,United Kingdom
--0.3196695974169418,-0.385319449263514,8,Bombing/Explosion,Spain
-1.3567234900704581,-0.39916864918066824,3,Hostage Taking (Kidnapping),Peru
-2.075489778134569,0.2971589453273304,12,Hostage Taking (Kidnapping),Fiji
-0.16392727339759722,-0.4578099024414351,8,Assassination,Spain
--0.486372124657518,-0.5933804044656434,11,Armed Assault,Liberia
--0.3196695974169418,-0.385319449263514,3,Assassination,Colombia
--0.3945274569076846,-0.4416455494046409,11,Hostage Taking (Kidnapping),Kenya
--0.31014621483188387,-0.6005101978629243,3,Hostage Taking (Kidnapping),Colombia
--0.10841847037261204,-0.5262565147662885,3,Bombing/Explosion,Chile
--2.0385678989205807,-0.7766556558868394,3,Hostage Taking (Kidnapping),Colombia
-0.2996415617340717,-0.2982838816117573,2,Armed Assault,St. Lucia
--0.5806327837002863,-0.425337071488173,3,Armed Assault,Colombia
-0.1426487118422734,-0.3032125484705531,3,Unknown,Colombia
--2.0251834313889203,-0.866670526813017,11,Armed Assault,Kenya
--0.33727336878938313,-0.5238692545621434,3,Armed Assault,Colombia
--0.5536443796702627,-0.5347390955015631,3,Armed Assault,Colombia
--0.5463838358614413,-0.46861496937313174,3,Armed Assault,Colombia
--0.3972850799933065,-0.3991038194696316,3,Assassination,Colombia
--0.4890717328328717,-0.15370339626580393,3,Bombing/Explosion,Argentina
-0.03548181443169974,-0.4370152095793376,8,Armed Assault,Norway
--0.2455404257474712,0.2373118516262106,4,Bombing/Explosion,Hong Kong
--0.6312598622466273,-0.5485234657076806,11,Bombing/Explosion,Zimbabwe
--0.33727336878938313,-0.5238692545621434,3,Hijacking,Colombia
--0.5265255272524997,-0.3233357916871106,8,Bombing/Explosion,Spain
-0.809781765639781,-0.033769978215837056,11,Armed Assault,Senegal
--0.3017241942518134,0.030466814138579323,8,Bombing/Explosion,Spain
-0.38249109335235554,2.5627427051904617,3,Hostage Taking (Kidnapping),Colombia
--0.28029461199174505,-0.37199755199493556,11,Hostage Taking (Kidnapping),Uganda
--0.40476509276883055,-0.5358556634370282,11,Hostage Taking (Kidnapping),Uganda
--0.27631963380293323,-0.5566503562991257,8,Bombing/Explosion,Italy
--0.3945274569076846,-0.4416455494046409,11,Armed Assault,Zimbabwe
-0.4365152110078212,-0.18554950843958568,3,Bombing/Explosion,Colombia
--0.7935316143003353,2.031434543043371,8,Bombing/Explosion,United Kingdom
-0.07519016206580852,-0.6628942764492166,4,Facility/Infrastructure Attack,Taiwan
--0.6954825917295763,-0.5381261192766318,3,Assassination,Colombia
--0.19869586566481326,-0.4286693985296643,7,Assassination,Tajikistan
--0.5131410597208389,-0.4133506626132882,11,Hostage Taking (Kidnapping),Namibia
-2.8720784637897103,-0.3498008970420163,11,Hijacking,Sudan
-0.06328208179765066,1.8277849293877115,3,Assassination,Colombia
--0.27631963380293323,-0.5566503562991257,3,Bombing/Explosion,Colombia
--0.31262637001851556,0.31203536285445793,11,Hostage Taking (Kidnapping),Burundi
-1.844490186596072,1.986776170319556,3,Hostage Taking (Kidnapping),Colombia
-0.04806300810830915,-0.5862533331484358,3,Bombing/Explosion,Colombia
--0.2730506393064344,-0.5342666009931921,3,Bombing/Explosion,Colombia
--0.5538638486369655,-0.6053668133405283,8,Bombing/Explosion,France
-0.3709136516208948,-0.19898823218999606,7,Assassination,Armenia
--0.486372124657518,-0.5933804044656434,11,Assassination,Rwanda
--0.15554879989399634,-0.4422348482775533,3,Assassination,Colombia
--0.20155908045290877,-0.36434323373246563,2,Assassination,Costa Rica
-0.004493575527597886,-0.48555014395178936,4,Bombing/Explosion,China
--0.20155908045290877,-0.36434323373246563,7,Assassination,Tajikistan
--0.5672483161686259,-0.5153519424143507,8,Bombing/Explosion,Spain
--0.19921552263744546,-0.607791471333951,8,Facility/Infrastructure Attack,Germany
-0.48982744243997917,-0.11878876401602712,11,Bombing/Explosion,Sudan
--0.33727336878938313,-0.5238692545621434,3,Bombing/Explosion,Colombia
--0.18930294744547552,-0.5624246402783396,3,Assassination,Colombia
-0.2844912082698483,0.6114365779850229,7,Assassination,Tajikistan
--0.22282934046849665,-0.49779012687681684,3,Assassination,Colombia
-0.02035204926246151,-0.49820792465161007,3,Assassination,Colombia
--0.5297945217489983,-0.3457195469930441,8,Assassination,United Kingdom
--0.22948120672572317,-0.6349697901898385,3,Hostage Taking (Kidnapping),Colombia
-0.2658149647271405,0.06009711150302139,8,Bombing/Explosion,France
--0.28029461199174505,-0.37199755199493556,11,Assassination,Nigeria
--0.2818658856428717,0.1757459918246004,8,Bombing/Explosion,Spain
--0.48964111915401676,-0.6157641597715771,8,Bombing/Explosion,Spain
-6.383197091241758,-1.4245815978600154,8,Bombing/Explosion,Spain
--0.4997565921891785,-0.5033655335394659,8,Bombing/Explosion,Spain
-0.6207552091488152,-0.3502706137670009,8,Armed Assault,United Kingdom
--0.05645187389709672,-0.3385724546514633,8,Bombing/Explosion,United Kingdom
-3.063020057536444,-0.0944036483549236,11,Facility/Infrastructure Attack,Zimbabwe
-0.08795765050613806,-0.3938093630755706,11,Facility/Infrastructure Attack,Zimbabwe
--0.06584479211643429,-0.20481721290278773,8,Unarmed Assault,United Kingdom
-2.2845443461303327,0.4564139154040666,8,Unarmed Assault,United Kingdom
-2.220321616647384,0.46681126183511545,8,Assassination,Italy
--0.8440135219726126,3.956370570724063,8,Assassination,Spain
--0.17536566471618079,-0.4187719228254321,11,Armed Assault,Senegal
--0.24340191833150704,-0.5502293325160581,7,Bombing/Explosion,Azerbaijan
--0.5121014418564539,2.1456758057694607,1,Bombing/Explosion,United States
--0.8592676025241426,2.9867107115587856,1,Bombing/Explosion,United States
--1.0083663583922775,2.917199561655286,1,Bombing/Explosion,United States
--1.0083663583922775,2.917199561655286,1,Bombing/Explosion,United States
--1.0083663583922775,2.9171995616552855,1,Bombing/Explosion,United States
--0.8592676025241426,2.986710711558786,1,Bombing/Explosion,United States
--0.18254548948577537,-0.4470294118275072,1,Bombing/Explosion,United States
+-0.7405855460971331,0.5060560618014243,8,Armed Assault,Netherlands
+-0.20825467616447585,-0.44240713323254227,8,Armed Assault,Netherlands
+-0.33920853224042347,-0.7094895681573047,8,Armed Assault,Netherlands
+-0.726763234360987,0.2694156258926542,8,Armed Assault,Sweden
+-0.5587994234351471,-0.25725625012927705,8,Assassination,Spain
+-0.25938463444077736,-0.5663659436309523,8,Armed Assault,France
+-0.6408068805578184,0.5549317118492487,10,Hijacking,Algeria
+-0.43771448852200495,0.9769221437879871,10,Assassination,Israel
+-0.3267439021600809,0.5620727287435531,11,Armed Assault,South Africa
+-0.6833900414498937,0.052888991871955636,10,Bombing/Explosion,Israel
+-0.44043941516125906,0.34652229171251997,8,Hijacking,Malta
+-0.3274419331707857,-0.3230696156395313,10,Bombing/Explosion,Algeria
+-0.3260985161484709,-0.5517878085403212,10,Bombing/Explosion,Algeria
+1.0648850065697506,-4.007470848368167,8,Bombing/Explosion,United Kingdom
+-0.08975974744667371,0.16561147054568923,10,Bombing/Explosion,Algeria
+-0.7458025504919175,0.7203597392073224,8,Bombing/Explosion,United Kingdom
+-0.5191373165366248,0.5031266798323218,3,Armed Assault,Colombia
+-0.75216803549954,0.3267563247070218,3,Bombing/Explosion,Peru
+-0.3260985161484709,-0.5517878085403212,3,Bombing/Explosion,Colombia
+-0.38378889584187026,-0.23272474863204254,8,Facility/Infrastructure Attack,Belgium
+-0.5894606926283078,0.202559093953499,11,Bombing/Explosion,South Africa
+-0.7405855460971335,0.5060560618014247,8,Bombing/Explosion,Spain
+-0.3260985161484709,-0.5517878085403212,11,Assassination,South Africa
+0.8451995523566928,-0.6234038489667215,8,Hostage Taking (Barricade Incident),Switzerland
+-0.7311244880489935,0.5367830683114657,8,Facility/Infrastructure Attack,Spain
+1.3436934617911995,-0.3207185789498444,3,Bombing/Explosion,Colombia
+-0.5317787126103541,-0.48027515663688836,8,Unarmed Assault,Germany
+0.1721335472439773,-0.13199559547457596,11,Bombing/Explosion,Uganda
+-0.6738716643894398,0.4914779267107933,8,Armed Assault,Germany
+0.11133831895339301,-0.9062102615720109,8,Bombing/Explosion,Germany
+-0.4973215924195496,-0.6014488267525347,3,Hostage Taking (Kidnapping),Colombia
+-0.36389382900416234,-0.6306050969337971,2,Assassination,Haiti
+-0.8072994278048271,0.5206341968920559,8,Unarmed Assault,United Kingdom
+-0.6936495311924976,0.37696014867779803,3,Assassination,Colombia
+-0.4305886644145434,-0.07210884290464245,8,Armed Assault,Greece
+-0.558382284763813,0.2010749183641508,11,Facility/Infrastructure Attack,Nigeria
+-0.07344672902019725,0.3602747108951126,8,Hostage Taking (Barricade Incident),France
+-0.25938463444077736,-0.5663659436309523,8,Unarmed Assault,Greece
+-0.4663603845897052,-0.09053487600713267,3,Bombing/Explosion,Colombia
+-0.46677752326103883,-0.5488660445005614,3,Bombing/Explosion,Colombia
+0.2870767505969302,-0.4963637969835267,8,Unarmed Assault,United Kingdom
+-0.454874677859437,-0.13092609937901478,3,Facility/Infrastructure Attack,Colombia
+-0.622691595831448,0.6074126975031057,4,Bombing/Explosion,Japan
+-0.44380610980050256,-0.6296484912443256,3,Bombing/Explosion,Colombia
+-0.7362242924091272,0.23868861938261335,3,Bombing/Explosion,Colombia
+-0.2835237549318411,-0.41351627924513656,3,Unknown,Colombia
+1.2393296541732206,1.0233216864269339,8,Bombing/Explosion,United Kingdom
+1.267694232027153,-0.49351842562799264,8,Facility/Infrastructure Attack,Spain
+-0.2594635617604261,-0.1900240079059289,4,Unarmed Assault,Japan
+0.16396698688128356,-0.43553153253209503,4,Unarmed Assault,Japan
+1.3051167864783841,0.8415940931770279,4,Unarmed Assault,Japan
+-0.6455374095818884,0.5395682085942284,4,Unarmed Assault,Japan
+3.3538990836883515,0.03459855794536904,4,Unarmed Assault,Japan
+3.5866883504275235,-1.1706803792153968,4,Unarmed Assault,Japan
+-0.1391552701140366,-0.6091437432133746,4,Unarmed Assault,Japan
+-0.311906929076261,-0.5056972987752597,4,Unarmed Assault,Japan
+-0.5568537020726674,0.04796745571382253,4,Unarmed Assault,Japan
+-0.2644965914312019,0.15200517700321553,4,Unarmed Assault,Japan
+-0.8120299568288972,0.5052706936370355,11,Bombing/Explosion,South Africa
+-0.42587718168778604,-0.6006634585881454,8,Unarmed Assault,United Kingdom
+-0.3308290451725409,-0.5671513117953416,3,Hostage Taking (Kidnapping),Colombia
+-0.5404439009740526,0.462321656529531,8,Bombing/Explosion,Spain
+1.1625004576787825,0.9030633420557961,8,Assassination,France
+-0.7313384707557821,0.8294902341799308,8,Facility/Infrastructure Attack,Spain
+-0.623391873788574,-0.09410538445428471,11,Hostage Taking (Kidnapping),Uganda
+-0.1987936181163368,-0.41168012672250226,11,Facility/Infrastructure Attack,Gambia
+2.7889762492280314,6.779715036044752,11,Unknown,Uganda
+7.387799747392597,-1.0217206513382655,3,Bombing/Explosion,Colombia
+-0.07249030774321139,-0.6678126159506936,8,Bombing/Explosion,Greece
+-0.6455374095818884,0.5395682085942284,3,Armed Assault,Colombia
+0.8308331763510697,-0.7237475765660774,8,Bombing/Explosion,United Kingdom
+-0.7694551956122675,0.6435422229322199,8,Bombing/Explosion,Spain
+,,3,Hostage Taking (Kidnapping),Peru
+,,12,Hostage Taking (Kidnapping),Fiji
+,,8,Assassination,Spain
+,,11,Armed Assault,Liberia
+,,3,Assassination,Colombia
+,,11,Hostage Taking (Kidnapping),Kenya
+,,3,Hostage Taking (Kidnapping),Colombia
+,,3,Bombing/Explosion,Chile
+,,3,Hostage Taking (Kidnapping),Colombia
+,,2,Armed Assault,St. Lucia
+,,3,Armed Assault,Colombia
+,,3,Unknown,Colombia
+,,11,Armed Assault,Kenya
+,,3,Armed Assault,Colombia
+,,3,Armed Assault,Colombia
+,,3,Armed Assault,Colombia
+,,3,Assassination,Colombia
+,,3,Bombing/Explosion,Argentina
+,,8,Armed Assault,Norway
+,,4,Bombing/Explosion,Hong Kong
+,,11,Bombing/Explosion,Zimbabwe
+,,3,Hijacking,Colombia
+,,8,Bombing/Explosion,Spain
+,,11,Armed Assault,Senegal
+,,8,Bombing/Explosion,Spain
+,,3,Hostage Taking (Kidnapping),Colombia
+,,11,Hostage Taking (Kidnapping),Uganda
+,,11,Hostage Taking (Kidnapping),Uganda
+,,8,Bombing/Explosion,Italy
+,,11,Armed Assault,Zimbabwe
+,,3,Bombing/Explosion,Colombia
+,,8,Bombing/Explosion,United Kingdom
+,,4,Facility/Infrastructure Attack,Taiwan
+,,3,Assassination,Colombia
+,,7,Assassination,Tajikistan
+,,11,Hostage Taking (Kidnapping),Namibia
+,,11,Hijacking,Sudan
+,,3,Assassination,Colombia
+,,3,Bombing/Explosion,Colombia
+,,11,Hostage Taking (Kidnapping),Burundi
+,,3,Hostage Taking (Kidnapping),Colombia
+,,3,Bombing/Explosion,Colombia
+,,3,Bombing/Explosion,Colombia
+,,8,Bombing/Explosion,France
+,,7,Assassination,Armenia
+,,11,Assassination,Rwanda
+,,3,Assassination,Colombia
+,,2,Assassination,Costa Rica
+,,4,Bombing/Explosion,China
+,,7,Assassination,Tajikistan
+,,8,Bombing/Explosion,Spain
+,,8,Facility/Infrastructure Attack,Germany
+,,11,Bombing/Explosion,Sudan
+,,3,Bombing/Explosion,Colombia
+,,3,Assassination,Colombia
+,,7,Assassination,Tajikistan
+,,3,Assassination,Colombia
+,,3,Assassination,Colombia
+,,8,Assassination,United Kingdom
+,,3,Hostage Taking (Kidnapping),Colombia
+,,8,Bombing/Explosion,France
+,,11,Assassination,Nigeria
+,,8,Bombing/Explosion,Spain
+,,8,Bombing/Explosion,Spain
+,,8,Bombing/Explosion,Spain
+,,8,Bombing/Explosion,Spain
+,,8,Armed Assault,United Kingdom
+,,8,Bombing/Explosion,United Kingdom
+,,11,Facility/Infrastructure Attack,Zimbabwe
+,,11,Facility/Infrastructure Attack,Zimbabwe
+,,8,Unarmed Assault,United Kingdom
+,,8,Unarmed Assault,United Kingdom
+,,8,Assassination,Italy
+,,8,Assassination,Spain
+,,11,Armed Assault,Senegal
+,,7,Bombing/Explosion,Azerbaijan
+,,1,Bombing/Explosion,United States
+,,1,Bombing/Explosion,United States
+,,1,Bombing/Explosion,United States
+,,1,Bombing/Explosion,United States
+,,1,Bombing/Explosion,United States
+,,1,Bombing/Explosion,United States
+,,1,Bombing/Explosion,United States
 ,,1,Bombing/Explosion,United States
 ,,1,Bombing/Explosion,United States
 ,,1,Bombing/Explosion,United States

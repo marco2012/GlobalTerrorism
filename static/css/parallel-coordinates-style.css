@@ -4,14 +4,14 @@
 #parallelArea {
 	height:400px; 
 	width: 100%; 
-	margin-top: -70px;
+	margin-top: -50px;
 }
 
 /* data table styles */
 #grid { 
-  height: 240px; 
+  height: 400px; 
   width: 100%;
-	margin-top: -70px;
+	margin-top: -50px;
 }
 .row, .header { 
   clear: left; 

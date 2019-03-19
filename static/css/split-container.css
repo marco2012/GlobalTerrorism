@@ -38,10 +38,13 @@
   /* background-color: #ff9e2c; */
   flex: 1;
   /* padding: 1rem; */
+  height: 100%;
 }
 
 .right-half {
   /* background-color: #b6701e; */
   flex: 1;
   /* padding: 1rem; */
+  height: 100%;
+
 }
