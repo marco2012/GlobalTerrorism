@@ -16,20 +16,18 @@ def send_js(path):
 @app.route("/analytic")
 def try1():
     var = request.args.to_dict()["computeBarchart"].split(';')
-    print("mao1 {}".format(var))
     year = int(var[0])
     country = json.loads(var[1])
-    print("mao2 {}{}".format(year,country))
     analytics.createBarchartData(year=year, country=country)
     return jsonify(True)
 
 
 @app.route("/cosine_similarity")
 def try2():
-    var = request.args.to_dict()["data"]
-    array = json.loads(var)
-    print("mao4 {}".format(array))
-    cosine_similarity.action(v=array)
+    var = request.args.to_dict()["compute_cosine_similarity"].split(';')
+    year = int(var[0])
+    array = json.loads(var[1])
+    cosine_similarity.action(v=array, year=year)
     return jsonify(True)
 
 
@@ -46,7 +44,6 @@ pca.action(year=0)
 
 #calculate barchart
 analytics.createBarchartData(year=2011) #CAMBIARE ANNO A 0
-
 
 #start server
 app.config["DEBUG"]=True

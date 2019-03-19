@@ -1,35 +1,45 @@
+# this function calculates cosine similarity between chosen attack and all other attacks in the database to determine the top 5 most similar attacks to che chosen one
+
 import pandas as pd
 from scipy import spatial
 
-DB_PATH = "static/data/terrorism-small.csv"
+DB_PATH = "static/data/terrorism.csv"
 
-def action(v, n_elems=5): # v = [d.eventid, d.attacktype1, d.nperps, d.nkill, d.nwound]
-    data = pd.read_csv(DB_PATH,
-                       usecols=['eventid','attacktype1', 'nperps', 'nkill', 'nwound'])
-    array = data.values
-
-    #dictionary key = event_id; value = similitudine
-    d = {}
-    for i in array:
-        s = 1 - spatial.distance.cosine(v, i[1:])
-        d[ i[0] ] = s
-
-    #sorted by descending value
-    sorted_d = dict( sorted(d.items(), key=lambda x: x[1], reverse=True)[:n_elems] )
-    keys = sorted_d.keys()
-    values = sorted_d.values()
-
+def action(v, year=0, n_elems=5): # v = [d.eventid, d.attacktype1, d.nperps, d.nkill, d.nwound]
+    
     data = pd.read_csv(DB_PATH)
-    s = pd.DataFrame( data[data.eventid.isin(keys)] ) # n_elems eventi piu simili a quello dato (v)
+    
+    if year != 0:  # solo anno selezionato
+        data = data[(data.year == year)]
 
-    print(s)
-    print(sorted_d)
-    print(values)
+    #read database columns i want, including eventid to match later and convert to array
+    array = data[['eventid', 'attacktype1','nperps', 'nkill', 'nwound']].values
+    d = {}  # dictionary key = event_id; value = cosine_similarity
+    
+    for i in array:
+        cosine_similarity = 1 - spatial.distance.cosine(v, i[1:])
+        eventid           = i[0]
+        d[eventid]        = cosine_similarity
 
-    # s['spacial_distance'] = 0.0 ; #DA SISTEMARE
+    #dictionary sorted by descending value, only the first n_elems are taken
+    sorted_dict = dict( sorted(d.items(), key=lambda x: x[1], reverse=True)[:n_elems] )
+    keys        = sorted_dict.keys()
 
+    # n_elems eventi piu simili a quello dato (v)
+    s = pd.DataFrame(data[data.eventid.isin(keys)])
+
+    # add spacial distance column for each row of s
+    for i, row in s.iterrows():
+        s.at[i, 'spacial_distance'] = sorted_dict[row.eventid]
+
+    #sort columns by cosine_similarity
+    s = s.sort_values(by=['spacial_distance'], ascending=False)
+
+    #write to csv
     s.to_csv("static/data/cosine_similarity_data.csv", sep=',', header=True)
 
     pass
 
-# action([3, 1, 588, 316],5)
+
+if __name__ == "__main__":
+    action([3, 1, 588, 316], 5)

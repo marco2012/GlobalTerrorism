@@ -101,7 +101,7 @@ function parallel(filter_year=0, country=[]) {
                 let v = [parseInt(d.attacktype1), parseInt(d.Attackers), parseInt(d.Victims), parseInt(d.Wound)]
                 $.getJSON(
                     '/cosine_similarity',
-                    { data: JSON.stringify(v) } ,
+                    { compute_cosine_similarity: selectedSliderYear + ";" + JSON.stringify(v) } ,
                     () => {
                         d3.csv('data/cosine_similarity_data.csv', function (data) {
                             console.log(data);
@@ -113,7 +113,7 @@ function parallel(filter_year=0, country=[]) {
             }
         });
         
-        d3.selectAll(".col-8").remove() //rimuovo colonna summary
+        // d3.selectAll(".col-8").remove() //rimuovo colonna summary
 
         //higlight on hover
         $('#grid .row').hover(function () {
@@ -141,7 +141,7 @@ function parallel(filter_year=0, country=[]) {
                 }
             });
             
-            d3.selectAll(".col-8").remove() //rimuovo colonna summary
+            // d3.selectAll(".col-8").remove() //rimuovo colonna summary
             
         });
         
