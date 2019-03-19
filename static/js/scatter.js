@@ -73,7 +73,7 @@ function scatter() {
         .tickSize(-width);
         
         // var color = d3.scale.category10();
-        var color = d3.scale.ordinal().range(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
+        var color = d3.scale.ordinal().range(['#40004b','#762a83','#9970ab','#c2a5cf','#e7d4e8','#f7f7f7','#d9f0d3','#a6dba0','#5aae61','#1b7837','#00441b'])
         
         var tip = d3.tip()
         .attr("class", "d3-tip")
@@ -158,9 +158,10 @@ function scatter() {
         .on("mouseout", tip.hide)
         .on("click", function (d) {
             // alert(JSON.stringify(d)) 
-            // document.getElementById('id01').style.display = 'block'
-            // $('#dialog_title_span').html('<h2>Attack region</h2>')
-            // $('#dialog_content_span').html("<br/><h4>" + region_to_txt[d.region] + "</h4><br/>")
+            // summary
+            document.getElementById('id01').style.display = 'block'
+            $('#dialog_title_span').html('<h2>Attack description</h2>')
+            $('#dialog_content_span').html("<br/><h4>" + d.summary + "</h4><br/>")
         })
         
         var legend = svg.selectAll(".legend")

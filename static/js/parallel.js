@@ -34,8 +34,9 @@ function parallel(filter_year=0, country=[]) {
             Suicide      : d.suicide==0 ? "No": "Yes",
             Country      : d.country_txt,
             Region       : d.region_txt,
+            attacktype1  : d.attacktype1,
             "Attack type": d.attacktype1_txt,
-            summary      : d.summary
+            // summary      : d.summary
         };
     })
     .get(function (e, data) {
@@ -71,7 +72,7 @@ function parallel(filter_year=0, country=[]) {
 
         parcoords
         .data(data)
-        .hideAxis(["summary"])  //CONTROLLARE
+        // .hideAxis(["summary"])  //CONTROLLARE
         .render()
         .reorderable()
         .brushMode("1D-axes")  // enable brushing
@@ -91,9 +92,24 @@ function parallel(filter_year=0, country=[]) {
                 parcoords.unhighlight
             },
             "click": function (d) { 
-                document.getElementById('id01').style.display = 'block' //make block appear
-                $('#dialog_title_span').html('<h2>Attack summary</h2>')
-                $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
+
+                // document.getElementById('id01').style.display = 'block' //make block appear
+                // $('#dialog_title_span').html('<h2>Attack summary</h2>')
+                // $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
+
+                // console.log(d);
+                let v = [parseInt(d.attacktype1), parseInt(d.Attackers), parseInt(d.Victims), parseInt(d.Wound)]
+                $.getJSON(
+                    '/cosine_similarity',
+                    { data: JSON.stringify(v) } ,
+                    () => {
+                        d3.csv('data/cosine_similarity_data.csv', function (data) {
+                            console.log(data);
+
+                        })
+                    }
+                )
+
             }
         });
         

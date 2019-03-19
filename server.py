@@ -1,10 +1,5 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify
-# from scipy.spatial import distance_matrix
-# import matplotlib.pyplot as plt
-# from sklearn import manifold
-# import numpy as np
-# import pandas as pd
-import sys, json, pca, analytics
+import sys, json, pca, analytics, cosine_similarity
 
 app = Flask(__name__, static_folder='/static')
 
@@ -28,8 +23,18 @@ def try1():
     analytics.createBarchartData(year=year, country=country)
     return jsonify(True)
 
-@app.route("/pca")
+
+@app.route("/cosine_similarity")
 def try2():
+    var = request.args.to_dict()["data"]
+    array = json.loads(var)
+    print("mao4 {}".format(array))
+    cosine_similarity.action(v=array)
+    return jsonify(True)
+
+
+@app.route("/pca")
+def try3():
     var = request.args.to_dict()["computePCA"].strip()
     year = int(var)
     pca.action(year=year)
@@ -41,6 +46,7 @@ pca.action(year=0)
 
 #calculate barchart
 analytics.createBarchartData(year=2011) #CAMBIARE ANNO A 0
+
 
 #start server
 app.config["DEBUG"]=True

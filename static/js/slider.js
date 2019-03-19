@@ -19,10 +19,10 @@ d3v4.csv("data/terrorism.csv", function (data4) {
     nations.forEach(function (entry) {
         stepValues.push(entry.key)
     })
-    // console.log(stepValues);
 })
 
 function slider(initialValue) {
+    //remove slider
     var svg = d3.select("#swift2Slider")
     svg.selectAll("canvas").remove()
     svg.selectAll("svg").remove()

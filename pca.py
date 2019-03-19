@@ -1,15 +1,14 @@
 #https://towardsdatascience.com/pca-using-python-scikit-learn-e653f8989e60
 
 import pandas as pd
-from matplotlib import pyplot as plt
-from sklearn import manifold
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
-import numpy as np
-from scipy.spatial import distance_matrix
+# from matplotlib import pyplot as plt
+# from sklearn import manifold
+# import numpy as np
+# from scipy.spatial import distance_matrix
 
 DB_PATH = "static/data/terrorism.csv"
-# DB_PATH = "static/data/terrorism-small.csv"
 
 def action(year=0, nation=[]):
 
@@ -27,19 +26,19 @@ def action(year=0, nation=[]):
     else:  # niente selezione, uso tutto il db (default)
         data = df
 
-    features = ["year", "nperps", "nkill", "nwound", "country"]
+    features = ["year", "nperps", "nkill", "nwound"]
     # Separating out the features
     x = data.loc[:, features].values
     # Separating out the target
-    y = data.loc[ :, ['region'] ].values
+    # y = data.loc[ :, ['region'] ].values
     # Standardizing the features
-    x = StandardScaler().fit_transform(x)
+    x = StandardScaler(with_mean=True, with_std=True).fit_transform(x)
 
     pca = PCA(n_components=2)
     principalComponents = pca.fit_transform(x)
     principalDf = pd.DataFrame(
         data=principalComponents, columns=['x', 'y'])
-    finalDf = pd.concat([principalDf, df[['region', 'attacktype1_txt', 'country_txt']]], axis=1)
+    finalDf = pd.concat([principalDf, df[['region', 'attacktype1_txt', 'country_txt', "summary"]]], axis=1)
     finalDf.to_csv("static/data/pca.csv", sep=',', index=False)
     
     return 0;

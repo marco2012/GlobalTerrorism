@@ -42,8 +42,7 @@ function renderStackedBarChart(inputData, ) {
     data = inputData
 
     let dom_element_to_append_to = "#chart"
-    let colorScheme = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695']
-
+    let colorScheme = ['#67001f','#b2182b','#d6604d','#f4a582','#fddbc7','#f7f7f7','#d1e5f0','#92c5de','#4393c3','#2166ac','#053061']
     // remove graph
     var svg = d3.select("#chart")
     svg.selectAll("canvas").remove()
@@ -130,7 +129,7 @@ function renderStackedBarChart(inputData, ) {
 
         d.total = d.params[d.params.length - 1].y1;
 
-        console.log(d.myCountry);
+        // console.log(d.myCountry);
         
     });
 
