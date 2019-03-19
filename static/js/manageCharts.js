@@ -1,14 +1,17 @@
-function updateCharts(year=0, country=[]){
+// le funzioni di update vanno divise altrimenti la mappa si resetta ad ogni nazione selezionata
+
+function updateCharts(){
     
-    updateMap(year, country)
+    updateChartsAux()
 
     //update map
     map(selectedSliderYear)
 
 }
 
-function updateMap(year , country){
+function updateChartsAux(){
     console.log("Slider = " + selectedSliderYear)
+    console.log("Countries = " + selectedCountries)
 
     //update PCA
     $.getJSON(
@@ -18,18 +21,21 @@ function updateMap(year , country){
     )
 
     //update barchart
+    let param = { computeBarchart: selectedSliderYear + ";" + JSON.stringify(selectedCountries) }
     $.getJSON(
         '/analytic',
-        { computeBarchart: selectedSliderYear },
+        param,
         () => barchart()
     )
 
     //update parallel chart
-    drawParallel(filter_year = selectedSliderYear, country = selectedCountries)
+    parallel(filter_year = selectedSliderYear, country = selectedCountries)
 }
         
 function resetCharts() {
     // console.log(selectedSliderYear)
+    selectedSliderYear = 2017
+    slider(selectedSliderYear)
     
     //reset PCA
     $.getJSON(
@@ -39,14 +45,16 @@ function resetCharts() {
     )
 
     // //reset barchart
+    //update barchart
+    let param = { computeBarchart: 2017 + ";" + JSON.stringify([]) }
     $.getJSON(
         '/analytic',
-        { computeBarchart: 2011 },
+        param,
         () => barchart()
     )
 
     //reset parallel chart
-    drawParallel(filter_year=0)
+    parallel(filter_year=0)
 
     //reset map
     map(filter_year=0)

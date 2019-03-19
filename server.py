@@ -4,9 +4,9 @@ from flask import Flask, render_template, send_from_directory, request, jsonify
 # from sklearn import manifold
 # import numpy as np
 # import pandas as pd
-import sys, pca, analytics
+import sys, json, pca, analytics
 
-app = Flask(__name__, static_folder='/static');
+app = Flask(__name__, static_folder='/static')
 
 @app.route("/")
 def index():
@@ -20,9 +20,12 @@ def send_js(path):
 
 @app.route("/analytic")
 def try1():
-    var = request.args.to_dict()["computeBarchart"].strip()
-    year = int(var)
-    analytics.createBarchartData(year=year)
+    var = request.args.to_dict()["computeBarchart"].split(';')
+    print("mao1 {}".format(var))
+    year = int(var[0])
+    country = json.loads(var[1])
+    print("mao2 {}{}".format(year,country))
+    analytics.createBarchartData(year=year, country=country)
     return jsonify(True)
 
 @app.route("/pca")

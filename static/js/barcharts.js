@@ -16,8 +16,11 @@ function barchart(){
         
         var inputData = [];
         data.forEach(function (d, i) {
+            if(d.hasOwnProperty("country_txt")){
+                
+            }
             inputData.push({
-                label          : parseInt(d.imonth),
+                label          : d.imonth + ',' + d.country_txt,
                 "Chemical"     : d.weaptype1 == 2 ? parseInt(d.nkill) : 0,
                 "Radiological" : d.weaptype1 == 3 ? parseInt(d.nkill) : 0,
                 "Firearms"     : d.weaptype1 == 5 ? parseInt(d.nkill) : 0,
@@ -84,7 +87,13 @@ function renderStackedBarChart(inputData, ) {
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function (d) {
-            return "<div><strong> " + d.name + ":</strong></div><div> <span style='color:white'>" + (d.y1 - d.y0).toFixed(0) + "</span></div>";
+            var s = ""
+            if(d.myCountry == "undefined") {
+                s = "<div><strong>" + d.name +  ": <span style='color:white'>" + (d.y1 - d.y0).toFixed(0) + " victims </span></div>";
+            } else {
+                s = "<div><strong> Country: " + d.myCountry + "</strong></br> " + d.name + ": <span style='color:white'>" + (d.y1 - d.y0).toFixed(0) + " victims </span></div>";
+            }
+            return s
         })
 
     var svg = d3.select(dom_element_to_append_to).append("svg")
@@ -105,13 +114,24 @@ function renderStackedBarChart(inputData, ) {
     color.domain(d3.keys(data[0]).filter(function (key) { return key !== "label"; }));
 
     data.forEach(function (d) {
-        var mylabel = d.label;
+        let labelSplit = d.label.split(',')
+        var mylabel = labelSplit[0]
+        var myCountry = labelSplit[1]
         
+        // var mycountry = d.country_txt
+        // if (d.hasOwnProperty("country_txt")){
+        //     mycountry = d.country_txt
+        // } 
         var y0 = 0;
 
-        d.params = color.domain().map(function (name) { return { mylabel: mylabel, name: name, y0: y0, y1: y0 += +d[name] }; });
+        d.params = color.domain().map(function (name) { 
+            return { mylabel: mylabel, name: name, y0: y0, y1: y0 += +d[name], myCountry: myCountry } 
+        });
+
         d.total = d.params[d.params.length - 1].y1;
 
+        console.log(d.myCountry);
+        
     });
 
     data.sort(function (a, b) { return b.total - a.total; });

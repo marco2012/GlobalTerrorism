@@ -14,8 +14,8 @@ legend_y_axis_text_position = -margin.left - 4
 var x = d3.scale.linear().range([0, width]).nice();
 var y = d3.scale.linear().range([height, 0]).nice();
 
-var xCat = "comp_1", 
-yCat = "comp_2", 
+var xCat = "new_x", 
+yCat = "new_y", 
 rCat = "region",
 colorCat = "region";
 
@@ -32,7 +32,7 @@ var region_to_txt = {
     9: "Eastern Europe",
     10: "Middle East & North Africa",
     11: "Sub-Saharan Africa",
-    12: "Australasia & Oceania"
+    12: "Australia"
 };
 
 
@@ -47,8 +47,8 @@ function scatter() {
     d3.csv("data/pca.csv", function (data) {
         
         data.forEach(function (d) {
-            d.comp_1 = +d.x;
-            d.comp_2 = +d.y;
+            d.new_x = +d.x;
+            d.new_y = +d.y;
             d.region = +d.region;
         });
         
@@ -158,9 +158,9 @@ function scatter() {
         .on("mouseout", tip.hide)
         .on("click", function (d) {
             // alert(JSON.stringify(d)) 
-            document.getElementById('id01').style.display = 'block'
-            $('#dialog_title_span').html('<h2>Attack region</h2>')
-            $('#dialog_content_span').html("<br/><h4>" + region_to_txt[d.region] + "</h4><br/>")
+            // document.getElementById('id01').style.display = 'block'
+            // $('#dialog_title_span').html('<h2>Attack region</h2>')
+            // $('#dialog_content_span').html("<br/><h4>" + region_to_txt[d.region] + "</h4><br/>")
         })
         
         var legend = svg.selectAll(".legend")

@@ -77,8 +77,8 @@ function map(filter_year=0) {
                             }
                         })
                         
-                        console.log(selectedCountries);
-                        updateMap(year =filter_year, country=selectedCountries)
+                        // console.log(selectedCountries);
+                        updateChartsAux()
                     })
                     
                 })
