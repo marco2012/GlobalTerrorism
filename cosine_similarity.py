@@ -41,5 +41,4 @@ def action(v, year=0, n_elems=5): # v = [d.eventid, d.attacktype1, d.nperps, d.n
     pass
 
 
-if __name__ == "__main__":
-    action([3, 1, 588, 316], 5)
+    # action([3, 1, 588, 316], 5)

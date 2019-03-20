@@ -27,7 +27,7 @@ def try2():
     var = request.args.to_dict()["compute_cosine_similarity"].split(';')
     year = int(var[0])
     array = json.loads(var[1])
-    cosine_similarity.action(v=array, year=year)
+    cosine_similarity.action(v=array, n_elems=6)
     return jsonify(True)
 
 
@@ -40,7 +40,7 @@ def try3():
 
 
 #calculate PCA
-pca.action(year=0)
+pca.action(year=2017)
 
 #calculate barchart
 analytics.createBarchartData(year=2011) #CAMBIARE ANNO A 0

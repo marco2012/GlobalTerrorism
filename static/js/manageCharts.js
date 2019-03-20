@@ -29,18 +29,22 @@ function updateChartsAux(){
     )
 
     //update parallel chart
-    parallel(filter_year = selectedSliderYear, country = selectedCountries)
+    parallel(
+        data_to_read = 'terrorism.csv', 
+        filter_year = selectedSliderYear, 
+        country = selectedCountries
+    )
 }
         
 function resetCharts() {
     // console.log(selectedSliderYear)
     selectedSliderYear = 2017
     slider(selectedSliderYear)
-    
+
     //reset PCA
     $.getJSON(
-        '/pca', 
-        {computePCA: 0}, 
+        '/pca',
+        { computePCA: 0 },
         () => scatter()
     )
 
@@ -54,9 +58,10 @@ function resetCharts() {
     )
 
     //reset parallel chart
-    parallel(filter_year=0)
+    parallel(data_to_read = 'terrorism.csv', filter_year = 0, country = [])
 
     //reset map
-    map(filter_year=0)
+    map(filter_year = 0)
+
 
 }

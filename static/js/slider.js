@@ -37,7 +37,7 @@ function slider(initialValue) {
         .tickValues(tickValues)
         .stepValues(stepValues)
         .callback(function (evt) {
-            selectedSliderYear = self.slider.value()
+            selectedSliderYear = slider.value()
             // console.log('callback: ' + selectedSliderYear);
         });
 
