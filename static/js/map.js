@@ -82,9 +82,6 @@ function map(filter_year=0) {
                     })
                     
                 })
-                
-                
-                
             })
             .legend(dc.legend().x(250).y(100))
             
