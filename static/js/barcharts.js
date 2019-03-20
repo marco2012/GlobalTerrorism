@@ -16,11 +16,8 @@ function barchart(){
         
         var inputData = [];
         data.forEach(function (d, i) {
-            if(d.hasOwnProperty("country_txt")){
-                
-            }
             inputData.push({
-                label          : d.imonth + ',' + d.country_txt,
+                label: d.imonth + ',' + d.country_txt + ',' + d.year,
                 "Chemical"     : d.weaptype1 == 2 ? parseInt(d.nkill) : 0,
                 "Radiological" : d.weaptype1 == 3 ? parseInt(d.nkill) : 0,
                 "Firearms"     : d.weaptype1 == 5 ? parseInt(d.nkill) : 0,
@@ -86,11 +83,10 @@ function renderStackedBarChart(inputData, ) {
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function (d) {
-            var s = ""
-            if(d.myCountry == "undefined") {
-                s = "<div><strong>" + d.name +  ": <span style='color:white'>" + (d.y1 - d.y0).toFixed(0) + " victims </span></div>";
-            } else {
-                s = "<div><strong> Country: " + d.myCountry + "</strong></br> " + d.name + ": <span style='color:white'>" + (d.y1 - d.y0).toFixed(0) + " victims </span></div>";
+            let n_victims = (d.y1 - d.y0).toFixed(0)
+            var s = "<div> <strong>" + d.name + ": <span style='color:white'>" + n_victims + " victims </span></br>Year: " + d.myYear + "</div>"
+            if(d.myCountry != "undefined") {
+                s = "<div> <strong>" + d.name + ": <span style='color:white'>" + n_victims + " victims </span></br>Year: " + d.myYear + "</br>Country: "+ d.myCountry +"</div>"
             }
             return s
         })
@@ -116,6 +112,7 @@ function renderStackedBarChart(inputData, ) {
         let labelSplit = d.label.split(',')
         var mylabel = labelSplit[0]
         var myCountry = labelSplit[1]
+        var myYear = labelSplit[2]
         
         // var mycountry = d.country_txt
         // if (d.hasOwnProperty("country_txt")){
@@ -124,7 +121,14 @@ function renderStackedBarChart(inputData, ) {
         var y0 = 0;
 
         d.params = color.domain().map(function (name) { 
-            return { mylabel: mylabel, name: name, y0: y0, y1: y0 += +d[name], myCountry: myCountry } 
+            return { 
+                mylabel: mylabel, 
+                name: name, 
+                y0: y0, 
+                y1: y0 += +d[name], 
+                myCountry: myCountry,
+                myYear: myYear 
+                } 
         });
 
         d.total = d.params[d.params.length - 1].y1;

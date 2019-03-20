@@ -1,17 +1,20 @@
 // le funzioni di update vanno divise altrimenti la mappa si resetta ad ogni nazione selezionata
 
-function updateCharts(){
+function updateCharts(csv = 'terrorism.csv'){
     
-    updateChartsAux()
+    updateChartsAux(csv)
 
     //update map
     map(selectedSliderYear)
 
 }
 
-function updateChartsAux(){
+function updateChartsAux(csv = 'terrorism.csv'){
     console.log("Slider = " + selectedSliderYear)
     console.log("Countries = " + selectedCountries)
+
+    //update slider
+    slider(selectedSliderYear)
 
     //update PCA
     $.getJSON(
@@ -30,27 +33,29 @@ function updateChartsAux(){
 
     //update parallel chart
     parallel(
-        data_to_read = 'terrorism.csv', 
+        data_to_read = csv, 
         filter_year = selectedSliderYear, 
         country = selectedCountries
     )
 }
         
 function resetCharts() {
-    // console.log(selectedSliderYear)
-    selectedSliderYear = 2017
+    
+    //reset slider
+    selectedSliderYear = 0
+    console.log("Slider = " + selectedSliderYear)
     slider(selectedSliderYear)
 
     //reset PCA
     $.getJSON(
         '/pca',
-        { computePCA: 0 },
+        { computePCA: selectedSliderYear },
         () => scatter()
     )
 
     // //reset barchart
     //update barchart
-    let param = { computeBarchart: 2017 + ";" + JSON.stringify([]) }
+    let param = { computeBarchart: selectedSliderYear + ";" + JSON.stringify([]) }
     $.getJSON(
         '/analytic',
         param,
@@ -58,10 +63,10 @@ function resetCharts() {
     )
 
     //reset parallel chart
-    parallel(data_to_read = 'terrorism.csv', filter_year = 0, country = [])
+    parallel(data_to_read = 'terrorism.csv', filter_year = selectedSliderYear, country = [])
 
     //reset map
-    map(filter_year = 0)
+    map(filter_year = selectedSliderYear)
 
 
 }

@@ -37,10 +37,11 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 Country: d.country_txt,
                 // Region: d.region_txt,
                 "Attack type": d.attacktype1_txt,
-                spacial_distance: d.spacial_distance
+                spacial_distance: parseFloat(d.spacial_distance).toFixed(6)
                 // summary      : d.summary
             }
         } else return { //filter columns
+            eventid: d.eventid,
             attacktype1: d.attacktype1,
             year: d.year,
             Attackers: d.nperps,
@@ -54,6 +55,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
         }
     })
     .get(function (e, data) {
+        // console.log(data);
         
         //Filter rows
         let cf = crossfilter(data)
@@ -89,7 +91,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
         
         parcoords
         .data(data)
-        .hideAxis(["attacktype1"])  //CONTROLLARE
+        // .hideAxis(["atta cktype1"])  //CONTROLLARE
         .render()
         .reorderable()
         .brushMode("1D-axes")  // enable brushing
@@ -114,7 +116,9 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 // $('#dialog_title_span').html('<h2>Attack summary</h2>')
                 // $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
                 
+                selectedSliderYear = parseInt(d.year)
                 let v = [
+                    parseInt(d.eventid),
                     parseInt(d.attacktype1), 
                     parseInt(d.Attackers), 
                     parseInt(d.Victims), 
@@ -124,12 +128,13 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                     '/cosine_similarity',
                     { compute_cosine_similarity: selectedSliderYear + ";" + JSON.stringify(v) } ,
                     () => {
+                        updateCharts(csv = 'cosine_similarity_data.csv')
                         parallel(data_to_read = 'cosine_similarity_data.csv')
                     })
                 } //click
             }); //on
             
-            d3.selectAll(".col-0").remove() //rimuovo colonna summary
+            d3.selectAll(".col-0").remove() //rimuovo colonna 
             
             //higlight on hover
             $('#grid .row').hover(function () {
@@ -155,8 +160,8 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                         $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
                     }
                 });
-                
-                d3.selectAll(".col-0").remove() //rimuovo colonna summary
+
+                d3.selectAll(".col-0").remove() //rimuovo colonna 
                 
             });
             

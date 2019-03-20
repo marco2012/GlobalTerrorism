@@ -1,6 +1,6 @@
 // https://stackoverflow.com/questions/42864790/sliders-work-in-d3-js-v3-but-not-in-v4
 
-var selectedSliderYear = 2017
+var selectedSliderYear = 0
 let min = 1975
 let max = 2017
 let step = 5
@@ -21,7 +21,7 @@ d3v4.csv("data/terrorism.csv", function (data4) {
     })
 })
 
-function slider(initialValue) {
+function slider(initialValue=0) {
     //remove slider
     var svg = d3.select("#swift2Slider")
     svg.selectAll("canvas").remove()
@@ -38,9 +38,10 @@ function slider(initialValue) {
         .stepValues(stepValues)
         .callback(function (evt) {
             selectedSliderYear = slider.value()
-            // console.log('callback: ' + selectedSliderYear);
         });
 
     d3.select("#swift2Slider").call(slider)
+    console.log("Slider = " + selectedSliderYear)
+    
 }
 

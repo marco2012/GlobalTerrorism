@@ -8,7 +8,8 @@ DB_PATH = "static/data/terrorism.csv"
 def action(v, year=0, n_elems=5): # v = [d.eventid, d.attacktype1, d.nperps, d.nkill, d.nwound]
     
     data = pd.read_csv(DB_PATH)
-    
+    data = data[(data.eventid != v[0])] #remove chosen attack
+
     if year != 0:  # solo anno selezionato
         data = data[(data.year == year)]
 
@@ -17,7 +18,7 @@ def action(v, year=0, n_elems=5): # v = [d.eventid, d.attacktype1, d.nperps, d.n
     d = {}  # dictionary key = event_id; value = cosine_similarity
     
     for i in array:
-        cosine_similarity = 1 - spatial.distance.cosine(v, i[1:])
+        cosine_similarity = 1 - spatial.distance.cosine(v[1:], i[1:])
         eventid           = i[0]
         d[eventid]        = cosine_similarity
 
