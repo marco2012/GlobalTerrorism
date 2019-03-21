@@ -12,7 +12,7 @@
 		<div class="w3-modal-content w3-card-4">
 			<header class="w3-container w3-red">
 				<span onclick="document.getElementById('id01').style.display='none'"
-					class="w3-button w3-large w3-display-topright">&times;</span>
+				class="w3-button w3-large w3-display-topright">&times;</span>
 				<span id="dialog_title_span">
 					<h2>Attack summary</h2>
 				</span>
@@ -24,75 +24,84 @@
 			</footer>
 		</div>
 	</div>
-	</div>
+</div>
 
-	<!-- modal con messaggio quando si clicca su grafico -->
-	<div id="id02" class="w3-modal" style="z-index:4">
-		<div class="w3-modal-content w3-animate-zoom" style="width: 1440px;">
-			<div class="w3-container w3-padding w3-red">
-				<span
-				onclick="document.getElementById('id02').style.display='none'; comp = [];d3v3.select('#table2').selectAll('row').remove();d3v3.select('#table2').selectAll('header').remove()"
-				class="w3-button w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
-				<h2 style="font-family: Oswald; font-size:40pt;">Global terrorist attacks</h2>
-			</div>
-			<div class="w3-panel" id="table2">
-			</div>
+<!-- modal con messaggio quando si clicca su grafico -->
+<div id="id02" class="w3-modal" style="z-index:4">
+	<div class="w3-modal-content w3-animate-zoom" style="width: 1440px;">
+		<div class="w3-container w3-padding w3-red">
+			<span
+			onclick="document.getElementById('id02').style.display='none'; comp = [];d3v3.select('#table2').selectAll('row').remove();d3v3.select('#table2').selectAll('header').remove()"
+			class="w3-button w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
+			<h2 style="font-family: Oswald; font-size:40pt;">Global terrorist attacks</h2>
 		</div>
-	</div>
-
-	<!-- lascia spazio iniziale -->
-	<div class="flexbox" style="height:10px;"></div>
-
-	<div class="three-row">
-		<div class="three-column left-head">
-			<h1>Terrorism attacks</h1> 
-		</div>
-		<div class="three-column middle-head" >
-			<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
-		</div>
-		<div class="three-column right-head actionButtons" >
-			<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button> &nbsp; &nbsp;
-			<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button> &nbsp;
-			<!-- <button class="w3-btn w3-round-xxlarge w3-red" onclick="document.getElementById('id03').style.display='block'">Analytics</button> -->
+		<div class="w3-panel" id="table2">
 		</div>
 	</div>
-	
-	<!-- <div id="id03" class="w3-panel w3-light-gray w3-display-container w3-round-xlarge" style="display:none; width: 60%; margin: 0 auto">
-		<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright ">x</span>
-		<h4>Analytics</h4>
-		<p>Analytics will appear here</p>
-	</div> -->
-			<!-- <svg width="960" height="600"></svg> -->
+</div>
 
-	<div class="three-row">
-		<div class="three-column left">
-			<!-- <div id="world-chart" class="flexcontainer"></div></br> -->
-			<svg width="960" height="400"></svg>
-		</div>
-		<div class="three-column middle">
-			<div id="scatter"></div>
-		</div>
-		<div class="three-column right actionButtons">
-			<div id="chart"></div>
-		</div>
+<!-- lascia spazio iniziale -->
+<div class="flexbox" style="height:10px;"></div>
+
+<div class="three-row">
+	<div class="three-column left-head">
+		<h1>Terrorism attacks</h1> 
 	</div>
-	
-	<section class="container" id="split-container">
-		<div class="left-half">
-			<div id="parallelArea" class="parcoords flexcontainer"></div>
-		</div>
-		<div class="right-half">
-			<div id="grid"></div>
-		</div>
-	</section>
+	<div class="three-column middle-head" >
+		<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
+	</div>
+	<div class="three-column right-head actionButtons" >
+		PCA data &nbsp;
+		<select id="pca-select">
+			<option value="success">Attack success</option>
+			<option value="nkill">Number of victims</option>
+		</select>
+		&nbsp; &nbsp;
+		<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button> &nbsp;
+		<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button> &nbsp;
+		
+	</div>
+</div>
+
+<!-- <div id="id03" class="w3-panel w3-light-gray w3-display-container w3-round-xlarge" style="display:none; width: 60%; margin: 0 auto">
+	<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright ">x</span>
+	<h4>Analytics</h4>
+	<p>Analytics will appear here</p>
+</div> -->
+<!-- <svg width="960" height="600"></svg> -->
+
+<div class="three-row">
+	<div class="three-column left">
+		<!-- <div id="world-chart" class="flexcontainer"></div></br> -->
+		<svg width="960" height="400"></svg>
+	</div>
+	<div class="three-column middle">
+		<div id="scatter"></div>
+	</div>
+	<div class="three-column right actionButtons">
+		<div id="chart"></div>
+	</div>
+</div>
+
+<section class="container" id="split-container">
+	<div class="left-half">
+		<div id="parallelArea" class="parcoords flexcontainer"></div>
+	</div>
+	<div class="right-half">
+		<div id="grid"></div>
+	</div>
+</section>
 
 
-	<script>slider(selectedSliderYear)</script>
-	<script>map()</script>
-	<script>map2()</script>
-	<script>scatter()</script>
-	<script>barchart()</script>
-	<script>parallel()</script>
+<script>
+	slider(2017)
+	$(".d3slider-rect-value ").css("fill", "#006EE3"); //set slider color at start
+</script>
+<script>map()</script>
+<script>map2()</script>
+<script>scatter()</script>
+<script>barchart()</script>
+<script>parallel()</script>
 
-	</body>
+</body>
 </html>

@@ -1,5 +1,10 @@
-
 // http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e
+
+var pca_data = $("#pca-select").val()
+$("#pca-select").on('change', function () {
+    pca_data = this.value
+    scatter()
+});
 
 var margin = { top: 30, right: 300, bottom: 20, left: 30 },
 outerWidth = 520, //aumentare per mostrare legenda
@@ -14,29 +19,27 @@ legend_y_axis_text_position = -margin.left - 0
 var x = d3.scale.linear().range([0, width]).nice();
 var y = d3.scale.linear().range([height, 0]).nice();
 
-var xCat = "comp_x", 
-yCat = "comp_y", 
-rCat = "region",
-colorCat = "region";
-
-
-var region_to_txt = { 
-    1: "North America", 
-    2: "Central America", //2: "Central America & Caribbean",
-    3: "South America",
-    4: "East Asia",
-    5: "Southeast Asia",
-    6: "South Asia",
-    7: "Central Asia",
-    8: "Western Europe",
-    9: "Eastern Europe",
-    10: "Middle East & North Africa",
-    11: "Sub-Saharan Africa",
-    12: "Australia"
-};
-
+// var region_to_txt = { 
+//     1: "North America", 
+//     2: "Central America", //2: "Central America & Caribbean",
+//     3: "South America",
+//     4: "East Asia",
+//     5: "Southeast Asia",
+//     6: "South Asia",
+//     7: "Central Asia",
+//     8: "Western Europe",
+//     9: "Eastern Europe",
+//     10: "Middle East & North Africa",
+//     11: "Sub-Saharan Africa",
+//     12: "Australia"
+// };
 
 function scatter() {
+
+    let xCat = "comp_x"
+    let yCat = "comp_y"
+    let rCat = pca_data
+    let colorCat = "attacktype1_txt"
     
     // remove graph
     var svg = d3.select("#scatter")
@@ -49,7 +52,10 @@ function scatter() {
         data.forEach(function (d) {
             d.comp_x = +d.x;
             d.comp_y = +d.y;
-            d.region = +d.region;
+            // d.region = +d.region;
+            d.success = +d.success;
+            d.nkill = +d.nkill;
+            // d.attacktype1_txt = +d.attacktype1_txt;
         });
         
         var xMax = d3.max(data, function (d) { return d[xCat]; }) * 1.05,
@@ -183,7 +189,9 @@ function scatter() {
         .attr("x", width + 26)
         .attr("dy", ".35em")
         .text(function (d) {
-            return region_to_txt[d] //converte numero regione in stringa
+            // return region_to_txt[d] //converte numero regione in stringa
+            return d;
+           
         })
         .style("font-size", "12px")
         

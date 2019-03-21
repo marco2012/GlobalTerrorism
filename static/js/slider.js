@@ -21,7 +21,7 @@ d3v4.csv("data/terrorism.csv", function (data4) {
     })
 })
 
-function slider(initialValue=0) {
+function slider(initialValue=2017) {
     //remove slider
     var svg = d3.select("#swift2Slider")
     svg.selectAll("canvas").remove()
@@ -38,10 +38,11 @@ function slider(initialValue=0) {
         .stepValues(stepValues)
         .callback(function (evt) {
             selectedSliderYear = slider.value()
+            $(".d3slider-rect-value ").css("fill", ""); //remove slider fill color
         });
 
     d3.select("#swift2Slider").call(slider)
-    // console.log("Slider = " + selectedSliderYear)
+    console.log(slider.value());
     
 }
 

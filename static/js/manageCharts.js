@@ -51,7 +51,9 @@ function resetCharts() {
     //reset slider
     selectedSliderYear = 0
     console.log("Slider = " + selectedSliderYear)
-    slider(selectedSliderYear)
+    slider(2017)
+    $(".d3slider-rect-value ").css("fill", "#006EE3");
+
 
     //reset PCA
     $.getJSON(

@@ -184,7 +184,9 @@ function renderStackedBarChart(inputData, ) {
             var classLabel = d.name.replace(/\s/g, '');
             return "class" + classLabel;
         })
-        .style("fill", function (d) { return color(d.name); });
+        .style("fill", function (d) { return color(d.name); })
+        .attr("stroke", "black")
+        .attr("stroke-width", "2");
 
     state.selectAll("rect")
         .on("mouseover", function (d) {
@@ -194,7 +196,7 @@ function renderStackedBarChart(inputData, ) {
             var yPos = parseFloat(d3.select(this).attr("y"));
             var height = parseFloat(d3.select(this).attr("height"))
 
-            d3.select(this).attr("stroke", "blue").attr("stroke-width", 0.8);
+            d3.select(this).attr("stroke", "black").attr("stroke-width", 0.8);
             tip.show(d);
             /*main.append("text")
             .attr("x",xPos)

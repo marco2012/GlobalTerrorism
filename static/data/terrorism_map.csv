@@ -1,111 +1,47 @@
-country_txt,nkill
-Afghanistan,983
-Algeria,6
-Argentina,0
-Armenia,6
-Australia,4
-Azerbaijan,1
-Bangladesh,9
-Belarus,13
-Belgium,1
-Bosnia-Herzegovina,2
-Brazil,0
-Bulgaria,7
-Burkina Faso,33
-Burundi,33
-Cameroon,66
-Canada,0
-Central African Republic,131
-Chad,60
-Chile,0
-China,218
-Colombia,236
-Costa Rica,1
-Croatia,0
-Cyprus,0
-Democratic Republic of the Congo,84
-Denmark,0
-Ecuador,0
-Egypt,428
-Estonia,1
-Ethiopia,13
-Fiji,7
-Finland,9
-France,12
-Gabon,0
-Gambia,0
-Georgia,0
-Germany,2
-Greece,1
-Guinea,0
-Guinea-Bissau,1
-Guyana,4
-Haiti,0
-Hong Kong,0
-Hungary,0
-India,139
-Indonesia,5
-Iran,17
-Iraq,1202
-Israel,6
-Italy,4
-Ivory Coast,26
-Japan,19
-Kazakhstan,10
-Kenya,294
-Kosovo,1
-Kyrgyzstan,2
-Lebanon,4
-Lesotho,0
-Liberia,0
-Libya,45
-Macedonia,0
-Madagascar,0
-Malaysia,2
-Mali,73
-Malta,0
-Mauritania,26
-Montenegro,0
-Mozambique,21
-Namibia,0
-Nepal,1
-Netherlands,18
-New Zealand,0
-Niger,30
-Nigeria,1342
-Norway,78
-Pakistan,521
-Paraguay,2
-Peru,3
-Philippines,56
-Poland,1
-Russia,364
-Rwanda,5
-Saudi Arabia,11
-Senegal,23
-Somalia,1510
-South Africa,16
-South Korea,0
-South Sudan,127
-Spain,9
-Sri Lanka,0
-St. Lucia,2
-Sudan,83
-Sweden,2
-Switzerland,0
-Syria,244
-Taiwan,2
-Tajikistan,11
-Tanzania,3
-Thailand,71
-Tunisia,1
-Turkey,146
-Uganda,126
-Ukraine,177
-United Kingdom,63
-United States,76
-Uzbekistan,31
-Venezuela,0
-West Bank and Gaza Strip,37
-Yemen,85
-Zimbabwe,1
+country_txt,year,nkill
+Afghanistan,2017,847
+Algeria,2017,4
+Australia,2017,1
+Bangladesh,2017,3
+Burkina Faso,2017,5
+Burundi,2017,1
+Cameroon,2017,31
+Canada,2017,0
+Central African Republic,2017,109
+Chile,2017,0
+China,2017,16
+Colombia,2017,4
+Democratic Republic of the Congo,2017,2
+Egypt,2017,414
+Ethiopia,2017,13
+Gabon,2017,0
+India,2017,123
+Iran,2017,17
+Iraq,2017,498
+Israel,2017,1
+Ivory Coast,2017,0
+Kenya,2017,13
+Kosovo,2017,0
+Lebanon,2017,0
+Libya,2017,14
+Macedonia,2017,0
+Mali,2017,2
+Mozambique,2017,16
+Nepal,2017,1
+Niger,2017,4
+Nigeria,2017,274
+Pakistan,2017,373
+Russia,2017,36
+Saudi Arabia,2017,3
+Somalia,2017,846
+Sri Lanka,2017,0
+Sudan,2017,0
+Syria,2017,92
+Taiwan,2017,0
+Tunisia,2017,1
+Turkey,2017,5
+Ukraine,2017,0
+United States,2017,76
+Venezuela,2017,0
+West Bank and Gaza Strip,2017,27
+Yemen,2017,18
