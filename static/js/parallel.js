@@ -55,7 +55,6 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
         }
     })
     .get(function (e, data) {
-        // console.log(data);
         
         //Filter rows
         let cf = crossfilter(data)
@@ -81,17 +80,30 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             // console.log(data)
         }
         
+        var dimensions = []
         
-        // sort by nkill descend
         if (data_to_read == 'terrorism.csv'){
+            
+            // sort by nkill descend
             data.sort(function (a, b) {
                 return b.Victims - a.Victims
             })
+            
+            dimensions = ["year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Attack type"]
+            
+        } else if ( data_to_read == 'cosine_similarity_data.csv' ) {
+            
+            dimensions = ["year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+            
         }
+        
+        
+        
         
         parcoords
         .data(data)
-        // .hideAxis(["atta cktype1"])  //CONTROLLARE
+        .detectDimensions()
+        .dimensions(dimensions)
         .render()
         .reorderable()
         .brushMode("1D-axes")  // enable brushing
@@ -108,7 +120,8 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 parcoords.highlight([d]) 
             },
             "mouseout": (d) => {
-                parcoords.unhighlight
+                parcoords.unhighlight([d])
+                
             },
             "click": function (d) { 
                 
@@ -135,6 +148,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             }); //on
             
             d3.selectAll(".col-0").remove() //rimuovo colonna 
+            d3.selectAll(".col-1").remove() //rimuovo colonna 
             
             //higlight on hover
             $('#grid .row').hover(function () {
@@ -160,8 +174,9 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                         $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
                     }
                 });
-
+                
                 d3.selectAll(".col-0").remove() //rimuovo colonna 
+                d3.selectAll(".col-1").remove() //rimuovo colonna 
                 
             });
             

@@ -11,6 +11,49 @@ function map(filter_year=0) {
     let scaleSize  = 0.8                      // https://stackoverflow.com/questions/48914465/dc-js-geochoroplethchart-width-smaller-than-500-crops-the-map
     let width      = 800
     let height     = 400
+
+    // var svg = d3.select("#world-chart")
+    // // Legend
+    // var g = svg.append("g")
+    //     .attr("class", "legendThreshold")
+    //     .attr("transform", "translate(20,20)");
+    // g.append("text")
+    //     .attr("class", "caption")
+    //     .attr("x", 0)
+    //     .attr("y", -6)
+    //     .text("Students");
+    // var labels = ['0', '> 1', '> 50', '> 100', '> 200', '> 300', '> 600'];
+    // var legend = d3.legendColor()
+    //     .labels(function (d) { return labels[d.i]; })
+    //     .shapePadding(4)
+    //     .scale(colorScale);
+    // svg.select(".legendThreshold")
+    //     .call(legend);
+
+    var colorScheme = d3v4.schemeReds[6];
+    colorScheme.unshift("#eee")
+    var colorScale = d3v4.scaleThreshold()
+        .domain([1, 6, 11, 26, 101, 1001])
+        .range(colorScheme);
+
+    //the iso code of the country is the key
+    // var group = dim.group().reduce(
+    //     function (p, v) {
+    //         p.total += +v.total;
+    //         if (p.iso == "") {
+    //             p.iso = v.country;
+    //         }
+    //         return p;
+    //     },
+    //     function (p, v) {
+    //         p.total -= +v.total;
+    //         return p;
+    //     },
+    //     function () {
+    //         return {
+    //             total: 0, iso: ""
+    //         };
+    //     });
     
     d3v4.csv("data/terrorism.csv", function (data4) {
         
@@ -47,9 +90,19 @@ function map(filter_year=0) {
             .dimension(countries)
             .group(country)
             // .colors(d3v4.scaleQuantize().range(d3v4.schemeReds[9]))
-            .colors(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
-            .colorDomain([0, 60])
-            .colorCalculator(function (d) { return d ? worldChart.colors()(d) : '#ccc'; })
+            // .colors(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
+            // .colorDomain([0, 60])
+            .colorAccessor(function (d) { //https://stackoverflow.com/questions/42519616/set-the-color-in-a-choropleth-based-on-the-key
+                // console.log(d);
+                if (!d)
+                    return null; // area without data
+                // // now d.value.iso contains the key, and d.value.total contains the value
+                // // return colorIndex(d.value.iso, d.value.total);// do magic
+                // return colorIndex(d.value.iso, d.value.total);// do magic
+                return colorScale(d)
+                })
+            .colorCalculator(function (d) { return d ? worldChart.colors()(d) : '#fff'; })
+
             .overlayGeoJson(statesJson.features, "name", function (d) {
                 return d.name;
             })
@@ -61,6 +114,7 @@ function map(filter_year=0) {
                         selectedCountries = worldChart.filters();
                         //controllo se nazione selezionata presente in database
                         selectedCountries.forEach(function (elem) {
+                            
                             if (array.indexOf(elem) == -1) {
                                 selectedCountries.splice(selectedCountries.indexOf(elem), 1)
                                 
@@ -75,6 +129,7 @@ function map(filter_year=0) {
                                 // render('');
                                 
                             }
+
                         })
                         
                         // console.log(selectedCountries);

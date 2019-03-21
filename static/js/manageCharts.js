@@ -5,7 +5,14 @@ function updateCharts(csv = 'terrorism.csv'){
     updateChartsAux(csv)
 
     //update map
-    map(selectedSliderYear)
+    // map(selectedSliderYear)
+
+    //update map
+    $.getJSON(
+        '/map',
+        { computeMap: selectedSliderYear },
+        () => map2()
+    )
 
 }
 
@@ -66,7 +73,11 @@ function resetCharts() {
     parallel(data_to_read = 'terrorism.csv', filter_year = selectedSliderYear, country = [])
 
     //reset map
-    map(filter_year = selectedSliderYear)
-
+    // map(filter_year = selectedSliderYear)
+    $.getJSON(
+        '/map',
+        { computeMap: selectedSliderYear },
+        () => map2()
+    )
 
 }

@@ -87,7 +87,7 @@ a {
 
 .three-column {
 	float: left;
-	padding: 10px;
+	/* padding: 10px; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -103,6 +103,18 @@ a {
 
 .right {
 	width: 30%;
+}
+
+.left-head {
+	width: 25%;
+}
+
+.middle-head {
+	width: 50%;
+}
+
+.right-head {
+	width: 25%;
 }
 
 /* Clear floats after the columns */

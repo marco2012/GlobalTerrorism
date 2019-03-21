@@ -18,14 +18,14 @@ function barchart(){
         data.forEach(function (d, i) {
             inputData.push({
                 label: d.imonth + ',' + d.country_txt + ',' + d.year,
-                "Chemical"     : d.weaptype1 == 2 ? parseInt(d.nkill) : 0,
-                "Radiological" : d.weaptype1 == 3 ? parseInt(d.nkill) : 0,
                 "Firearms"     : d.weaptype1 == 5 ? parseInt(d.nkill) : 0,
+                "Radiological" : d.weaptype1 == 3 ? parseInt(d.nkill) : 0,
                 "Explosives"   : d.weaptype1 == 6 ? parseInt(d.nkill) : 0,
                 "Fake Weapons" : d.weaptype1 == 7 ? parseInt(d.nkill) : 0,
                 "Incendiary"   : d.weaptype1 == 8 ? parseInt(d.nkill) : 0,
-                "Melee"        : d.weaptype1 == 9 ? parseInt(d.nkill) : 0,
+                "Chemical"     : d.weaptype1 == 2 ? parseInt(d.nkill) : 0,
                 "Vehicle bombs": d.weaptype1 == 10 ? parseInt(d.nkill): 0,
+                "Melee"        : d.weaptype1 == 9 ? parseInt(d.nkill) : 0,
                 "Other"        : d.weaptype1 == 12 ? parseInt(d.nkill): 0,
                 "Unknown"      : d.weaptype1 == 13 ? parseInt(d.nkill): 0
             })
@@ -39,7 +39,7 @@ function renderStackedBarChart(inputData, ) {
     data = inputData
 
     let dom_element_to_append_to = "#chart"
-    let colorScheme = ['#67001f','#b2182b','#d6604d','#f4a582','#fddbc7','#f7f7f7','#d1e5f0','#92c5de','#4393c3','#2166ac','#053061']
+    let colorScheme = ['#f7fcf0','#e0f3db','#ccebc5','#a8ddb5','#7bccc4','#4eb3d3','#02818a','#2b8cbe','#0868ac','#084081'].reverse()
     // remove graph
     var svg = d3.select("#chart")
     svg.selectAll("canvas").remove()

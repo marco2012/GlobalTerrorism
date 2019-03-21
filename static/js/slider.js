@@ -41,7 +41,7 @@ function slider(initialValue=0) {
         });
 
     d3.select("#swift2Slider").call(slider)
-    console.log("Slider = " + selectedSliderYear)
+    // console.log("Slider = " + selectedSliderYear)
     
 }
 

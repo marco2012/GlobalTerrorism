@@ -12,6 +12,9 @@ DB_PATH = "static/data/terrorism.csv"
 
 def action(year=0, nation=[]):
 
+    if year == 1991:
+        return 0
+
     df = pd.read_csv(DB_PATH)
     data = None
 

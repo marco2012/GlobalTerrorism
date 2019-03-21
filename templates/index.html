@@ -40,14 +40,17 @@
 		</div>
 	</div>
 
+	<!-- lascia spazio iniziale -->
+	<div class="flexbox" style="height:10px;"></div>
+
 	<div class="three-row">
-		<div class="three-column left">
+		<div class="three-column left-head">
 			<h1>Terrorism attacks</h1> 
 		</div>
-		<div class="three-column middle" >
+		<div class="three-column middle-head" >
 			<div id="swift2Slider" class="coralLeft flexcontainer"> </div>
 		</div>
-		<div class="three-column right actionButtons" >
+		<div class="three-column right-head actionButtons" >
 			<button class="w3-btn w3-round-xxlarge w3-red" onclick="updateCharts()">Update</button> &nbsp; &nbsp;
 			<button class="w3-btn w3-round-xxlarge w3-red" onclick="resetCharts()">Reset</button> &nbsp;
 			<!-- <button class="w3-btn w3-round-xxlarge w3-red" onclick="document.getElementById('id03').style.display='block'">Analytics</button> -->
@@ -59,13 +62,12 @@
 		<h4>Analytics</h4>
 		<p>Analytics will appear here</p>
 	</div> -->
-
-	<svg width="960" height="600"></svg>
-	<div id="world-chart-2"></div></br>
+			<!-- <svg width="960" height="600"></svg> -->
 
 	<div class="three-row">
 		<div class="three-column left">
-			<div id="world-chart" class="flexcontainer"></div></br>
+			<!-- <div id="world-chart" class="flexcontainer"></div></br> -->
+			<svg width="960" height="400"></svg>
 		</div>
 		<div class="three-column middle">
 			<div id="scatter"></div>
@@ -86,7 +88,8 @@
 
 
 	<script>slider(selectedSliderYear)</script>
-	<script>map(selectedSliderYear)</script>
+	<script>map()</script>
+	<script>map2()</script>
 	<script>scatter()</script>
 	<script>barchart()</script>
 	<script>parallel()</script>

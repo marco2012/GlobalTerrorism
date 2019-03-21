@@ -1,21 +1,21 @@
 
 // http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e
 
-var margin = { top: 30, right: 200, bottom: 20, left: 30 },
-outerWidth = 750, //aumentare per mostrare legenda
-outerHeight = 450,
+var margin = { top: 30, right: 300, bottom: 20, left: 30 },
+outerWidth = 520, //aumentare per mostrare legenda
+outerHeight = 400,
 // width = outerWidth - margin.left - margin.right,
 // height = outerHeight - margin.top - margin.bottom;
 width = 350,
 height = 330,
 legend_x_axis_text_position = margin.bottom + 10,
-legend_y_axis_text_position = -margin.left - 4
+legend_y_axis_text_position = -margin.left - 0
 
 var x = d3.scale.linear().range([0, width]).nice();
 var y = d3.scale.linear().range([height, 0]).nice();
 
-var xCat = "new_x", 
-yCat = "new_y", 
+var xCat = "comp_x", 
+yCat = "comp_y", 
 rCat = "region",
 colorCat = "region";
 
@@ -47,8 +47,8 @@ function scatter() {
     d3.csv("data/pca.csv", function (data) {
         
         data.forEach(function (d) {
-            d.new_x = +d.x;
-            d.new_y = +d.y;
+            d.comp_x = +d.x;
+            d.comp_y = +d.y;
             d.region = +d.region;
         });
         
@@ -73,7 +73,11 @@ function scatter() {
         .tickSize(-width);
         
         // var color = d3.scale.category10();
-        var color = d3.scale.ordinal().range(['#40004b','#762a83','#9970ab','#c2a5cf','#e7d4e8','#f7f7f7','#d9f0d3','#a6dba0','#5aae61','#1b7837','#00441b'])
+        // var color = d3.scale.ordinal().range(['#40004b','#762a83','#9970ab','#c2a5cf','#e7d4e8','#f7f7f7','#d9f0d3','#a6dba0','#7fcdbb','#5aae61','#1b7837','#00441b'])
+        var color = d3.scale.ordinal().range(
+            // ['#40004b', '#762a83', '#9970ab', '#c2a5cf', '#e7d4e8', '#f7f7f7', '#d9f0d3', '#a6dba0', '#5aae61', '#1b7837', '#00441b']
+            ['#8e0152','#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#80cdc1','#b8e186','#7fbc41','#4d9221','#276419']
+            )
         
         var tip = d3.tip()
         .attr("class", "d3-tip")
