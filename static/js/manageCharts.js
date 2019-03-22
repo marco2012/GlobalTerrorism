@@ -21,7 +21,11 @@ function updateChartsAux(csv = 'terrorism.csv'){
     console.log("Countries = " + selectedCountries)
 
     //update slider
-    slider(selectedSliderYear)
+    if (selectedSliderYear == 0){
+        slider(2017) 
+        $(".d3slider-rect-value ").css("fill", "#006EE3"); //remove slider fill color
+    } 
+    else slider(selectedSliderYear)
 
     //update PCA
     $.getJSON(

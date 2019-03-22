@@ -218,8 +218,8 @@ function renderStackedBarChart(inputData, ) {
                     .text(d.name +": "+ delta.toFixed(0)); */
                     
                 })
-                .on("mouseout", function () {
-                    tip.hide();
+                .on("mouseout", function (d) {
+                    tip.hide(d);
                     /*main.select(".tooltip").remove();*/
                     // d3.select(this).attr("stroke", "white").attr("stroke-width", 0.2);
                     d3.select(this).style("fill", function (d) { return color(d.name); })
@@ -230,6 +230,7 @@ function renderStackedBarChart(inputData, ) {
                     if (selectedSliderYear == 0){
                         selectedSliderYear = d.myYear
                         updateCharts()
+                        tip.hide(d);
                     }
                     
                 })

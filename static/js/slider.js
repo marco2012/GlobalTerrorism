@@ -38,7 +38,7 @@ function slider(initialValue=2017) {
         .stepValues(stepValues)
         .callback(function (evt) {
             selectedSliderYear = slider.value()
-            $(".d3slider-rect-value ").css("fill", ""); //remove slider fill color
+            $(".d3slider-rect-value").css("fill", ""); //remove slider fill color
         });
 
     d3.select("#swift2Slider").call(slider)

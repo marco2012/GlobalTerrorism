@@ -48,6 +48,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             Victims: d.nkill,
             Wound: d.nwound,
             Suicide: d.suicide == 0 ? "No" : "Yes",
+            Duration: d.extended == 0 ? "<24h" : ">24h",
             Country: d.country_txt,
             Region: d.region_txt,
             "Attack type": d.attacktype1_txt,
@@ -89,10 +90,10 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 return b.Victims - a.Victims
             })
             
-            dimensions = ["Year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Attack type"]
+            dimensions = ["Year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Duration" , "Attack type"]
             
         } else if ( data_to_read == 'cosine_similarity_data.csv' ) {
-            if (filter_year==0) dimensions = ["Year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+            if (filter_year == 0) dimensions = ["Year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
             else dimensions = ["Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
              
         }

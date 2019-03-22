@@ -1,6 +1,6 @@
 var selectedCountries = [];    //selected countries
 
-var svg = d3v4.select("svg"),
+var svg = d3v4.select("#map-svg"),
 map_width = +svg.attr("width"),
 map_height = +svg.attr("height");
 
@@ -8,10 +8,13 @@ function map2(filter_year = 0){
     
     // d3.selectAll("svg.g.legendThreshold").remove()
     // remove map
-    // var svg = d3v4.select("#world-chart-2")
-    // svg.select("countries").remove()
-    // svg.select("legendThreshold").remove()
+    var svg = d3v4.select("#map-svg")
+    // svg.select(".countries").remove()
+    // svg.select(".legendThreshold").remove()
     // svg.selectAll("svg").remove()
+    console.log(svg.selectAll('*').size())
+    svg.selectAll("*").remove()
+    console.log(svg.selectAll('*').size())
     
     
     // var svg = d3v4.select("#world-chart-2")
@@ -61,13 +64,15 @@ function map2(filter_year = 0){
     .style('fill', 'white')
     
 
-    var labels = ['0', '> 1', '> 50', '> 200', '> 400', '> 600', '> 1000'];
+    var labels = ['0', '> 1', '> 50', '> 200', '> 400', '> 1000'];
     var legend = d3.legendColor()
-    .labels(function (d) {
-        return labels[d.i];
-    })
+    // .labels(function (d) {
+    //     return labels[d.i];
+    // })
+    .labels(labels)
     .shapePadding(4)
     .scale(colorScale);
+
     svg.select(".legendThreshold")
     .call(legend);
 
@@ -121,6 +126,7 @@ function map2(filter_year = 0){
                 $('#dialog_content_span').html("<br/>No data for selected country. Please choose another one.<br/><br/>")
             } else {
                 selectedCountries.push(d.name)
+                // if (selectedSliderYear == 0) selectedSliderYear = 0
                 updateChartsAux()
             }
 
