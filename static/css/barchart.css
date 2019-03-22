@@ -10,12 +10,21 @@
 }
 .axis path,
 .axis line {
-  fill: none;
   shape-rendering: crispEdges;
+  /* stroke: white; */
+
 }
 
 .x.axis path {
   display: none;
+  /* stroke: white; */
+}
+
+.x.axis.barchart{
+  stroke: white;
+}
+.y.axis.barchart{
+  stroke: white;
 }
 
 .tooltip{

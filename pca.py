@@ -3,10 +3,6 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
-# from matplotlib import pyplot as plt
-# from sklearn import manifold
-# import numpy as np
-# from scipy.spatial import distance_matrix
 
 DB_PATH = "static/data/terrorism.csv"
 
@@ -41,7 +37,7 @@ def action(year=0, nation=[]):
     principalComponents = pca.fit_transform(x)
     principalDf = pd.DataFrame(
         data=principalComponents, columns=['x', 'y'])
-    finalDf = pd.concat([principalDf, df[['region', 'nkill','success','attacktype1_txt', 'country_txt', "summary"]]], axis=1)
+    finalDf = pd.concat([principalDf, df[['region', 'nkill', 'success', 'attacktype1_txt', 'country_txt', "summary"]]], axis=1)
     finalDf.to_csv("static/data/pca.csv", sep=',', index=False)
     
     return 0;

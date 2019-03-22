@@ -29,7 +29,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
         if (data_to_read =='cosine_similarity_data.csv'){
             return { //filter columns
                 attacktype1: d.attacktype1,
-                year: d.year,
+                Year: d.year,
                 Attackers: d.nperps,
                 Victims: d.nkill,
                 Wound: d.nwound,
@@ -43,7 +43,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
         } else return { //filter columns
             eventid: d.eventid,
             attacktype1: d.attacktype1,
-            year: d.year,
+            Year: d.year,
             Attackers: d.nperps,
             Victims: d.nkill,
             Wound: d.nwound,
@@ -61,7 +61,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
         
         // filter years
         if (filter_year != 0){
-            let byYear = cf.dimension(d => d.year)
+            let byYear = cf.dimension(d => d.Year)
             let f      = byYear.filter(filter_year)
             data       = f.top(Infinity)
         }
@@ -89,15 +89,13 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 return b.Victims - a.Victims
             })
             
-            dimensions = ["year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Attack type"]
+            dimensions = ["Year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Attack type"]
             
         } else if ( data_to_read == 'cosine_similarity_data.csv' ) {
-            
-            dimensions = ["year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
-            
+            if (filter_year==0) dimensions = ["Year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+            else dimensions = ["Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+             
         }
-        
-        
         
         
         parcoords
@@ -121,7 +119,6 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             },
             "mouseout": (d) => {
                 parcoords.unhighlight([d])
-                
             },
             "click": function (d) { 
                 
@@ -129,7 +126,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 // $('#dialog_title_span').html('<h2>Attack summary</h2>')
                 // $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
                 
-                selectedSliderYear = parseInt(d.year)
+                selectedSliderYear = parseInt(d.Year)
                 let v = [
                     parseInt(d.eventid),
                     parseInt(d.attacktype1), 
@@ -147,15 +144,17 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 } //click
             }); //on
             
+            // if (data_to_read = 'terrorism.csv') {
             d3.selectAll(".col-0").remove() //rimuovo colonna 
             d3.selectAll(".col-1").remove() //rimuovo colonna 
-            
+            // }
+
             //higlight on hover
             $('#grid .row').hover(function () {
-                $(this).css('background-color', 'grey')
+                $(this).css('background-color', '#466A93')
             }, function () {
-                $('.row:odd').css('background', 'rgba(38,38,38,0.8)')
-                $('.row:even').css('background-color', 'black')
+                    $('.row:even').css('background', '#24303F')
+                    $('.row:odd').css('background-color', '#1A222C')
             });
             
             // update data table on brush event

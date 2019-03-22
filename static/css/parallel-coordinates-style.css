@@ -21,9 +21,9 @@
   width: auto;
   flex-wrap: wrap; /*disable flex for table*/
 }
-.row:nth-child(odd) { 
+.row:nth-child(even) { 
   /* background: rgba(0,0,0,0.05);  */
-  background: rgba(38,38,38,0.8); 
+  background: #24303F; 
 }
 .header { font-weight: bold; }
 .cell { 

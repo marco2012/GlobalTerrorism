@@ -1,21 +1,8 @@
 var selectedCountries = [];    //selected countries
 
-let scaleSize = 0.85
-let width_negative_offset = 46
-let height_offset = 50
-
 var svg = d3v4.select("svg"),
 map_width = +svg.attr("width"),
 map_height = +svg.attr("height");
-
-// var div = d3.select("svg").append("div")
-// .attr("class", "tooltip")
-// .style("opacity", 0);
-
-// var tooltip = d3.select("svg").append("div")
-// .attr("class", "tooltip")
-// .style("opacity", 0);
-
 
 function map2(filter_year = 0){
     
@@ -34,6 +21,17 @@ function map2(filter_year = 0){
     //     .append("g")
     //     .attr("transform", "translate(0,0)")
     
+    // d3.select("g")
+    //     .selectAll("path")
+    //     .remove();
+
+    //sizes
+    let scaleSize = 0.88
+    let width_negative_offset = 130
+    let height_offset = 50
+    let legend_translate_x = 620
+    let legend_translate_y = 20
+
     // Map and projection
     var path = d3v4.geoPath();
     var projection = d3v4.geoNaturalEarth1()
@@ -53,7 +51,8 @@ function map2(filter_year = 0){
     // Legend
     var g = svg.append("g")
     .attr("class", "legendThreshold")
-    .attr("transform", "translate(20,20)");
+        .attr("transform", "translate(" + legend_translate_x + "," + legend_translate_y+")")
+    
     g.append("text")
     .attr("class", "caption")
     .attr("x", 0)
@@ -61,7 +60,8 @@ function map2(filter_year = 0){
     .text("Victims")
     .style('fill', 'white')
     
-    var labels = ['0', '>1', '> 50', '> 200', '> 400', '> 600', '> 1000'];
+
+    var labels = ['0', '> 1', '> 50', '> 200', '> 400', '> 600', '> 1000'];
     var legend = d3.legendColor()
     .labels(function (d) {
         return labels[d.i];
@@ -70,7 +70,13 @@ function map2(filter_year = 0){
     .scale(colorScale);
     svg.select(".legendThreshold")
     .call(legend);
+
+    //tooltip
+    var tooltip = d3.select("svg").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
     
+
     var availableCountries = []
     
     // Load external data and boot
@@ -120,33 +126,19 @@ function map2(filter_year = 0){
 
         })
         .on("mouseover", function(d) {
-            
-            // d3.select(this).transition().duration(100).style("opacity", 1);
-            // div.transition().duration(100).style("opacity", 1)
-            // // div.text(d.name + ": " + d.nkill)
-            //     // .style("left", (d3v4.event.pageX) + "px")
-            //     // .style("top", (d3v4.event.pageY + 100) + "px")
-            //     // .style('position', 'absolute')
-            //     // .style('z-index', 1001)
-            //     // .style('border-radius', '2px')
-            //     // .style('color', '#0099FF')
-            //     // .style('padding', '10px 15px')
-            //     // .style('background', 'rgba(255, 255, 255, 0.7)')
-            // tooltip.transition()
-            //     .duration(250)
-            //     .style("opacity", 1);
-            // tooltip.html(
-            //     "<p><strong>" + d.nkill + "</strong></p>" +
-            //     "<table><tbody><tr><td class='wide'>Smoking rate in 1996:</td><td>" + d.nkill + "</td></tr>" 
-            // )
+            // console.log(d.name)            
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip.html(d.name)
+                .style("left", (d3v4.event.pageX) + "px")
+                .style("top", (d3v4.event.pageY - 28) + "px");  
             
         })
         .on("mouseout", function() {
-            // d3.select(this)
-            // .transition().duration(300)
-            // .style("opacity", 0.8);
-            // div.transition().duration(300)
-            // .style("opacity", 0);
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0); 
         })
         
         //scale
@@ -154,39 +146,6 @@ function map2(filter_year = 0){
             d3.select(this).attr('transform', 'scale(' + scaleSize + ')')
         })
         
-        
     }
     
-}
-
-function getAvailableCountries(data, filter_year){
-    
-    
-    
-    var array = []
-    var country_school = crossfilter(data);
-    
-    var countries = country_school.dimension(function (d) {
-        return d.country_txt;
-    })
-    
-    var country = countries.group();
-    var nations = country.all()
-    
-    if (filter_year == 0) {
-        nations.forEach(function (entry) {
-            array.push(entry.key)
-        })
-    } else {
-        let byYear = country_school.dimension(d => d.year)
-        if (filter_year != 0) {
-            let f = byYear.filter(filter_year)
-            let filtered = f.top(Infinity)
-            filtered.forEach(function (d) {
-                array.push(d.country_txt)
-            })
-        }
-    }
-    
-    return array
 }

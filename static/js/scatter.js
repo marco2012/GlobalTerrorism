@@ -6,19 +6,6 @@ $("#pca-select").on('change', function () {
     scatter()
 });
 
-var margin = { top: 30, right: 300, bottom: 20, left: 30 },
-outerWidth = 520, //aumentare per mostrare legenda
-outerHeight = 400,
-// width = outerWidth - margin.left - margin.right,
-// height = outerHeight - margin.top - margin.bottom;
-width = 350,
-height = 330,
-legend_x_axis_text_position = margin.bottom + 10,
-legend_y_axis_text_position = -margin.left - 0
-
-var x = d3.scale.linear().range([0, width]).nice();
-var y = d3.scale.linear().range([height, 0]).nice();
-
 // var region_to_txt = { 
 //     1: "North America", 
 //     2: "Central America", //2: "Central America & Caribbean",
@@ -35,7 +22,27 @@ var y = d3.scale.linear().range([height, 0]).nice();
 // };
 
 function scatter() {
+    
+    var margin = { top: 30, right: 300, bottom: 20, left: 30 },
+    outerWidth = 520, //aumentare per mostrare legenda
+    outerHeight = 400,
+    // width = outerWidth - margin.left - margin.right,
+    // height = outerHeight - margin.top - margin.bottom;
+    width = 350,
+    height = 330,
+    legend_x_axis_text_position = margin.bottom + 10,
+    legend_y_axis_text_position = -margin.left - 0,
+    scatter_start_x_axis = 0,
+    scatter_start_y_axis = 0
 
+    if (selectedSliderYear==0){
+        scatter_start_x_axis = -2
+        scatter_start_y_axis = -2
+    }
+    
+    var x = d3.scale.linear().range([0, width]).nice();
+    var y = d3.scale.linear().range([height, 0]).nice();
+    
     let xCat = "comp_x"
     let yCat = "comp_y"
     let rCat = pca_data
@@ -60,10 +67,10 @@ function scatter() {
         
         var xMax = d3.max(data, function (d) { return d[xCat]; }) * 1.05,
         xMin = d3.min(data, function (d) { return d[xCat]; }),
-        xMin = xMin > 0 ? 0 : xMin,
+            xMin = xMin > 0 ? 0 : xMin + scatter_start_x_axis,
         yMax = d3.max(data, function (d) { return d[yCat]; }) * 1.05,
         yMin = d3.min(data, function (d) { return d[yCat]; }),
-        yMin = yMin > 0 ? 0 : yMin;
+            yMin = yMin > 0 ? 0 : yMin + scatter_start_y_axis;
         
         x.domain([xMin, xMax]);
         y.domain([yMin, yMax]);
@@ -78,149 +85,180 @@ function scatter() {
         .orient("left")
         .tickSize(-width);
         
-        // var color = d3.scale.category10();
-        // var color = d3.scale.ordinal().range(['#40004b','#762a83','#9970ab','#c2a5cf','#e7d4e8','#f7f7f7','#d9f0d3','#a6dba0','#7fcdbb','#5aae61','#1b7837','#00441b'])
         var color = d3.scale.ordinal().range(
-            // ['#40004b', '#762a83', '#9970ab', '#c2a5cf', '#e7d4e8', '#f7f7f7', '#d9f0d3', '#a6dba0', '#5aae61', '#1b7837', '#00441b']
             ['#8e0152','#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#80cdc1','#b8e186','#7fbc41','#4d9221','#276419']
             )
-        
-        var tip = d3.tip()
-        .attr("class", "d3-tip")
-        .offset([-10, 0])
-        .html(function (d) {
-            // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
-            return "Country: " + d.country_txt + "<br>" +  "Attack: " + d.attacktype1_txt 
-        });
-
-        
-        var zoomBeh = d3.behavior.zoom()
-        .x(x)
-        .y(y)
-        .scaleExtent([0, 500])
-        .on("zoom", zoom);
-        
-        var svg = d3.select("#scatter")
-        .append("svg")
-        .attr("width", outerWidth)
-        .attr("height", outerHeight)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .call(zoomBeh);
-        
-        svg.call(tip);
-        
-        svg.append("rect")
-        .attr("width", width)
-        .attr("height", height);
-        
-        svg.append("g")
-        .classed("x axis", true)
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .append("text")
-        .classed("label", true)
-        .attr("x", width)
+            
+            var tip = d3.tip()
+            .attr("class", "d3-tip")
+            .offset([-10, 0])
+            .html(function (d) {
+                // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+                return "Country: " + d.country_txt + "<br>" +  "Attack: " + d.attacktype1_txt 
+            });
+            
+            
+            var zoomBeh = d3.behavior.zoom()
+            .x(x)
+            .y(y)
+            .scaleExtent([0, 500])
+            .on("zoom", zoom);
+            
+            //SVG
+            var svg = d3.select("#scatter")
+            .append("svg")
+            .attr("width", outerWidth)
+            .attr("height", outerHeight)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .call(zoomBeh);
+            
+            svg.call(tip);
+            
+            svg.append("rect")
+            .attr("width", width)
+            .attr("height", height);
+            
+            svg.append("g")
+            .classed("x axis", true)
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .append("text")
+            .classed("label", true)
+            .attr("x", width)
             .attr("y", legend_x_axis_text_position)
-        .style("text-anchor", "end")
-        .text(xCat);
-        
-        svg.append("g")
-        .classed("y axis", true)
-        .call(yAxis)
-        .append("text")
-        .classed("label", true)
-        .attr("transform", "rotate(-90)")
-        .attr("y", legend_y_axis_text_position)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text(yCat);
-        
-        var objects = svg.append("svg")
-        .classed("objects", true)
-        .attr("width", width)
-        .attr("height", height);
-        
-        objects.append("svg:line")
-        .classed("axisLine hAxisLine", true)
-        .attr("x1", 0)
-        .attr("y1", 0)
-        .attr("x2", width)
-        .attr("y2", 0)
-        .attr("transform", "translate(0," + height + ")");
-        
-        objects.append("svg:line")
-        .classed("axisLine vAxisLine", true)
-        .attr("x1", 0)
-        .attr("y1", 0)
-        .attr("x2", 0)
-        .attr("y2", height);
-        
-        
-        objects.selectAll(".dot")
-        .data(data)
-        .enter().append("circle")
-        .classed("dot", true)
-        .attr("r", function (d) { return 6 * Math.sqrt(d[rCat] / Math.PI); })   //bugga
-        .attr("transform", transform)
-        .style("fill", function (d) { return color(d[colorCat]); })
-        .on("mouseover", tip.show)
-        .on("mouseout", tip.hide)
-        .on("click", function (d) {
-            // alert(JSON.stringify(d)) 
-            // summary
-            document.getElementById('id01').style.display = 'block'
-            $('#dialog_title_span').html('<h2>Attack description</h2>')
-            $('#dialog_content_span').html("<br/><h4>" + d.summary + "</h4><br/>")
-        })
-        
-        var legend = svg.selectAll(".legend")
-        .data(color.domain())
-        .enter().append("g")
-        .classed("legend", true)
-        .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
-        
-        legend.append("circle")
-        .attr("r", 3.5)
-        .attr("cx", width + 20)
-        .attr("fill", color);
-        
-        legend.append("text")
-        .attr("x", width + 26)
-        .attr("dy", ".35em")
-        .text(function (d) {
-            // return region_to_txt[d] //converte numero regione in stringa
-            return d;
-           
-        })
-        .style("font-size", "12px")
-        
-        d3.select("input").on("click", change);
-        
-        function change() {
-            xCat = "";
-            xMax = d3.max(data, function (d) { return d[xCat]; });
-            xMin = d3.min(data, function (d) { return d[xCat]; });
+            .style("text-anchor", "end")
+            .text(xCat);
             
-            zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
+            svg.append("g")
+            .classed("y axis", true)
+            .call(yAxis)
+            .append("text")
+            .classed("label", true)
+            .attr("transform", "rotate(-90)")
+            .attr("y", legend_y_axis_text_position)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text(yCat);
             
-            var svg = d3.select("#scatter").transition();
+            var objects = svg.append("svg")
+            .classed("objects", true)
+            .attr("width", width)
+            .attr("height", height);
             
-            svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xCat);
+            objects.append("svg:line")
+            .classed("axisLine hAxisLine", true)
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", width)
+            .attr("y2", 0)
+            .attr("transform", "translate(0," + height + ")");
             
-            objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
-        }
-        
-        function zoom() {
-            svg.select(".x.axis").call(xAxis);
-            svg.select(".y.axis").call(yAxis);
+            objects.append("svg:line")
+            .classed("axisLine vAxisLine", true)
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", 0)
+            .attr("y2", height);
             
-            svg.selectAll(".dot")
-            .attr("transform", transform);
-        }
-        
-        function transform(d) {
-            return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
-        }
-    });
-}
+            
+            objects.selectAll(".dot")
+            .data(data)
+            .enter().append("circle")
+            .classed("dot", true)
+            .attr("r", function (d) { return 6 * Math.sqrt(d[rCat] / Math.PI); })   //bugga
+            .attr("transform", transform)
+            .style("fill", function (d) { return color(d[colorCat]); })
+            .on("mouseover", tip.show)
+            .on("mouseout", tip.hide)
+            .on("click", function (d) {
+                // alert(JSON.stringify(d)) 
+                // summary
+                document.getElementById('id01').style.display = 'block'
+                $('#dialog_title_span').html('<h2>Attack description</h2>')
+                $('#dialog_content_span').html("<br/><h4>" + d.summary + "</h4><br/>")
+            })
+            
+            var legend = svg.selectAll(".legend")
+            .data(color.domain())
+            .enter().append("g")
+            .classed("legend", true)
+            .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+            
+            legend.append("circle")
+            .attr("r", 3.5)
+            .attr("cx", width + 20)
+            .attr("fill", color);
+            
+            legend.append("text")
+            .attr("x", width + 26)
+            .attr("dy", ".35em")
+            .text(function (d) {
+                // return region_to_txt[d] //converte numero regione in stringa
+                return d;
+                
+            })
+            .style("font-size", "12px")
+            
+            // d3.select("input").on("click", change);
+            
+            function update() {
+                
+                d3.csv("data/pca.csv", function (data) {
+                    
+                    // DATA JOIN
+                    // Join new data with old elements, if any.
+                    var dot = g.selectAll("dot")
+                    .data(data);
+                    
+                    // UPDATE
+                    // Update old elements as needed.
+                    dot.attr("class", "update");
+                    
+                    // ENTER
+                    // Create new elements as needed.
+                    //
+                    // ENTER + UPDATE
+                    // After merging the entered elements with the update selection,
+                    // apply operations to both.
+                    dot.enter().append("dot")
+                    .attr("class", "enter")
+                    .attr("x", function (d, i) { return i * 32; })
+                    .attr("dy", ".35em")
+                    .merge(dot)
+                    .dot(function (d) { return d; });
+                    
+                    // EXIT
+                    // Remove old elements as needed.
+                    dot.exit().remove();
+                    
+                })
+            }
+            
+            function change() {
+                xCat = "comp_x";
+                xMax = d3.max(data, function (d) { return d[xCat]; });
+                xMin = d3.min(data, function (d) { return d[xCat]; });
+                
+                zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
+                
+                var svg = d3.select("#scatter").transition();
+                
+                svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xCat);
+                
+                objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
+            }
+            
+            function zoom() {
+                svg.select(".x.axis").call(xAxis);
+                svg.select(".y.axis").call(yAxis);
+                
+                svg.selectAll(".dot")
+                .attr("transform", transform);
+            }
+            
+            function transform(d) {
+                return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
+            }
+        });
+    }
