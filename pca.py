@@ -8,7 +8,7 @@ DB_PATH = "static/data/terrorism.csv"
 
 def action(year=0, nation=[]):
 
-    if year == 1991:
+    if year == 1991 or year==1994:
         return 0
 
     df = pd.read_csv(DB_PATH)
@@ -37,7 +37,8 @@ def action(year=0, nation=[]):
     principalComponents = pca.fit_transform(x)
     principalDf = pd.DataFrame(
         data=principalComponents, columns=['x', 'y'])
-    finalDf = pd.concat([principalDf, df[['region', 'nkill', 'success', 'attacktype1_txt', 'country_txt', "summary"]]], axis=1)
+    finalDf = pd.concat([principalDf, df[['region', 'nkill', 'success',
+                                          'attacktype1_txt', 'country_txt', 'city', "summary"]]], axis=1)
     finalDf.to_csv("static/data/pca.csv", sep=',', index=False)
     
     return 0;

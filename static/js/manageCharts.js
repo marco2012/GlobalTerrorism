@@ -5,13 +5,10 @@ function updateCharts(csv = 'terrorism.csv'){
     updateChartsAux(csv)
 
     //update map
-    // map(selectedSliderYear)
-
-    //update map
     $.getJSON(
         '/map',
         { computeMap: selectedSliderYear },
-        () => map2()
+        () => updateMap()
     )
 
 }
@@ -20,12 +17,7 @@ function updateChartsAux(csv = 'terrorism.csv'){
     console.log("Slider = " + selectedSliderYear)
     console.log("Countries = " + selectedCountries)
 
-    //update slider
-    if (selectedSliderYear == 0){
-        slider(2017) 
-        $(".d3slider-rect-value ").css("fill", "#006EE3"); //remove slider fill color
-    } 
-    else slider(selectedSliderYear)
+    updateSlider(selectedSliderYear)
 
     //update PCA
     $.getJSON(
@@ -52,12 +44,9 @@ function updateChartsAux(csv = 'terrorism.csv'){
         
 function resetCharts() {
     
-    //reset slider
-    selectedSliderYear = 0
-    console.log("Slider = " + selectedSliderYear)
-    slider(2017)
-    $(".d3slider-rect-value ").css("fill", "#006EE3");
+    $('#all_years_btn').prop('disabled', true);
 
+    updateSlider(0)
 
     //reset PCA
     $.getJSON(
@@ -66,8 +55,7 @@ function resetCharts() {
         () => scatter()
     )
 
-    // //reset barchart
-    //update barchart
+    // reset barchart
     let param = { computeBarchart: selectedSliderYear + ";" + JSON.stringify([]) }
     $.getJSON(
         '/analytic',
@@ -79,11 +67,10 @@ function resetCharts() {
     parallel(data_to_read = 'terrorism.csv', filter_year = selectedSliderYear, country = [])
 
     //reset map
-    // map(filter_year = selectedSliderYear)
     $.getJSON(
         '/map',
         { computeMap: selectedSliderYear },
-        () => map2()
+        () => updateMap()
     )
 
 }

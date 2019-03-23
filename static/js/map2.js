@@ -1,8 +1,8 @@
 var selectedCountries = [];    //selected countries
 
-var svg = d3v4.select("#map-svg"),
-map_width = +svg.attr("width"),
-map_height = +svg.attr("height");
+// var svg = d3v4.select("#map-svg"),
+// map_width = +svg.attr("width"),
+// map_height = +svg.attr("height");
 
 function map2(filter_year = 0){
     
@@ -12,9 +12,9 @@ function map2(filter_year = 0){
     // svg.select(".countries").remove()
     // svg.select(".legendThreshold").remove()
     // svg.selectAll("svg").remove()
-    console.log(svg.selectAll('*').size())
+    // console.log(svg.selectAll('*').size())
     svg.selectAll("*").remove()
-    console.log(svg.selectAll('*').size())
+    // console.log(svg.selectAll('*').size())
     
     
     // var svg = d3v4.select("#world-chart-2")

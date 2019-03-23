@@ -3,7 +3,7 @@
 import pandas as pd
 
 attacks = pd.read_csv("static/data/terrorism.csv")
-countries = pd.read_csv("static/data/country_codes.csv")
+countries = pd.read_csv("static/data/countries_codes.csv")
 
 #read database columns i want, including eventid to match later and convert to array
 attacks_array = attacks[['eventid', 'country_txt', 'nkill']].values

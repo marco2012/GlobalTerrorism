@@ -1,111 +1,111 @@
-country_txt,nkill
-Afghanistan,983
-Algeria,6
-Argentina,0
-Armenia,6
-Australia,4
-Azerbaijan,1
-Bangladesh,9
-Belarus,13
-Belgium,1
-Bosnia-Herzegovina,2
-Brazil,0
-Bulgaria,7
-Burkina Faso,33
-Burundi,33
-Cameroon,66
-Canada,0
-Central African Republic,131
-Chad,60
-Chile,0
-China,218
-Colombia,236
-Costa Rica,1
-Croatia,0
-Cyprus,0
-Democratic Republic of the Congo,84
-Denmark,0
-Ecuador,0
-Egypt,428
-Estonia,1
-Ethiopia,13
-Fiji,7
-Finland,9
-France,12
-Gabon,0
-Gambia,0
-Georgia,0
-Germany,2
-Greece,1
-Guinea,0
-Guinea-Bissau,1
-Guyana,4
-Haiti,0
-Hong Kong,0
-Hungary,0
-India,139
-Indonesia,5
-Iran,17
-Iraq,1202
-Israel,6
-Italy,4
-Ivory Coast,26
-Japan,19
-Kazakhstan,10
-Kenya,294
-Kosovo,1
-Kyrgyzstan,2
-Lebanon,4
-Lesotho,0
-Liberia,0
-Libya,45
-Macedonia,0
-Madagascar,0
-Malaysia,2
-Mali,73
-Malta,0
-Mauritania,26
-Montenegro,0
-Mozambique,21
-Namibia,0
-Nepal,1
-Netherlands,18
-New Zealand,0
-Niger,30
-Nigeria,1342
-Norway,78
-Pakistan,521
-Paraguay,2
-Peru,3
-Philippines,56
-Poland,1
-Russia,364
-Rwanda,5
-Saudi Arabia,11
-Senegal,23
-Somalia,1510
-South Africa,16
-South Korea,0
-South Sudan,127
-Spain,9
-Sri Lanka,0
-St. Lucia,2
-Sudan,83
-Sweden,2
-Switzerland,0
-Syria,244
-Taiwan,2
-Tajikistan,11
-Tanzania,3
-Thailand,71
-Tunisia,1
-Turkey,146
-Uganda,126
-Ukraine,177
-United Kingdom,63
-United States,76
-Uzbekistan,31
-Venezuela,0
-West Bank and Gaza Strip,37
-Yemen,85
-Zimbabwe,1
+country_txt,nkill,country_code
+Afghanistan,983,AF
+Algeria,6,DZ
+Argentina,0,AR
+Armenia,6,AM
+Australia,4,AU
+Azerbaijan,1,AZ
+Bangladesh,9,BD
+Belarus,13,BY
+Belgium,1,BE
+Bosnia-Herzegovina,2,
+Brazil,0,BR
+Bulgaria,7,BG
+Burkina Faso,33,BF
+Burundi,33,BI
+Cameroon,66,CM
+Canada,0,CA
+Central African Republic,131,
+Chad,60,TD
+Chile,0,CL
+China,218,CN
+Colombia,236,CO
+Costa Rica,1,CR
+Croatia,0,HR
+Cyprus,0,CY
+Democratic Republic of the Congo,84,
+Denmark,0,DK
+Ecuador,0,EC
+Egypt,428,EG
+Estonia,1,EE
+Ethiopia,13,ET
+Fiji,7,FJ
+Finland,9,FI
+France,12,FR
+Gabon,0,GA
+Gambia,0,GM
+Georgia,0,GE
+Germany,2,DE
+Greece,1,GR
+Guinea,0,GN
+Guinea-Bissau,1,GW
+Guyana,4,GY
+Haiti,0,HT
+Hong Kong,0,
+Hungary,0,HU
+India,139,IN
+Indonesia,5,ID
+Iran,17,IR
+Iraq,1202,IQ
+Israel,6,IL
+Italy,4,IT
+Ivory Coast,26,
+Japan,19,JP
+Kazakhstan,10,KZ
+Kenya,294,KE
+Kosovo,1,XK
+Kyrgyzstan,2,KG
+Lebanon,4,LB
+Lesotho,0,LS
+Liberia,0,LR
+Libya,45,LY
+Macedonia,0,MK
+Madagascar,0,MG
+Malaysia,2,MY
+Mali,73,ML
+Malta,0,
+Mauritania,26,MR
+Montenegro,0,ME
+Mozambique,21,MZ
+Namibia,0,
+Nepal,1,NP
+Netherlands,18,NL
+New Zealand,0,NZ
+Niger,30,NE
+Nigeria,1342,NG
+Norway,78,NO
+Pakistan,521,PK
+Paraguay,2,PY
+Peru,3,PE
+Philippines,56,PH
+Poland,1,PL
+Russia,364,RU
+Rwanda,5,RW
+Saudi Arabia,11,SA
+Senegal,23,SN
+Somalia,1510,SO
+South Africa,16,ZA
+South Korea,0,
+South Sudan,127,
+Spain,9,ES
+Sri Lanka,0,LK
+St. Lucia,2,
+Sudan,83,SD
+Sweden,2,SE
+Switzerland,0,CH
+Syria,244,SY
+Taiwan,2,TW
+Tajikistan,11,TJ
+Tanzania,3,TZ
+Thailand,71,TH
+Tunisia,1,TN
+Turkey,146,TR
+Uganda,126,UG
+Ukraine,177,UA
+United Kingdom,63,GB
+United States,76,US
+Uzbekistan,31,UZ
+Venezuela,0,VE
+West Bank and Gaza Strip,37,
+Yemen,85,YE
+Zimbabwe,1,ZW

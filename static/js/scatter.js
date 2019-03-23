@@ -1,11 +1,5 @@
 // http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e
 
-var pca_data = $("#pca-select").val()
-$("#pca-select").on('change', function () {
-    pca_data = this.value
-    scatter()
-});
-
 // var region_to_txt = { 
 //     1: "North America", 
 //     2: "Central America", //2: "Central America & Caribbean",
@@ -20,9 +14,9 @@ $("#pca-select").on('change', function () {
 //     11: "Sub-Saharan Africa",
 //     12: "Australia"
 // };
+let pca_data = "success"
 
 function scatter() {
-    
     var margin = { top: 30, right: 300, bottom: 20, left: 30 },
     outerWidth = 520, //aumentare per mostrare legenda
     outerHeight = 400,
@@ -34,7 +28,7 @@ function scatter() {
     legend_y_axis_text_position = -margin.left - 0,
     scatter_start_x_axis = 0,
     scatter_start_y_axis = 0
-
+    
     if (selectedSliderYear==0){
         scatter_start_x_axis = -2
         scatter_start_y_axis = -2
@@ -50,9 +44,7 @@ function scatter() {
     
     // remove graph
     var svg = d3.select("#scatter")
-    svg.selectAll("canvas").remove()
     svg.selectAll("svg").remove()
-    
     
     d3.csv("data/pca.csv", function (data) {
         
@@ -63,14 +55,14 @@ function scatter() {
             d.success = +d.success;
             d.nkill = +d.nkill;
             // d.attacktype1_txt = +d.attacktype1_txt;
-        });
+        })
         
         var xMax = d3.max(data, function (d) { return d[xCat]; }) * 1.05,
         xMin = d3.min(data, function (d) { return d[xCat]; }),
-            xMin = xMin > 0 ? 0 : xMin + scatter_start_x_axis,
+        xMin = xMin > 0 ? 0 : xMin + scatter_start_x_axis,
         yMax = d3.max(data, function (d) { return d[yCat]; }) * 1.05,
         yMin = d3.min(data, function (d) { return d[yCat]; }),
-            yMin = yMin > 0 ? 0 : yMin + scatter_start_y_axis;
+        yMin = yMin > 0 ? 0 : yMin + scatter_start_y_axis;
         
         x.domain([xMin, xMax]);
         y.domain([yMin, yMax]);
@@ -94,9 +86,8 @@ function scatter() {
             .offset([-10, 0])
             .html(function (d) {
                 // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
-                return "Country: " + d.country_txt + "<br>" +  "Attack: " + d.attacktype1_txt 
+                return "City: " + d.city + "<br>" + "Country: " + d.country_txt + "<br>" + "Attack: " + d.attacktype1_txt 
             });
-            
             
             var zoomBeh = d3.behavior.zoom()
             .x(x)
@@ -202,39 +193,6 @@ function scatter() {
             
             // d3.select("input").on("click", change);
             
-            function update() {
-                
-                d3.csv("data/pca.csv", function (data) {
-                    
-                    // DATA JOIN
-                    // Join new data with old elements, if any.
-                    var dot = g.selectAll("dot")
-                    .data(data);
-                    
-                    // UPDATE
-                    // Update old elements as needed.
-                    dot.attr("class", "update");
-                    
-                    // ENTER
-                    // Create new elements as needed.
-                    //
-                    // ENTER + UPDATE
-                    // After merging the entered elements with the update selection,
-                    // apply operations to both.
-                    dot.enter().append("dot")
-                    .attr("class", "enter")
-                    .attr("x", function (d, i) { return i * 32; })
-                    .attr("dy", ".35em")
-                    .merge(dot)
-                    .dot(function (d) { return d; });
-                    
-                    // EXIT
-                    // Remove old elements as needed.
-                    dot.exit().remove();
-                    
-                })
-            }
-            
             function change() {
                 xCat = "comp_x";
                 xMax = d3.max(data, function (d) { return d[xCat]; });
@@ -261,4 +219,5 @@ function scatter() {
                 return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
             }
         });
+        
     }
