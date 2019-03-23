@@ -26,12 +26,12 @@ function scatter() {
     height = 330,
     legend_x_axis_text_position = margin.bottom + 10,
     legend_y_axis_text_position = -margin.left - 0,
-    scatter_start_x_axis = 0,
-    scatter_start_y_axis = 0
+    scatter_start_x_axis = -1,
+    scatter_start_y_axis = -1
     
     if (selectedSliderYear==0){
-        scatter_start_x_axis = -2
-        scatter_start_y_axis = -2
+        scatter_start_x_axis = -3
+        scatter_start_y_axis = -1
     }
     
     var x = d3.scale.linear().range([0, width]).nice();

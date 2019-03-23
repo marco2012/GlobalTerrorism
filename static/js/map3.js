@@ -20,6 +20,7 @@ function map3() {
             backgroundColor: '#1A222C',
             
             onRegionTipShow: function (e, el, code) {
+                console.log(values)
                 var victims = values[code] == undefined ? 0 : values[code]
                 el.html(el.html() + '</br>' + victims + ' victims');
             },
