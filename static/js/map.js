@@ -1,8 +1,8 @@
-var selectedCountries = [];    //selected countries
 
 function map(filter_year=0) {
     // dc.config.defaultColors(d3v4.schemeReds[9])
     // dc.redrawAll();
+    var selectedCountries = [];    //selected countries
     
     var worldChart = dc.geoChoroplethChart("#world-chart");
     var array      = []

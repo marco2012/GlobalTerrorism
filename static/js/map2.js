@@ -1,10 +1,10 @@
-var selectedCountries = [];    //selected countries
 
 // var svg = d3v4.select("#map-svg"),
 // map_width = +svg.attr("width"),
 // map_height = +svg.attr("height");
 
 function map2(filter_year = 0){
+    var selectedCountries = [];    //selected countries
     
     // d3.selectAll("svg.g.legendThreshold").remove()
     // remove map
