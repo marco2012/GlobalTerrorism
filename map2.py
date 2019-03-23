@@ -36,9 +36,7 @@ def createMapData(year=0):
     
     s = pd.DataFrame(s)
     for i, row in s.iterrows():
-        print(row)
         if row.name in counties_dictionary:
-            print(row.name)
             s.at[i, 'country_code'] = counties_dictionary[row.name]
 
     s.to_csv("static/data/terrorism_map.csv", sep=',', header=True)

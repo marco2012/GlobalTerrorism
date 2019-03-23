@@ -22,7 +22,7 @@ function updateChartsAux(csv = 'terrorism.csv'){
     //update PCA
     $.getJSON(
         '/pca',
-        { computePCA: selectedSliderYear },
+        { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) },
         () => scatter()
     )
 
@@ -40,6 +40,7 @@ function updateChartsAux(csv = 'terrorism.csv'){
         filter_year = selectedSliderYear, 
         country = selectedCountries
     )
+
 }
         
 function resetCharts() {
@@ -48,10 +49,12 @@ function resetCharts() {
 
     updateSlider(0)
 
+    selectedCountries = []
+
     //reset PCA
     $.getJSON(
         '/pca',
-        { computePCA: selectedSliderYear },
+        { computePCA: selectedSliderYear + ";" + JSON.stringify([]) },
         () => scatter()
     )
 

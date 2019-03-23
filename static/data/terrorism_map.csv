@@ -1,111 +1,119 @@
 country_txt,nkill,country_code
-Afghanistan,983,AF
-Algeria,6,DZ
+Afghanistan,3719,AF
+Albania,4,AL
+Algeria,356,DZ
 Argentina,0,AR
 Armenia,6,AM
-Australia,4,AU
-Azerbaijan,1,AZ
-Bangladesh,9,BD
+Australia,0,AU
+Austria,0,AT
+Azerbaijan,0,AZ
+Bahrain,0,
+Bangladesh,74,BD
 Belarus,13,BY
-Belgium,1,BE
-Bosnia-Herzegovina,2,
-Brazil,0,BR
+Belgium,39,BE
+Brazil,1,BR
 Bulgaria,7,BG
-Burkina Faso,33,BF
-Burundi,33,BI
-Cameroon,66,CM
-Canada,0,CA
-Central African Republic,131,
+Burkina Faso,27,BF
+Burundi,24,BI
+Cambodia,0,KH
+Cameroon,63,CM
+Canada,15,CA
+Central African Republic,129,
 Chad,60,TD
 Chile,0,CL
-China,218,CN
-Colombia,236,CO
-Costa Rica,1,CR
+China,200,CN
+Colombia,204,CO
 Croatia,0,HR
 Cyprus,0,CY
-Democratic Republic of the Congo,84,
+Democratic Republic of the Congo,83,
 Denmark,0,DK
+East Timor,0,
 Ecuador,0,EC
-Egypt,428,EG
-Estonia,1,EE
+Egypt,588,EG
 Ethiopia,13,ET
 Fiji,7,FJ
 Finland,9,FI
-France,12,FR
+France,217,FR
 Gabon,0,GA
 Gambia,0,GM
 Georgia,0,GE
-Germany,2,DE
-Greece,1,GR
+Germany,25,DE
+Greece,0,GR
 Guinea,0,GN
-Guinea-Bissau,1,GW
 Guyana,4,GY
 Haiti,0,HT
 Hong Kong,0,
 Hungary,0,HU
-India,139,IN
-Indonesia,5,ID
-Iran,17,IR
-Iraq,1202,IQ
-Israel,6,IL
-Italy,4,IT
-Ivory Coast,26,
+India,1253,IN
+Indonesia,284,ID
+Iran,94,IR
+Iraq,5588,IQ
+Ireland,1,IE
+Israel,336,IL
+Italy,2,IT
+Ivory Coast,22,
 Japan,19,JP
-Kazakhstan,10,KZ
-Kenya,294,KE
-Kosovo,1,XK
-Kyrgyzstan,2,KG
-Lebanon,4,LB
-Lesotho,0,LS
+Jordan,6,JO
+Kazakhstan,8,KZ
+Kenya,273,KE
+Kosovo,2,XK
+Kuwait,28,KW
+Kyrgyzstan,1,KG
+Lebanon,121,LB
 Liberia,0,LR
-Libya,45,LY
+Libya,173,LY
 Macedonia,0,MK
 Madagascar,0,MG
-Malaysia,2,MY
-Mali,73,ML
+Malaysia,4,MY
+Maldives,0,
+Mali,61,ML
 Malta,0,
-Mauritania,26,MR
+Mauritania,23,MR
+Mexico,26,MX
 Montenegro,0,ME
-Mozambique,21,MZ
+Morocco,17,MA
+Mozambique,18,MZ
+Myanmar,49,MM
 Namibia,0,
-Nepal,1,NP
-Netherlands,18,NL
+Nepal,122,NP
+Netherlands,15,NL
 New Zealand,0,NZ
-Niger,30,NE
-Nigeria,1342,NG
-Norway,78,NO
-Pakistan,521,PK
-Paraguay,2,PY
-Peru,3,PE
-Philippines,56,PH
-Poland,1,PL
-Russia,364,RU
-Rwanda,5,RW
-Saudi Arabia,11,SA
+Niger,29,NE
+Nigeria,1230,NG
+Norway,77,NO
+Pakistan,894,PK
+Peru,0,PE
+Philippines,354,PH
+Poland,0,PL
+Qatar,0,QA
+Russia,593,RU
+Saudi Arabia,132,SA
 Senegal,23,SN
-Somalia,1510,SO
-South Africa,16,ZA
+Somalia,1346,SO
+South Africa,14,ZA
 South Korea,0,
-South Sudan,127,
-Spain,9,ES
-Sri Lanka,0,LK
-St. Lucia,2,
-Sudan,83,SD
-Sweden,2,SE
+South Sudan,126,
+Spain,24,ES
+Sri Lanka,569,LK
+Sudan,72,SD
+Sweden,9,SE
 Switzerland,0,CH
-Syria,244,SY
-Taiwan,2,TW
-Tajikistan,11,TJ
+Syria,785,SY
+Taiwan,0,TW
+Tajikistan,4,TJ
 Tanzania,3,TZ
-Thailand,71,TH
-Tunisia,1,TN
-Turkey,146,TR
-Uganda,126,UG
-Ukraine,177,UA
-United Kingdom,63,GB
-United States,76,US
-Uzbekistan,31,UZ
-Venezuela,0,VE
-West Bank and Gaza Strip,37,
-Yemen,85,YE
-Zimbabwe,1,ZW
+Thailand,179,TH
+Tunisia,89,TN
+Turkey,382,TR
+Uganda,125,UG
+Ukraine,164,UA
+United Arab Emirates,0,AE
+United Kingdom,99,GB
+United States,3245,US
+Uzbekistan,29,UZ
+Venezuela,2,VE
+Vietnam,0,VN
+West Bank and Gaza Strip,157,
+Yemen,744,YE
+Yugoslavia,0,
+Zimbabwe,0,ZW

@@ -55,7 +55,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             // summary      : d.summary
         }
     })
-    .get(function (e, data) {
+    .get(function (e, data) {        
         
         //Filter rows
         let cf = crossfilter(data)
@@ -81,105 +81,110 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             // console.log(data)
         }
         
-        var dimensions = []
-        
-        if (data_to_read == 'terrorism.csv'){
-            
-            // sort by nkill descend
-            data.sort(function (a, b) {
-                return b.Victims - a.Victims
-            })
-            
-            dimensions = ["Year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Duration" , "Attack type"]
-            
-        } else if ( data_to_read == 'cosine_similarity_data.csv' ) {
-            if (filter_year == 0) dimensions = ["Year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
-            else dimensions = ["Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
-             
-        }
-        
-        
-        parcoords
-        .data(data)
-        .detectDimensions()
-        .dimensions(dimensions)
-        .render()
-        .reorderable()
-        .brushMode("1D-axes")  // enable brushing
-        
-        // create data table, row hover highlighting
-        var grid = d3.divgrid();
-        d3
-        .select("#grid")
-        .datum(data.slice(0, max_rows_to_take))
-        .call(grid)
-        .selectAll(".row")
-        .on({
-            "mouseover": function (d) { 
-                parcoords.highlight([d]) 
-            },
-            "mouseout": (d) => {
-                parcoords.unhighlight([d])
-            },
-            "click": function (d) { 
-                
-                // document.getElementById('id01').style.display = 'block' //make block appear
-                // $('#dialog_title_span').html('<h2>Attack summary</h2>')
-                // $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
-                
-                selectedSliderYear = parseInt(d.Year)
-                let v = [
-                    parseInt(d.eventid),
-                    parseInt(d.attacktype1), 
-                    parseInt(d.Attackers), 
-                    parseInt(d.Victims), 
-                    parseInt(d.Wound)
-                ]
-                $.getJSON(
-                    '/cosine_similarity',
-                    { compute_cosine_similarity: selectedSliderYear + ";" + JSON.stringify(v) } ,
-                    () => {
-                        updateCharts(csv = 'cosine_similarity_data.csv')
-                        parallel(data_to_read = 'cosine_similarity_data.csv')
-                    })
-                } //click
-            }); //on
-            
-            // if (data_to_read = 'terrorism.csv') {
-            d3.selectAll(".col-0").remove() //rimuovo colonna 
-            d3.selectAll(".col-1").remove() //rimuovo colonna 
-            // }
+        if (data.length == 0) {
+            $('#no_data').html("<h1>No data for selected options.</h1>")
+        } else {
+            $('#no_data').empty()
 
-            //higlight on hover
-            $('#grid .row').hover(function () {
-                $(this).css('background-color', '#466A93')
-            }, function () {
-                    $('.row:even').css('background', '#24303F')
-                    $('.row:odd').css('background-color', '#1A222C')
-            });
+            var dimensions = []
             
-            // update data table on brush event
-            parcoords.on("brush", function (d) {
-                d3
-                .select("#grid")
-                .datum(d.slice(0, 10))
-                .call(grid)
-                .selectAll(".row")
-                .on({
-                    "mouseover": function (d) { parcoords.highlight([d]) },
-                    "mouseout": parcoords.unhighlight,
-                    "click": function (d) {
-                        document.getElementById('id01').style.display = 'block' //make block appear
-                        $('#dialog_title_span').html('<h2>Attack summary</h2>')
-                        $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
-                    }
-                });
+            if (data_to_read == 'terrorism.csv'){
                 
+                // sort by nkill descend
+                data.sort(function (a, b) {
+                    return b.Victims - a.Victims
+                })
+                
+                dimensions = ["Year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Duration" , "Attack type"]
+                
+            } else if ( data_to_read == 'cosine_similarity_data.csv' ) {
+                if (filter_year == 0) dimensions = ["Year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+                else dimensions = ["Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+                
+            }
+            
+            
+            parcoords
+            .data(data)
+            .detectDimensions()
+            .dimensions(dimensions)
+            .render()
+            .reorderable()
+            .brushMode("1D-axes")  // enable brushing
+            
+            // create data table, row hover highlighting
+            var grid = d3.divgrid();
+            d3
+            .select("#grid")
+            .datum(data.slice(0, max_rows_to_take))
+            .call(grid)
+            .selectAll(".row")
+            .on({
+                "mouseover": function (d) { 
+                    parcoords.highlight([d]) 
+                },
+                "mouseout": (d) => {
+                    parcoords.unhighlight([d])
+                },
+                "click": function (d) { 
+                    
+                    // document.getElementById('id01').style.display = 'block' //make block appear
+                    // $('#dialog_title_span').html('<h2>Attack summary</h2>')
+                    // $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
+                    
+                    selectedSliderYear = parseInt(d.Year)
+                    let v = [
+                        parseInt(d.eventid),
+                        parseInt(d.attacktype1), 
+                        parseInt(d.Attackers), 
+                        parseInt(d.Victims), 
+                        parseInt(d.Wound)
+                    ]
+                    $.getJSON(
+                        '/cosine_similarity',
+                        { compute_cosine_similarity: selectedSliderYear + ";" + JSON.stringify(v) } ,
+                        () => {
+                            updateCharts(csv = 'cosine_similarity_data.csv')
+                            parallel(data_to_read = 'cosine_similarity_data.csv')
+                        })
+                    } //click
+                }); //on
+                
+                // if (data_to_read = 'terrorism.csv') {
                 d3.selectAll(".col-0").remove() //rimuovo colonna 
                 d3.selectAll(".col-1").remove() //rimuovo colonna 
+                // }
                 
-            });
-            
+                //higlight on hover
+                $('#grid .row').hover(function () {
+                    $(this).css('background-color', '#466A93')
+                }, function () {
+                    $('.row:even').css('background', '#24303F')
+                    $('.row:odd').css('background-color', '#1A222C')
+                });
+                
+                // update data table on brush event
+                parcoords.on("brush", function (d) {
+                    d3
+                    .select("#grid")
+                    .datum(d.slice(0, 10))
+                    .call(grid)
+                    .selectAll(".row")
+                    .on({
+                        "mouseover": function (d) { parcoords.highlight([d]) },
+                        "mouseout": parcoords.unhighlight,
+                        "click": function (d) {
+                            document.getElementById('id01').style.display = 'block' //make block appear
+                            $('#dialog_title_span').html('<h2>Attack summary</h2>')
+                            $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
+                        }
+                    });
+                    
+                    d3.selectAll(".col-0").remove() //rimuovo colonna 
+                    d3.selectAll(".col-1").remove() //rimuovo colonna 
+                    
+                });
+            } 
         });
     }
     

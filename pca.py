@@ -8,8 +8,8 @@ DB_PATH = "static/data/terrorism.csv"
 
 def action(year=0, nation=[]):
 
-    if year == 1991 or year==1994:
-        return 0
+    # if year == 1991 or year==1994:
+    #     return 0
 
     df = pd.read_csv(DB_PATH)
     data = None
@@ -24,6 +24,8 @@ def action(year=0, nation=[]):
         data = df[df.country_txt.isin(nation)]
     else:  # niente selezione, uso tutto il db (default)
         data = df
+
+    # print(data.head())
 
     features = ["year", "nperps", "nkill", "nwound"]
     # Separating out the features
@@ -41,7 +43,7 @@ def action(year=0, nation=[]):
                                           'attacktype1_txt', 'country_txt', 'city', "summary"]]], axis=1)
     finalDf.to_csv("static/data/pca.csv", sep=',', index=False)
     
-    return 0;
+    return 0
 
-if __name__ == "__main__":
-    action()
+
+action(2011, ["Russia"])

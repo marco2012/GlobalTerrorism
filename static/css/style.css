@@ -160,3 +160,13 @@ a {
 #all_years_btn {
 	margin-top: -20px;
 }
+
+#no_data {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	text-align: center;
+	align-items: center;
+}

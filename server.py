@@ -33,9 +33,10 @@ def try2():
 
 @app.route("/pca")
 def try3():
-    var = request.args.to_dict()["computePCA"].strip()
-    year = int(var)
-    pca.action(year=year)
+    var = request.args.to_dict()["computePCA"].split(';')
+    year = int(var[0])
+    countries = json.loads(var[1])
+    pca.action(year=year, nation=countries)
     return jsonify(True)
 
 
