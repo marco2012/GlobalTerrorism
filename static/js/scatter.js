@@ -206,15 +206,9 @@ function scatter() {
         
         function updateScatter(reset) {
             
-            var options = {}
-            if (reset || (!notNull(selectedWeapType) && !notNull(selectedCountries)) ) 
-                options = { computePCA: 0 + ";" + JSON.stringify([]) + ";" + JSON.stringify([]) }
-            else if ( notNull(selectedWeapType) && (notNull(selectedCountries)) )
-                options = { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) + ";" + JSON.stringify(selectedWeapType) }
-            else if (notNull(selectedWeapType))
-                options = { computePCA: selectedSliderYear + ";" + JSON.stringify([]) + ";" + JSON.stringify(selectedWeapType) }
-            else if (notNull(selectedCountries)) 
-                options = { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) + ";" + JSON.stringify([]) }
+            var options = { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) + ";" + JSON.stringify(selectedWeapType) }
+            if (reset) options = { computePCA: 0 + ";" + JSON.stringify([]) + ";" + JSON.stringify([]) }
+            console.log(options);
             
             $.getJSON(
                 '/pca',

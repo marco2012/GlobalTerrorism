@@ -22,6 +22,7 @@ def action(year=0, nation=[], weaptype=[]):
         data = df[df.weaptype1_txt.isin(weaptype)]
 
     features = ["year", "nperps", "nkill", "nwound", "eventid", "extended"]
+    # features = ["year", "nperps", "nkill", "nwound", "extended"]
     # Separating out the features
     x = data.loc[:, features].values
     # Separating out the target
@@ -40,4 +41,4 @@ def action(year=0, nation=[], weaptype=[]):
     return 0
 
 
-action(2011, ["Russia"])
+# action(2011, [])
