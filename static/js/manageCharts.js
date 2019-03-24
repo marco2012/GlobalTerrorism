@@ -4,7 +4,7 @@ function updateCharts(csv = 'terrorism.csv'){
     
     updateChartsAux(csv)
 
-    //update map
+    // //update map
     $.getJSON(
         '/map',
         { computeMap: selectedSliderYear },
@@ -19,12 +19,12 @@ function updateChartsAux(csv = 'terrorism.csv'){
 
     updateSlider(selectedSliderYear)
 
-    //update PCA
-    $.getJSON(
-        '/pca',
-        { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) },
-        () => scatter()
-    )
+    //update PCA (lo fa scatter)
+    // $.getJSON(
+    //     '/pca',
+    //     { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) },
+    //     () => scatter()
+    // )
 
     //update barchart
     let param = { computeBarchart: selectedSliderYear + ";" + JSON.stringify(selectedCountries) }
@@ -51,12 +51,12 @@ function resetCharts() {
 
     selectedCountries = []
 
-    //reset PCA
-    $.getJSON(
-        '/pca',
-        { computePCA: selectedSliderYear + ";" + JSON.stringify([]) },
-        () => scatter()
-    )
+    // //reset PCA (lo fa scatter)
+    // $.getJSON(
+    //     '/pca',
+    //     { computePCA: selectedSliderYear + ";" + JSON.stringify([]) },
+    //     () => scatter()
+    // )
 
     // reset barchart
     let param = { computeBarchart: selectedSliderYear + ";" + JSON.stringify([]) }

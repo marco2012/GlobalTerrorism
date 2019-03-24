@@ -60,6 +60,7 @@
 <div class="three-row">
 	<div class="three-column left">
 		<div class="world-map" id="world-map" style="width: 700px; height: 400px"></div>
+		 <input id="world-map-region-trigger" type="hidden"> <!--trigger scatterplot update based on region -->
 	</div>
 	<div class="three-column middle">
 		<div id="scatter"></div>
@@ -82,15 +83,17 @@
 
 <!-- start everything on load -->
 <script>
-	updateSlider(0)
 	$.getJSON(
 	'/map',
 	{ computeMap: selectedSliderYear },
 	() => map3()
 	)
-	scatter()
-	barchart()
-	parallel()
+	$.getJSON(
+        '/pca',
+        { computePCA: selectedSliderYear + ";" + JSON.stringify([]) },
+        () => scatter()
+    )
+	resetCharts()
 </script>
 
 </body>

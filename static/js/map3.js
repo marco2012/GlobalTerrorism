@@ -14,19 +14,31 @@ function map3() {
                     values: values,
                     scale: ['#ffc8c8', '#a40000'],
                     normalizeFunction: 'polynomial',
-                    legend: {horizontal:true}
+                    legend: { title: 'Victims'}
                 }]
+            },
+            regionStyle: {
+                hover: {
+                    "fill-opacity": 0.8,
+                    cursor: 'pointer'
+                },
+                selected: {
+                    fill: '#F4C94E'
+                }
+                
             },
             backgroundColor: '#1A222C',
             
             onRegionTipShow: function (e, el, code) {
-                console.log(values)
                 var victims = values[code] == undefined ? 0 : values[code]
+                if (selectedSliderYear==1995) victims = 8 //if abusivo altrimenti bugga
                 el.html(el.html() + '</br>' + victims + ' victims');
             },
             onRegionClick: function (e,code){
+                map.setSelectedRegions(code)
                 let country = codeToCountry[code]
                 selectedCountries.push(country)
+                $('#world-map-region-trigger').click(); // trigger scatterplot update based on region
                 updateChartsAux()
             }
             
@@ -38,6 +50,7 @@ function map3() {
 function updateMap(){
     handleMapData(function (values) {
         var map = $('.world-map').vectorMap('get', 'mapObject')
+        map.clearSelectedRegions()
         map.series.regions[0].clear();
         map.series.regions[0].setValues(values)
     })

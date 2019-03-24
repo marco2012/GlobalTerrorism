@@ -14,6 +14,7 @@
 //     11: "Sub-Saharan Africa",
 //     12: "Australia"
 // };
+
 let pca_data = "success"
 
 function scatter() {
@@ -30,7 +31,7 @@ function scatter() {
     scatter_start_y_axis = -1
     
     if (selectedSliderYear==0){
-        scatter_start_x_axis = -3
+        scatter_start_x_axis = -4
         scatter_start_y_axis = -1
     }
     
@@ -43,8 +44,8 @@ function scatter() {
     let colorCat = "attacktype1_txt"
     
     // remove graph
-    var svg = d3.select("#scatter")
-    svg.selectAll("svg").remove()
+    // var svg = d3.select("#scatter")
+    // svg.selectAll("svg").remove()
     
     d3.csv("data/pca.csv", function (data) {
         
@@ -77,121 +78,229 @@ function scatter() {
         .orient("left")
         .tickSize(-width);
         
-        var color = d3.scale.ordinal().range(
-            ['#8e0152','#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#80cdc1','#b8e186','#7fbc41','#4d9221','#276419']
-            )
+        // Define the line
+        var valueline = d3.svg.line()
+        .x(function (d) { return x(d.comp_x); })
+        .y(function (d) { return y(d.comp_y); });
+        
+        var color = d3.scale.ordinal().range(['#8e0152','#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#80cdc1','#b8e186','#7fbc41','#4d9221','#276419'])
+        
+        var tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-10, 0])
+        .html(function (d) {
+            // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+            return "City: " + d.city + "<br>" + "Country: " + d.country_txt + "<br>" + "Attack: " + d.attacktype1_txt 
+        });
+        
+        var zoomBeh = d3.behavior.zoom()
+        .x(x)
+        .y(y)
+        .scaleExtent([0, 500])
+        .on("zoom", zoom);
+        
+        //SVG
+        var svg = d3.select("#scatter")
+        .append("svg")
+        .attr("width", outerWidth)
+        .attr("height", outerHeight)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .call(zoomBeh);
+        
+        svg.call(tip);
+        
+        svg.append("rect")
+        .attr("width", width)
+        .attr("height", height);
+        
+        svg.append("g")
+        .classed("x axis", true)
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .append("text")
+        .classed("label", true)
+        .attr("x", width)
+        .attr("y", legend_x_axis_text_position)
+        .style("text-anchor", "end")
+        .text(xCat);
+        
+        svg.append("g")
+        .classed("y axis", true)
+        .call(yAxis)
+        .append("text")
+        .classed("label", true)
+        .attr("transform", "rotate(-90)")
+        .attr("y", legend_y_axis_text_position)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text(yCat);
+        
+        var objects = svg.append("svg")
+        .classed("objects", true)
+        .attr("width", width)
+        .attr("height", height);
+        
+        objects.append("svg:line")
+        .classed("axisLine hAxisLine", true)
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", width)
+        .attr("y2", 0)
+        .attr("transform", "translate(0," + height + ")");
+        
+        objects.append("svg:line")
+        .classed("axisLine vAxisLine", true)
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", 0)
+        .attr("y2", height);
+        
+        
+        objects.selectAll(".dot")
+        .data(data)
+        .enter().append("circle")
+        .classed("dot", true)
+        .attr("r", function (d) { return 6 * Math.sqrt(d[rCat] / Math.PI); })   //bugga
+        .attr("transform", transform)
+        .style("fill", function (d) { return color(d[colorCat]); })
+        .on("mouseover", tip.show)
+        .on("mouseout", tip.hide)
+        .on("click", function (d) {
+            document.getElementById('id01').style.display = 'block'
+            $('#dialog_title_span').html('<h2>Attack description</h2>')
+            $('#dialog_content_span').html("<br/><h4>" + d.summary + "</h4><br/>")
+        })
+        
+        var legend = svg.selectAll(".legend")
+        .data(color.domain())
+        .enter().append("g")
+        .classed("legend", true)
+        .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
+        
+        legend.append("circle")
+        .attr("r", 3.5)
+        .attr("cx", width + 20)
+        .attr("fill", color);
+        
+        legend.append("text")
+        .attr("x", width + 26)
+        .attr("dy", ".35em")
+        .text(function (d) {
+            // return region_to_txt[d] //converte numero regione in stringa
+            return d;
             
-            var tip = d3.tip()
-            .attr("class", "d3-tip")
-            .offset([-10, 0])
-            .html(function (d) {
-                // return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
-                return "City: " + d.city + "<br>" + "Country: " + d.country_txt + "<br>" + "Attack: " + d.attacktype1_txt 
-            });
+        })
+        .style("font-size", "12px")
+        
+        // update data https://stackoverflow.com/questions/36360509/d3js-scatter-plot-auto-update-doesnt-work
+        $("#update_btn").click(function () {
+            updateScatter(reset = false)
+        });
+        $("#world-map-region-trigger").click(function () {
+            updateScatter(reset = false)
+        });
+        $("#reset_btn").click(function () {
+            updateScatter(reset = true)
+        });
+        
+        function updateScatter(reset) {
             
-            var zoomBeh = d3.behavior.zoom()
-            .x(x)
-            .y(y)
-            .scaleExtent([0, 500])
-            .on("zoom", zoom);
+            var options = {}
+            if (reset) options = { computePCA: 0 + ";" + JSON.stringify([]) }
+            else  options = { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) }
             
-            //SVG
-            var svg = d3.select("#scatter")
-            .append("svg")
-            .attr("width", outerWidth)
-            .attr("height", outerHeight)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            .call(zoomBeh);
-            
-            svg.call(tip);
-            
-            svg.append("rect")
-            .attr("width", width)
-            .attr("height", height);
-            
-            svg.append("g")
-            .classed("x axis", true)
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-            .append("text")
-            .classed("label", true)
-            .attr("x", width)
-            .attr("y", legend_x_axis_text_position)
-            .style("text-anchor", "end")
-            .text(xCat);
-            
-            svg.append("g")
-            .classed("y axis", true)
-            .call(yAxis)
-            .append("text")
-            .classed("label", true)
-            .attr("transform", "rotate(-90)")
-            .attr("y", legend_y_axis_text_position)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text(yCat);
-            
-            var objects = svg.append("svg")
-            .classed("objects", true)
-            .attr("width", width)
-            .attr("height", height);
-            
-            objects.append("svg:line")
-            .classed("axisLine hAxisLine", true)
-            .attr("x1", 0)
-            .attr("y1", 0)
-            .attr("x2", width)
-            .attr("y2", 0)
-            .attr("transform", "translate(0," + height + ")");
-            
-            objects.append("svg:line")
-            .classed("axisLine vAxisLine", true)
-            .attr("x1", 0)
-            .attr("y1", 0)
-            .attr("x2", 0)
-            .attr("y2", height);
-            
-            
-            objects.selectAll(".dot")
-            .data(data)
-            .enter().append("circle")
-            .classed("dot", true)
-            .attr("r", function (d) { return 6 * Math.sqrt(d[rCat] / Math.PI); })   //bugga
-            .attr("transform", transform)
-            .style("fill", function (d) { return color(d[colorCat]); })
-            .on("mouseover", tip.show)
-            .on("mouseout", tip.hide)
-            .on("click", function (d) {
-                // alert(JSON.stringify(d)) 
-                // summary
-                document.getElementById('id01').style.display = 'block'
-                $('#dialog_title_span').html('<h2>Attack description</h2>')
-                $('#dialog_content_span').html("<br/><h4>" + d.summary + "</h4><br/>")
-            })
-            
-            var legend = svg.selectAll(".legend")
-            .data(color.domain())
-            .enter().append("g")
-            .classed("legend", true)
-            .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
-            
-            legend.append("circle")
-            .attr("r", 3.5)
-            .attr("cx", width + 20)
-            .attr("fill", color);
-            
-            legend.append("text")
-            .attr("x", width + 26)
-            .attr("dy", ".35em")
-            .text(function (d) {
-                // return region_to_txt[d] //converte numero regione in stringa
-                return d;
+            $.getJSON(
+                '/pca',
+                options,
+                () => {
+                    // Get the data again
+                    d3.csv("data/pca.csv", function (data) {
+                        data.forEach(function (d) {
+                            d.comp_x = +d.x;
+                            d.comp_y = +d.y;
+                            d.success = +d.success;
+                            d.nkill = +d.nkill;
+                        })
+                        // Scale the range of the data again 
+                        var xMax = d3.max(data, function (d) { return d[xCat]; }) * 1.05,
+                        xMin = d3.min(data, function (d) { return d[xCat]; }),
+                        xMin = xMin > 0 ? 0 : xMin + scatter_start_x_axis,
+                        yMax = d3.max(data, function (d) { return d[yCat]; }) * 1.05,
+                        yMin = d3.min(data, function (d) { return d[yCat]; }),
+                        yMin = yMin > 0 ? 0 : yMin + scatter_start_y_axis;
+                        
+                        x.domain([xMin, xMax]);
+                        y.domain([yMin, yMax]);
+                        
+                        var xAxis = d3.svg.axis()
+                        .scale(x)
+                        .orient("bottom")
+                        .tickSize(-height);
+                        
+                        var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left")
+                        .tickSize(-width);
+                        
+                        var zoomBeh = d3.behavior.zoom()
+                        .x(x)
+                        .y(y)
+                        .scaleExtent([0, 500])
+                        .on("zoom", zoom);
+                        
+                        //SVG
+                        var svg = d3.select("#scatter").call(zoomBeh);
+                        var circle = svg.selectAll("circle").data(data)
+                        
+                        svg.select(".x.axis") // change the x axis
+                        .transition()
+                        .duration(750)
+                        .call(xAxis);
+                        
+                        svg.select(".y.axis") // change the y axis
+                        .transition()
+                        .duration(750)
+                        .call(yAxis);
+                        
+                        // svg.select(".line")   // change the line
+                        // .transition()
+                        // .duration(750)
+                        // .attr("d", valueline(data));
+                        
+                        //Update all circles
+                        circle.transition()
+                        .duration(1000)
+                        .attr("cx", function (d) {
+                            return x(d.comp_x)
+                        })
+                        // .attr("cy", function (d) {
+                        //     return y(d.comp_y)
+                        // });
+                        
+                        // enter new circles
+                        circle.enter()
+                        .append("circle")
+                        // .filter(function (d) { return d.temperature > 30 })
+                        .attr("r", function (d) { return 6 * Math.sqrt(d[rCat] / Math.PI); })   //bugga
+                        .attr("transform", transform)
+                        .style("fill", function (d) { return color(d[colorCat]); })
+                        .attr("cx", function (d) {
+                            return x(d.comp_x)
+                        })
+                        // .attr("cy", function (d) {
+                        //     return y(d.comp_y)
+                        // })
+                        
+                        // remove old circles
+                        svg.selectAll(".dot").transition().duration(1000).attr("transform", transform);
+                        circle.exit().remove()
+                        
+                        
+                    })
+                })
                 
-            })
-            .style("font-size", "12px")
-            
-            // d3.select("input").on("click", change);
+            }
             
             function change() {
                 xCat = "comp_x";
