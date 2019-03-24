@@ -83,17 +83,21 @@
 
 <!-- start everything on load -->
 <script>
+
 	$.getJSON(
 	'/map',
-	{ computeMap: selectedSliderYear },
+	{ computeMap: selectedSliderYear + ";" + JSON.stringify([]) },
 	() => map3()
 	)
+
 	$.getJSON(
         '/pca',
-        { computePCA: selectedSliderYear + ";" + JSON.stringify([]) },
+        { computePCA: selectedSliderYear + ";" + JSON.stringify([])  + ";" + JSON.stringify([]) },
         () => scatter()
-    )
+	)
+	
 	resetCharts()
+
 </script>
 
 </body>

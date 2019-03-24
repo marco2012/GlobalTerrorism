@@ -35,9 +35,13 @@
 .col-3 { width: 50px; }
 .col-4 { width: 50px; }
 .col-5 { width: 50px; }
-.col-6 { width: 120px; }
-.col-7 { width: 120px; }
-.col-8 { width: 120px; }
+.col-6 { width: 60px; }
+.col-7 { width: 60px; }
+.col-8 { width: 60px; }
+.col-9 { width: 100px; }
+.col-10 { width: 100px; }
+.col-10 { width: 100px; }
+.col-11 { width: 100px; }
 
 .highlightRow { background-color: grey; }
 

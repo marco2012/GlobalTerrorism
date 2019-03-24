@@ -1,10 +1,12 @@
 // http://jvectormap.com/documentation/javascript-api/jvm-map/
 
 var selectedCountries = [];    //selected countries
+var map3values = {}
+var map3AvailableCountries = []
 
 function map3() {
     
-    handleMapData( function (values) {
+    handleMapData(function (values, availableCountries) {
         
         var map = new jvm.Map( { 
             map: 'world_mill',
@@ -12,7 +14,7 @@ function map3() {
             series: {
                 regions: [{
                     values: values,
-                    scale: ['#ffc8c8', '#a40000'],
+                    scale: ['#ffffff', '#a40000'],
                     normalizeFunction: 'polynomial',
                     legend: { title: 'Victims'}
                 }]
@@ -25,21 +27,26 @@ function map3() {
                 selected: {
                     fill: '#F4C94E'
                 }
-                
             },
             backgroundColor: '#1A222C',
-            
             onRegionTipShow: function (e, el, code) {
-                var victims = values[code] == undefined ? 0 : values[code]
-                if (selectedSliderYear==1995) victims = 8 //if abusivo altrimenti bugga
+                var victims = map3values[code] == undefined ? 0 : map3values[code]
                 el.html(el.html() + '</br>' + victims + ' victims');
             },
+
             onRegionClick: function (e,code){
-                map.setSelectedRegions(code)
                 let country = codeToCountry[code]
-                selectedCountries.push(country)
-                $('#world-map-region-trigger').click(); // trigger scatterplot update based on region
-                updateChartsAux()
+                if (map3AvailableCountries.indexOf(country) == -1) {
+                    document.getElementById('id01').style.display = 'block'
+                    $('#dialog_title_span').html('<h2>No data</h2>')
+                    $('#dialog_content_span').html("<br/><h4>There are no data for selected country</h4><br/>")
+                } else {
+                    map.setSelectedRegions(code)
+                    selectedCountries.pushIfNotExist(country)
+                    $('#world-map-region-trigger').click(); // trigger scatterplot update based on region
+                    updateChartsAux()
+                }
+
             }
             
         })
@@ -47,10 +54,12 @@ function map3() {
     })
 }
 
-function updateMap(){
-    handleMapData(function (values) {
+function updateMap(reset=false){
+    handleMapData(function (values, availableCountries) {
+        map3values = values
+        map3AvailableCountries = availableCountries
         var map = $('.world-map').vectorMap('get', 'mapObject')
-        map.clearSelectedRegions()
+        if (reset) map.clearSelectedRegions()
         map.series.regions[0].clear();
         map.series.regions[0].setValues(values)
     })
@@ -58,11 +67,15 @@ function updateMap(){
 
 function handleMapData(callback){
     d3.csv("data/terrorism_map.csv", function (data) {
-        var values = {};
+        
+        var values = {}
+        var availableCountries = []
         data.map(function (d) {
             values[d.country_code] = parseInt(d.nkill)
+            availableCountries.push(d.country_txt)
         })
-        callback(values)
+
+        callback(values, availableCountries)
     })
 }
 

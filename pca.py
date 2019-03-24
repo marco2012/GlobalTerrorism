@@ -6,28 +6,22 @@ from sklearn.decomposition import PCA
 
 DB_PATH = "static/data/terrorism.csv"
 
-def action(year=0, nation=[]):
-
-    # if year == 1991 or year==1994:
-    #     return 0
+def action(year=0, nation=[], weaptype=[]):
 
     df = pd.read_csv(DB_PATH)
-    data = None
+    data = df
 
     # filtro i dati
-    if year != 0 and nation:  # sono stati selezionati sia anno che nazione
-        # https://cmdlinetips.com/2018/02/how-to-subset-pandas-dataframe-based-on-values-of-a-column/
-        data = df[(df.year == year) & (df.country_txt.isin(nation))]
-    elif year != 0:  # solo anno selezionato
+    if year != 0:
         data = df[(df.year == year)]
-    elif nation:  # solo nazione selezionata
-        data = df[df.country_txt.isin(nation)]
-    else:  # niente selezione, uso tutto il db (default)
-        data = df
 
-    # print(data.head())
+    if nation:
+         data = df[df.country_txt.isin(nation)]
 
-    features = ["year", "nperps", "nkill", "nwound"]
+    if weaptype:
+        data = df[df.weaptype1_txt.isin(weaptype)]
+
+    features = ["year", "nperps", "nkill", "nwound", "eventid", "extended"]
     # Separating out the features
     x = data.loc[:, features].values
     # Separating out the target

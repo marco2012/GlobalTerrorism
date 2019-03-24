@@ -4,7 +4,7 @@ import csv, sys, json
 DB_PATH = "static/data/terrorism.csv"
 COUNTRIES_CODES = "static/data/countries_codes.csv"
 
-def createMapData(year=0):
+def createMapData(year=0, weaptype=[]):
 
     '''
     SE NON VIENE SELEZIONATO L'ANNO:
@@ -24,13 +24,16 @@ def createMapData(year=0):
     s = None
     select = ['year', 'country_txt', 'nkill']
     groupby = ['country_txt']
-    # groupby_with_year = ['country_txt', 'year']
 
-    if year == 0:  # non viene selezionato l'anno, sommo tutte le vittime per ogni nazione 
-        s = data[select].groupby(groupby)['nkill'].sum()
-    else:  # viene selezionato l'anno, sommo vittime per ognki nazione in quell'anno
+    if year!=0 and weaptype:
+         s = data[(data.year == year) & (data.weaptype1_txt.isin(weaptype))][select].groupby(groupby)['nkill'].sum()
+    elif year != 0:  # viene selezionato l'anno, sommo vittime per ognki nazione in quell'anno
         s = data[(data.year == year)][select].groupby(groupby)['nkill'].sum()
-
+    elif weaptype:
+         s = data[(data.weaptype1_txt.isin(weaptype))][select].groupby(groupby)['nkill'].sum()
+    else:  # non viene selezionato l'anno, sommo tutte le vittime per ogni nazione 
+        s = data[select].groupby(groupby)['nkill'].sum()
+    
     # add country codes
     counties_dictionary = createCountriesDict()
     

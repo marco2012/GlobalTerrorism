@@ -1,6 +1,6 @@
-function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
+function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], weaptype=[]) {
     
-    let max_rows_to_take = 12
+    let max_rows_to_take = 10
     
     //remove graph
     var svg = d3.select("#parallelArea")
@@ -9,19 +9,6 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
     var svg1 = d3.select("#grid")
     svg1.select(".header").remove()
     svg1.selectAll(".row").remove()
-    
-    // var color1 = d3.scale.linear()
-    // .domain([9, 100])
-    // .range(["#dd0000", "#ddbb00"])
-    // .interpolate(d3.interpolateLab);
-    
-    var color1 = d3.scale.ordinal().range(['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#ffffbf', '#e0f3f8', '#abd9e9', '#74add1', '#4575b4', '#313695'])
-    
-    var color = function (d) { return color1(d['Attackers']); };
-    
-    var parcoords = d3.parcoords()("#parallelArea")
-    .color(color)
-    .alpha(0.98);
     
     d3.csv('data/'+data_to_read)
     .row(function (d) { 
@@ -52,10 +39,21 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             Country: d.country_txt,
             Region: d.region_txt,
             "Attack type": d.attacktype1_txt,
+            Weapon_type: d.weaptype1_txt
             // summary      : d.summary
         }
     })
-    .get(function (e, data) {        
+    .get(function (e, data) {   
+        
+        let colors_array = ['#fffff', '#fee0d2', '#fcbba1', '#fc9272', '#fb6a4a', '#ef3b2c', '#cb181d', '#a50f15', '#67000d', 'a40000'].reverse()
+
+        var color1 = d3.scale.ordinal().range(colors_array)
+
+        var color = function (d) { return color1(d.Victims); };
+
+        var parcoords = d3.parcoords()("#parallelArea")
+            .color(color)
+            .alpha(0.98);
         
         //Filter rows
         let cf = crossfilter(data)
@@ -78,9 +76,21 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
             }
             let f = byCountry.filterFunction(multivalue_filter(country));
             data = f.top(Infinity)
-            // console.log(data)
         }
         
+        //filter weaptype
+        if (typeof weaptype !== 'undefined' && weaptype.length > 0) {
+            let byWeaponType = cf.dimension(d => d.Weapon_type)
+
+            function multivalue_filter(values) {
+                return function (v) {
+                    return values.indexOf(v) !== -1;
+                };
+            }
+            let f = byWeaponType.filterFunction(multivalue_filter(weaptype));
+            data = f.top(Infinity)
+        }
+
         if (data.length == 0) {
             $('#no_data').html("<h1>No data for selected options.</h1>")
         } else {
@@ -102,7 +112,6 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 else dimensions = ["Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
                 
             }
-            
             
             parcoords
             .data(data)
@@ -151,8 +160,8 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                 }); //on
                 
                 // if (data_to_read = 'terrorism.csv') {
-                d3.selectAll(".col-0").remove() //rimuovo colonna 
-                d3.selectAll(".col-1").remove() //rimuovo colonna 
+                // d3.selectAll(".col-0").remove() //rimuovo colonna 
+                // d3.selectAll(".col-1").remove() //rimuovo colonna 
                 // }
                 
                 //higlight on hover
@@ -180,8 +189,8 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[]) {
                         }
                     });
                     
-                    d3.selectAll(".col-0").remove() //rimuovo colonna 
-                    d3.selectAll(".col-1").remove() //rimuovo colonna 
+                    // d3.selectAll(".col-0").remove() //rimuovo colonna 
+                    // d3.selectAll(".col-1").remove() //rimuovo colonna 
                     
                 });
             } 

@@ -31,8 +31,8 @@ function scatter() {
     scatter_start_y_axis = -1
     
     if (selectedSliderYear==0){
-        scatter_start_x_axis = -4
-        scatter_start_y_axis = -1
+        scatter_start_x_axis = -3
+        scatter_start_y_axis = -4
     }
     
     var x = d3.scale.linear().range([0, width]).nice();
@@ -42,10 +42,6 @@ function scatter() {
     let yCat = "comp_y"
     let rCat = pca_data
     let colorCat = "attacktype1_txt"
-    
-    // remove graph
-    // var svg = d3.select("#scatter")
-    // svg.selectAll("svg").remove()
     
     d3.csv("data/pca.csv", function (data) {
         
@@ -203,12 +199,22 @@ function scatter() {
         $("#reset_btn").click(function () {
             updateScatter(reset = true)
         });
+
+        function notNull(array){
+            return (typeof array !== 'undefined' && array.length > 0) 
+        }
         
         function updateScatter(reset) {
             
             var options = {}
-            if (reset) options = { computePCA: 0 + ";" + JSON.stringify([]) }
-            else  options = { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) }
+            if (reset || (!notNull(selectedWeapType) && !notNull(selectedCountries)) ) 
+                options = { computePCA: 0 + ";" + JSON.stringify([]) + ";" + JSON.stringify([]) }
+            else if ( notNull(selectedWeapType) && (notNull(selectedCountries)) )
+                options = { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) + ";" + JSON.stringify(selectedWeapType) }
+            else if (notNull(selectedWeapType))
+                options = { computePCA: selectedSliderYear + ";" + JSON.stringify([]) + ";" + JSON.stringify(selectedWeapType) }
+            else if (notNull(selectedCountries)) 
+                options = { computePCA: selectedSliderYear + ";" + JSON.stringify(selectedCountries) + ";" + JSON.stringify([]) }
             
             $.getJSON(
                 '/pca',
@@ -296,6 +302,11 @@ function scatter() {
                         svg.selectAll(".dot").transition().duration(1000).attr("transform", transform);
                         circle.exit().remove()
                         
+
+                        legend.append("circle")
+                            .attr("r", 3.5)
+                            .attr("cx", width + 20)
+                            .attr("fill", color);
                         
                     })
                 })

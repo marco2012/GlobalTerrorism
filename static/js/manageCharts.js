@@ -1,19 +1,19 @@
 // le funzioni di update vanno divise altrimenti la mappa si resetta ad ogni nazione selezionata
 
-function updateCharts(csv = 'terrorism.csv'){
+function updateCharts(csv = 'terrorism.csv', weaptype=[]){
     
-    updateChartsAux(csv)
+    updateChartsAux(csv, weaptype)
 
     // //update map
     $.getJSON(
         '/map',
-        { computeMap: selectedSliderYear },
+        { computeMap: selectedSliderYear + ";" + JSON.stringify(weaptype) },
         () => updateMap()
     )
 
 }
 
-function updateChartsAux(csv = 'terrorism.csv'){
+function updateChartsAux(csv = 'terrorism.csv', weaptype = []){
     console.log("Slider = " + selectedSliderYear)
     console.log("Countries = " + selectedCountries)
 
@@ -36,20 +36,21 @@ function updateChartsAux(csv = 'terrorism.csv'){
 
     //update parallel chart
     parallel(
-        data_to_read = csv, 
-        filter_year = selectedSliderYear, 
-        country = selectedCountries
+        data_to_read = csv,
+        filter_year  = selectedSliderYear,
+        country      = selectedCountries,
+        weaptype     = weaptype
     )
 
 }
         
 function resetCharts() {
-    
-    $('#all_years_btn').prop('disabled', true);
-
-    updateSlider(0)
-
     selectedCountries = []
+    selectedWeapType = []
+    updateSlider(0)
+    console.log("Slider = " + selectedSliderYear)
+    console.log("Countries = " + selectedCountries)
+    
 
     // //reset PCA (lo fa scatter)
     // $.getJSON(
@@ -72,8 +73,16 @@ function resetCharts() {
     //reset map
     $.getJSON(
         '/map',
-        { computeMap: selectedSliderYear },
-        () => updateMap()
+        { computeMap: selectedSliderYear + ";" + JSON.stringify([])},
+        () => updateMap(true)
     )
 
 }
+
+Array.prototype.pushIfNotExist = function (val) {
+    if (typeof (val) == 'undefined' || val == '') { return; }
+    val = $.trim(val);
+    if ($.inArray(val, this) == -1) {
+        this.push(val);
+    }
+};

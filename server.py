@@ -36,15 +36,17 @@ def try3():
     var = request.args.to_dict()["computePCA"].split(';')
     year = int(var[0])
     countries = json.loads(var[1])
-    pca.action(year=year, nation=countries)
+    weaptype = json.loads(var[2])
+    pca.action(year=year, nation=countries, weaptype=weaptype)
     return jsonify(True)
 
 
 @app.route("/map")
 def try4():
-    var = request.args.to_dict()["computeMap"].strip()
-    year = int(var)
-    map2.createMapData(year=year)
+    var = request.args.to_dict()["computeMap"].split(';')
+    year = int(var[0])
+    weaptype = json.loads(var[1])
+    map2.createMapData(year=year, weaptype=weaptype)
     return jsonify(True)
 
 
