@@ -157,6 +157,9 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], wea
                             updateCharts(csv = 'cosine_similarity_data.csv')
                             parallel(data_to_read = 'cosine_similarity_data.csv')
                         })
+
+                    $('#world-map-region-trigger').click(); // trigger scatterplot update based 
+
                     } //click
                 }); //on
                 

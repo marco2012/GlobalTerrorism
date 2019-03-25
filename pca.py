@@ -9,24 +9,25 @@ DB_PATH = "static/data/terrorism.csv"
 def action(year=0, nation=[], weaptype=[]):
 
     df = pd.read_csv(DB_PATH)
-    data = df
 
     # filtro i dati
     if year != 0:
-        data = df[(df.year == year)]
+        df = df[(df.year == year)]
 
     if nation:
-         data = df[df.country_txt.isin(nation)]
+         df = df[df.country_txt.isin(nation)]
 
     if weaptype:
-        data = df[df.weaptype1_txt.isin(weaptype)]
+        df = df[df.weaptype1_txt.isin(weaptype)]
 
+    print(df.head())
+    
     features = ["year", "nperps", "nkill", "nwound", "eventid", "extended"]
     columns_to_take = ['region', 'nkill', 'success',
                                           'attacktype1_txt', 'country_txt', 'city', "summary"]
 
     # Separating out the features
-    x = data.loc[:, features].values
+    x = df.loc[:, features].values
 
     # Standardizing the features
     x = StandardScaler(with_mean=True, with_std=True).fit_transform(x)
@@ -35,7 +36,8 @@ def action(year=0, nation=[], weaptype=[]):
     principalComponents = pca.fit_transform(x)
     principalDf = pd.DataFrame(
         data=principalComponents, columns=['x', 'y'])
-    finalDf = pd.concat([principalDf, df[columns_to_take]], axis=1)
+    finalDf = pd.concat(
+        [principalDf, df[columns_to_take].reset_index(drop=True)], axis=1)
     
     finalDf.to_csv("static/data/pca.csv", sep=',', index=False)
     

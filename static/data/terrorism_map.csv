@@ -1,43 +1,129 @@
 country_txt,nkill,country_code
-Afghanistan,551,AF
-Bangladesh,1,BD
+Afghanistan,4701,AF
+Albania,4,AL
+Algeria,459,DZ
+Argentina,0,AR
+Armenia,6,AM
+Australia,4,AU
+Austria,2,AT
+Azerbaijan,1,AZ
+Bahrain,6,
+Bangladesh,118,BD
 Belarus,13,BY
-Bosnia-Herzegovina,0,
-Burundi,4,BI
+Belgium,43,BE
+Bosnia-Herzegovina,3,
+Brazil,2,BR
+Bulgaria,7,BG
+Burkina Faso,33,BF
+Burundi,33,BI
+Cambodia,5,KH
+Cameroon,66,CM
+Canada,23,CA
+Central African Republic,131,
+Chad,60,TD
 Chile,0,CL
-China,8,CN
-Colombia,5,CO
-Democratic Republic of the Congo,19,CD
-Egypt,24,EG
+China,218,CN
+Colombia,259,CO
+Costa Rica,1,CR
+Croatia,2,HR
+Cyprus,0,CY
+Democratic Republic of the Congo,84,CD
+Denmark,2,DK
+East Timor,0,
+Ecuador,0,EC
+Egypt,655,EG
 Estonia,1,EE
-France,0,FR
-Germany,2,DE
-Greece,0,GR
-India,162,IN
-Indonesia,3,ID
-Iran,5,IR
-Iraq,445,IQ
-Israel,10,IL
-Italy,2,IT
+Ethiopia,13,ET
+Fiji,7,FJ
+Finland,9,FI
+France,232,FR
+Gabon,0,GA
+Gambia,0,GM
+Georgia,0,GE
+Germany,29,DE
+Greece,3,GR
+Guinea,0,GN
+Guinea-Bissau,1,GW
+Guyana,4,GY
+Haiti,0,HT
+Hong Kong,0,
+Hungary,0,HU
+India,1688,IN
+Indonesia,319,ID
+Iran,101,IR
+Iraq,9401,IQ
+Ireland,1,IE
+Israel,395,IL
+Italy,4,IT
+Ivory Coast,26,
+Japan,19,JP
+Jordan,8,JO
 Kazakhstan,10,KZ
-Kenya,1,KE
-Kyrgyzstan,0,KG
-Mali,0,ML
-Mauritania,0,MR
+Kenya,294,KE
+Kosovo,8,XK
+Kuwait,29,KW
+Kyrgyzstan,2,KG
+Lebanon,134,LB
+Lesotho,0,LS
+Liberia,0,LR
+Libya,202,LY
+Macedonia,0,MK
+Madagascar,0,MG
+Malaysia,7,MY
+Maldives,0,
+Mali,73,ML
+Malta,1,
+Mauritania,26,MR
+Mexico,29,MX
+Montenegro,0,ME
 Morocco,17,MA
-Nepal,7,NP
-Nigeria,133,NG
-Norway,77,NO
-Pakistan,684,PK
-Philippines,40,PH
-Russia,72,RU
-Rwanda,0,RW
-Somalia,146,SO
-Sudan,45,SD
-Syria,0,SY
-Thailand,65,TH
-Tunisia,0,TN
-Turkey,4,TR
-United Kingdom,0,GB
-West Bank and Gaza Strip,5,
-Yemen,42,YE
+Mozambique,21,MZ
+Myanmar,60,MM
+Namibia,0,
+Nepal,147,NP
+Netherlands,18,NL
+New Zealand,0,NZ
+Niger,30,NE
+Nigeria,1342,NG
+Norway,78,NO
+Pakistan,5442,PK
+Paraguay,2,PY
+Peru,3,PE
+Philippines,955,PH
+Poland,1,PL
+Qatar,3,QA
+Russia,699,RU
+Rwanda,5,RW
+Saudi Arabia,137,SA
+Senegal,23,SN
+Serbia-Montenegro,2,
+Somalia,1510,SO
+South Africa,16,ZA
+South Korea,0,
+South Sudan,127,
+Spain,29,ES
+Sri Lanka,623,LK
+St. Lucia,2,
+Sudan,83,SD
+Sweden,11,SE
+Switzerland,0,CH
+Syria,814,SY
+Taiwan,2,TW
+Tajikistan,11,TJ
+Tanzania,3,TZ
+Thailand,450,TH
+Tunisia,95,TN
+Turkey,424,TR
+Uganda,126,UG
+Ukraine,177,UA
+United Arab Emirates,1,AE
+United Kingdom,106,GB
+United States,3365,US
+Uruguay,1,UY
+Uzbekistan,31,UZ
+Venezuela,2,VE
+Vietnam,0,VN
+West Bank and Gaza Strip,283,
+Yemen,811,YE
+Yugoslavia,0,
+Zimbabwe,1,ZW

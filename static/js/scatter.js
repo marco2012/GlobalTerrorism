@@ -18,6 +18,7 @@
 let pca_data = "success"
 
 function scatter() {
+
     var margin = { top: 30, right: 300, bottom: 20, left: 30 },
     outerWidth = 520, //aumentare per mostrare legenda
     outerHeight = 400,
@@ -43,6 +44,8 @@ function scatter() {
     let rCat = pca_data
     let colorCat = "attacktype1_txt"
     
+    // var svg = d3.select("#scatter").selectAll("svg").remove()
+
     d3.csv("data/pca.csv", function (data) {
         
         data.forEach(function (d) {
@@ -200,7 +203,8 @@ function scatter() {
         //     updateScatter(reset = false)
         // });
         $("#reset_btn").click(function () {
-            updateScatter(reset = true)
+            // updateScatter(reset = true)
+            location.reload();
         });
 
         function notNull(array){
@@ -225,6 +229,7 @@ function scatter() {
                             d.success = +d.success;
                             d.nkill = +d.nkill;
                         })
+                        
                         // Scale the range of the data again 
                         var xMax = d3.max(data, function (d) { return d[xCat]; }) * 1.05,
                         xMin = d3.min(data, function (d) { return d[xCat]; }),
@@ -255,6 +260,7 @@ function scatter() {
                         //SVG
                         var svg = d3.select("#scatter").call(zoomBeh);
                         var circle = svg.selectAll("circle").data(data)
+                        var legend = svg.selectAll(".legend").data(color.domain())
                         
                         svg.select(".x.axis") // change the x axis
                         .transition()
@@ -298,13 +304,13 @@ function scatter() {
                         // remove old circles
                         svg.selectAll(".dot").transition().duration(1000).attr("transform", transform);
                         circle.exit().remove()
-                        
 
+                        legend.selectAll('circle').remove()
                         legend.append("circle")
                             .attr("r", 3.5)
                             .attr("cx", width + 20)
                             .attr("fill", color);
-                        
+
                     })
                 })
                 
