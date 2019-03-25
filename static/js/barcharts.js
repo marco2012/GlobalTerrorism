@@ -1,5 +1,5 @@
-
 let weapons_to_txt = {
+    1: "Biological",
     2: "Chemical",
     3: "Radiological",
     5: "Firearms",
@@ -8,9 +8,11 @@ let weapons_to_txt = {
     8: "Incendiary",
     9: "Melee",
     10: "Vehicle bombs",
+    11: "Sabotage Equipment",
     12: "Other",
     13: "Unknown"
 }
+
 var selectedWeapType = []
 
 function barchart() {
@@ -18,8 +20,6 @@ function barchart() {
 
         var inputData = [];
         data.forEach(function (d, i) {
-            // console.log(d);
-            
             inputData.push({
                 label          : d.imonth + ',' + d.country_txt + ',' + d.year,
                 "Firearms"     : d.weaptype1 == 5 ? parseInt(d.nkill)         : 0,
@@ -30,11 +30,13 @@ function barchart() {
                 "Chemical"     : d.weaptype1 == 2 ? parseInt(d.nkill)         : 0,
                 "Vehicle bombs": d.weaptype1 == 10 ? parseInt(d.nkill)        : 0,
                 "Melee"        : d.weaptype1 == 9 ? parseInt(d.nkill)         : 0,
+                "Biological"   : d.weaptype1 == 1 ? parseInt(d.nkill)         : 0,
+                "Sabotage Equipment" : d.weaptype1 == 11 ? parseInt(d.nkill)         : 0,
                 "Other"        : d.weaptype1 == 12 ? parseInt(d.nkill)        : 0,
-                "Unknown"      : d.weaptype1 == 13 ? parseInt(d.nkill)        : 0
+                "Unknown"      : d.weaptype1 == 13 ? parseInt(d.nkill)        : 0,
+
             })
         })
-
         renderStackedBarChart(inputData);
     })
 }
@@ -43,7 +45,7 @@ function renderStackedBarChart(inputData) {
     data = inputData
 
     let dom_element_to_append_to = "#chart"
-    let colorScheme = ['#f7fcf0', '#e0f3db', '#ccebc5', '#a8ddb5', '#7bccc4', '#4eb3d3', '#02818a', '#2b8cbe', '#0868ac', '#084081'].reverse()
+    let colorScheme = ['#f0ffff','#dae0f1','#c2c2e1','#a9a6d1','#8f8bc0','#7272ae','#7cf3d0','#77dbc6','#70c5bd','#69adb2','#6098a8','#008b8b'].reverse()
     // remove graph
     var svg = d3.select("#chart")
     svg.selectAll("canvas").remove()

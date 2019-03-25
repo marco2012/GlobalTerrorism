@@ -82,7 +82,7 @@ function scatter() {
         .x(function (d) { return x(d.comp_x); })
         .y(function (d) { return y(d.comp_y); });
         
-        var color = d3.scale.ordinal().range(['#8e0152','#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#80cdc1','#b8e186','#7fbc41','#4d9221','#276419'])
+        var color = d3.scale.ordinal().range(['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'].reverse())
         
         var tip = d3.tip()
         .attr("class", "d3-tip")

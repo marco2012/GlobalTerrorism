@@ -1,3 +1,4 @@
+
 function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], weaptype=[]) {
     
     let max_rows_to_take = 10
@@ -44,12 +45,49 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], wea
         }
     })
     .get(function (e, data) {   
+
+        // let attacktype_colors = ['#8e0152', '#c51b7d', '#de77ae', '#f1b6da', '#fde0ef', '#f7f7f7', '#e6f5d0', '#80cdc1', '#b8e186', '#7fbc41', '#4d9221', '#276419']
         
-        let colors_array = ['#fffff', '#fee0d2', '#fcbba1', '#fc9272', '#fb6a4a', '#ef3b2c', '#cb181d', '#a50f15', '#67000d', 'a40000'].reverse()
+        let weaptype_colors = ['#f7fcf0', '#e0f3db', '#ccebc5', '#a8ddb5', '#7bccc4', '#4eb3d3', '#02818a', '#2b8cbe', '#0868ac', '#084081'].reverse()
+        
+        // let nkill_colors = ['#fffff', '#fee0d2', '#fcbba1', '#fc9272', '#fb6a4a', '#ef3b2c', '#cb181d', '#a50f15', '#67000d', 'a40000'].reverse()
 
-        var color1 = d3.scale.ordinal().range(colors_array)
+        // let colors_array = attacktype_colors
 
-        var color = function (d) { return color1(d.Victims); };
+        // var color1 = d3.scale.ordinal().range(colors_array)
+
+        // var color = function (d) { return color1(d["Attack type"]) }
+//  ['#f0ffff','#dae0f1','#c2c2e1','#a9a6d1','#8f8bc0','#7272ae','#7cf3d0','#77dbc6','#70c5bd','#69adb2','#6098a8','#008b8b'].reverse()
+        var color = function (d) {
+            switch (d.Weapon_type) {
+                case "Unknown":
+                    return '#f0ffff';
+                case "Other":
+                    return '#dae0f1';
+                case "Melee":
+                    return '#8f8bc0';
+                case "Vehicle (not to include vehicle-borne explosives, i.e., car or truck bombs)":
+                    return '#7272ae';
+                case "Chemical":
+                    return '#7cf3d0';
+                case "Incendiary":
+                    return '#77dbc6';
+                case "Fake Weapons":
+                    return '#70c5bd';
+                case "Explosives":
+                    return '#69adb2';
+                case "Radiological":
+                    return '#6098a8';
+                case "Biological":
+                    return '#a9a6d1';
+                case "Sabotage Equipment":
+                    return '#c2c2e1';
+                case "Firearms":
+                    return '#008b8b';
+                default:
+                    break;
+            }
+        };
 
         var parcoords = d3.parcoords()("#parallelArea")
             .color(color)
