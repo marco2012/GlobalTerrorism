@@ -196,6 +196,9 @@ function scatter() {
         $("#world-map-region-trigger").click(function () {
             updateScatter(reset = false)
         });
+        $('#grid .row').click(function () {
+            updateScatter(reset = false)
+        });
         $("#reset_btn").click(function () {
             updateScatter(reset = true)
         });

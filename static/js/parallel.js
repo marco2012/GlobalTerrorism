@@ -108,8 +108,9 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], wea
                 dimensions = ["Year", "Attackers", "Victims", "Wound", "Region", "Suicide", "Duration" , "Attack type"]
                 
             } else if ( data_to_read == 'cosine_similarity_data.csv' ) {
-                if (filter_year == 0) dimensions = ["Year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
-                else dimensions = ["Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+                // if (filter_year == 0) dimensions = ["Year", "Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
+                // else 
+                dimensions = ["Attackers", "Victims", "Wound", "Suicide", "Attack type", "spacial_distance"]
                 
             }
             
@@ -159,10 +160,10 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], wea
                     } //click
                 }); //on
                 
-                // if (data_to_read = 'terrorism.csv') {
-                // d3.selectAll(".col-0").remove() //rimuovo colonna 
-                // d3.selectAll(".col-1").remove() //rimuovo colonna 
-                // }
+                if (data_to_read = 'terrorism.csv') {
+                d3.selectAll(".col-0").remove() //rimuovo colonna 
+                d3.selectAll(".col-1").remove() //rimuovo colonna 
+                }
                 
                 //higlight on hover
                 $('#grid .row').hover(function () {
