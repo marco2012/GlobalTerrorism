@@ -22,7 +22,7 @@ def action(year=0, nation=[], weaptype=[]):
 
     print(df.head())
     
-    features = ["year", "nperps", "nkill", "nwound", "eventid", "extended"]
+    features = ["year", "nperps", "nkill", "nwound", "extended"]
     columns_to_take = ['region', 'nkill', 'success',
                                           'attacktype1_txt', 'country_txt', 'city', "summary"]
 

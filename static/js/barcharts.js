@@ -230,7 +230,8 @@ function renderStackedBarChart(inputData) {
 
         })
         .on("click", function (d) {
-            let weapType = d.name
+            var weapType = d.name
+            if (weapType == "Vehicle bombs") weapType = "Vehicle (not to include vehicle-borne explosives, i.e., car or truck bombs)"
             selectedWeapType.push(weapType)
             updateCharts(csv = 'terrorism.csv', weapType = selectedWeapType)
             $('#world-map-region-trigger').click() // to update scatterplot PCA

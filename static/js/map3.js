@@ -56,8 +56,8 @@ function map3() {
 
 function updateMap(reset=false){
     handleMapData(function (values, availableCountries) {
-        map3values = values
-        map3AvailableCountries = availableCountries
+        // map3values = values
+        // map3AvailableCountries = availableCountries
         var map = $('.world-map').vectorMap('get', 'mapObject')
         if (reset) map.clearSelectedRegions()
         map.series.regions[0].clear();
@@ -74,7 +74,8 @@ function handleMapData(callback){
             values[d.country_code] = parseInt(d.nkill)
             availableCountries.push(d.country_txt)
         })
-
+        map3values = values
+        map3AvailableCountries = availableCountries
         callback(values, availableCountries)
     })
 }

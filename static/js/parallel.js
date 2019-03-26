@@ -25,6 +25,7 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], wea
                 Country: d.country_txt,
                 // Region: d.region_txt,
                 "Attack type": d.attacktype1_txt,
+                Weapon_type: d.weaptype1_txt,
                 spacial_distance: parseFloat(d.spacial_distance).toFixed(6)
                 // summary      : d.summary
             }
@@ -223,18 +224,20 @@ function parallel(data_to_read = 'terrorism.csv' ,filter_year=0, country=[], wea
                     .selectAll(".row")
                     .on({
                         "mouseover": function (d) { parcoords.highlight([d]) },
-                        "mouseout": parcoords.unhighlight,
-                        "click": function (d) {
-                            document.getElementById('id01').style.display = 'block' //make block appear
-                            $('#dialog_title_span').html('<h2>Attack summary</h2>')
-                            $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
-                        }
-                    });
-                    
-                    // d3.selectAll(".col-0").remove() //rimuovo colonna 
-                    // d3.selectAll(".col-1").remove() //rimuovo colonna 
+                        "mouseout": function (d) { 
+                            parcoords.unhighlight([d]) 
+                        },
+                        // "click": function (d) {
+                        //     document.getElementById('id01').style.display = 'block' //make block appear
+                        //     $('#dialog_title_span').html('<h2>Attack summary</h2>')
+                        //     $('#dialog_content_span').html("<br/>" + d.summary + "<br/><br/>")
+                        // }
+                    })
                     
                 });
+
+                
+
             } 
         });
     }

@@ -155,7 +155,6 @@ function scatter() {
         .attr("x2", 0)
         .attr("y2", height);
         
-        
         objects.selectAll(".dot")
         .data(data)
         .enter().append("circle")
@@ -188,7 +187,6 @@ function scatter() {
         .text(function (d) {
             // return region_to_txt[d] //converte numero regione in stringa
             return d;
-            
         })
         .style("font-size", "12px")
         
